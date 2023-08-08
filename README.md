@@ -8,7 +8,7 @@ Greetings hawk-xc
 📖 UserGuide -> https://www.codeigniter.com/user_guide/intro/index.html
 
 ### 📚 Prerequisite
-- PHP basic
+- PHP 7.2^ & PHP basic
 - PHP OOP
 - packet manager (XAMPP, LAMPP, MAMPP)
 - internet
@@ -25,3 +25,8 @@ composer create-project codeigniter4/appstarter [project-name] --no-dev
 ```
 
 🔗 https://codeigniter.com/user_guide/installation/installing_composer.html
+
+🔽 Repo clone from git Installation
+```bash
+git clone https://github.com/hawk-xc/CodeIgniter4
+```
