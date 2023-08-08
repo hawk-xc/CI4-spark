@@ -16,4 +16,12 @@ Greetings hawk-xc
 - MVC concept
 
 ### ⬇️ Installation
-🔽 Manual Installation
+🔽 Composer Installation
+```bash
+sudo apt-get install composer -y
+composer create-project codeigniter4/appstarter [project-name]
+# or using no-dev mode
+composer create-project codeigniter4/appstarter [project-name] --no-dev
+```
+
+🔗 https://codeigniter.com/user_guide/installation/installing_composer.html
