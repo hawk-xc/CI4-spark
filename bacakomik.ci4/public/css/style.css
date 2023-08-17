@@ -1,0 +1,45 @@
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css');
+/* google font */
+@import url('https://fonts.googleapis.com');
+@import url('https://fonts.gstatic.com');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,300;10..48,500;10..48,800&display=swap');
+
+:root {
+    --box-shadow-1: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+* {
+    font-family: 'Bricolage Grotesque', sans-serif;
+}
+.header-container {
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-container {
+    bottom: 0;  
+    z-index: 500;
+    width: 100%;
+    font-family: 'Cartograph CF';
+}
+
+table > tbody > * {
+    vertical-align: middle;
+}
+
+.sampul-image {
+    width: 140px;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow-1);
+}
+
+.lihat-button {
+    transition: ease 0.7s;
+    box-sizing: border-box;
+}
+
+.lihat-button:hover {
+    width: 35%;
+    height: 35%;
+}
+
