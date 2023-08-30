@@ -1,0 +1,105 @@
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js');
+@import url('https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js');
+
+:root {
+    --bg-shadow-1: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    --bg-shadow-2: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+* {
+    font-family: 'Cartograph CF';
+}
+
+.container-header {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 3rem;
+    box-sizing: border-box;
+    align-items: center;
+    width: 100%;
+}
+
+/* footer {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position:absolute;
+    vertical-align: bottom;
+    flex-direction: column;
+    z-index: 500;
+    bottom: 0;
+} */
+
+.container {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    border: 1px solid #222222;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.balok-user {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.form-delete {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+}
+
+.form-delete > .data {
+    width: 50px;
+    border-radius: 10px;
+    border: 0px;
+    &:focus {
+        outline: none;
+        border: none;
+    }
+}
+
+.form-delete > .delete {
+    /* border-radius: 10px; */
+    color: white;
+}
+
+
+/* komik content section */
+.box-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.box-content > a {
+    transition: 0.5s;
+    cursor: pointer;
+}
+.box-content > a:hover {
+    box-shadow: var(--bg-shadow-1);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.card {
+    height: 405px;
+}
+
+.card-body > code {
+    font-size: 10px;
+}
+
+.card-img-top {
+    height: 300px;
+}
