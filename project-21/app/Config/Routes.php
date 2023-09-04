@@ -35,8 +35,10 @@ $routes->get('/', 'Home::index');
 $routes->get('/komik', 'Home::komik');
 $routes->get('/create', 'Home::create');
 $routes->post('/save', 'Home::save');
-$routes->get('/komik/(:any)', 'Home::detail/$1');
+// $routes->get('/komik/(:any)', 'Home::detail/$1');
+$routes->get('/komik/(:segment)', 'Home::detail/$1');
 $routes->post('/delete', 'Home::delete');
+$routes->get('/card', 'Home::user_card');
 
 
 // create routing testing pages

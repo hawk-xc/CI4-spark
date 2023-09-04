@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap 5 JavaScript and Popper.js CDN links -->
     <!-- Bootstrap JavaScript and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.2/dist/js/bootstrap.min.js" integrity="sha384-pzjwZ5A3TPgn4eR+973STvmA5VaVd9mI2iM+MkzJxA6n/a2DeE2fWFMXNlT4Wpb" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oNfFsBR+rvoH4BZorMKoFVjIy8M+fxl0sVcUrC3G81L1Lz+J+GGAhIbb8d1xWW" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script src="js/script.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<?= base_url('css/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/all.css') ?>">
+    <script src="<?= base_url('js/bootstrap.min.js') ?>"></script>
+    <script src="<?= base_url('js/bootstrap.bundle.js') ?>"></script>
+    <script src="<?= base_url('js/all.js') ?>"></script>
+    <script src="<?= base_url('js/script.js') ?>"></script>
 </head>
 <div class="container-header bg-light py-2">
     <a href="<?= base_url() ?>" style="color: #222222; text-decoration: none">

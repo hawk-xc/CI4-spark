@@ -37,9 +37,9 @@
             </div>
             <div class="mb-3">
                 <label for="sampul" class="form-label">Gambar sampul</label>
-                <input class="form-control is-invalid" type="file" id="sampul" accept="image/*">
+                <input name="sampul" class="form-control <?= session('validation') ? "is-invalid" : "is_valid" ?>" type="file" id="sampul" accept="image/*">
                 <div class="invalid-feedback">
-                    ini salah
+                    <?= session('validation.sampul') ?>
                 </div>
             </div>
             <button type="submit" name="submit" class="btn btn-primary">Kirim data</button>

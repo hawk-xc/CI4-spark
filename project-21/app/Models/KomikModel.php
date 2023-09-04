@@ -21,4 +21,9 @@ class KomikModel extends Model
     // protected $validationRules    = [];
     // protected $validationMessages = [];
     protected $skipValidation     = false;
+
+    public function getName($slug = false)
+    {
+        return $slug == false ? $this->findAll() : $this->where(['slug' => $slug])->first();
+    }
 }

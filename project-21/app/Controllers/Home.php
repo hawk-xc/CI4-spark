@@ -36,20 +36,22 @@ class Home extends BaseController
     {
         $data = [
             'title' => 'Hawkxc | Daftar Komik',
-            'komik' => $this->komik->findAll()
+            'komik' => $this->komik->getName()
         ];
 
         return view('Pages/komik', $data);
     }
 
+    // public function detail($slug)
     public function detail($slug)
     {
         $data = [
             'title' => 'Hawkxc | Data Komik',
-            'komik' => $this->komik->where('slug', $slug)->find()
+            'komik' => $this->komik->getName($slug)
         ];
 
         return view('Pages/detail', $data);
+        // dd($data['komik']);
     }
 
     public function create()
@@ -65,9 +67,16 @@ class Home extends BaseController
     public function save()
     {
         $gambar = $this->request->getFile('sampul');
+        if ($gambar->getError() === 4) {
+            $gambar_new = 'default.png';
+        } else {
+            $gambar_new = $gambar->getRandomName();
+            $gambar->move('image/', $gambar_new);
+        }
+
         $data = [
-            'sampul' => $gambar,
-            'judul' => $this->request->getPost('judul'),
+            'sampul' => $gambar_new,
+            'judul' => htmlspecialchars($this->request->getPost('judul')),
             'slug' => url_title($this->request->getVar('judul'), '-', true),
             'karangan' => $this->request->getPost('karangan'),
             'penerbit' => $this->request->getPost('penerbit')
@@ -78,14 +87,6 @@ class Home extends BaseController
         $this->message['min_length'] = '{field} penggunaan minimal adalah 3 abjad';
 
         if (!$this->validate([
-            'sampul' => [
-                'rules' => 'required|is_unique[komik.sampul]|min_length[3]',
-                'errors' => [
-                    'required' => $this->message['required'],
-                    'is_unique' => $this->message['is_unique'],
-                    'min_length' => $this->message['min_length'],
-                ]
-            ],
             'judul' => [
                 'rules' => 'required|is_unique[komik.sampul]|min_length[3]',
                 'errors' => [
@@ -114,11 +115,15 @@ class Home extends BaseController
             $this->session->setFlashdata('pesan', 'data gagal dibuat');
             return redirect()->to(base_url('/create'))->withInput()->with('validation', $this->validation->getErrors());
         } else {
-            $this->session->setFlashdata('pesan', 'data berhasil disimpan');
             $this->komik->save($data);
+            $this->session->setFlashdata('pesan', 'data berhasil disimpan');
 
             return redirect()->to(base_url());
         }
+    }
+
+    public function editData()
+    {
     }
 
     public function delete()
@@ -126,8 +131,9 @@ class Home extends BaseController
         $idVar = $this->request->getPost('data-to-delete');
         $ifExist = $this->komik->find($idVar);
         if ($ifExist !== null) {
-            $this->session->setFlashdata('pesan', "$idVar berhasil dihapus");
+            $this->session->setFlashdata('pesan', $ifExist['judul'] . " berhasil dihapus");
             $this->komik->delete($idVar);
+            ($ifExist['sampul'] !== 'default.png') ? unlink('image/' . $ifExist['sampul']) : null;
         } else {
             $this->session->setFlashdata('pesan', "mohon maaf data $idVar tidak ada didatabase :'(");
         }

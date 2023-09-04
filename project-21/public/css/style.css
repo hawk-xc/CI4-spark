@@ -9,7 +9,7 @@
 }
 
 * {
-    font-family: 'Cartograph CF';
+    /* font-family: 'Cartograph CF'; */
 }
 
 .container-header {
@@ -92,14 +92,19 @@
     text-align: center;
 }
 
-.card {
-    height: 405px;
-}
-
 .card-body > code {
     font-size: 10px;
 }
 
 .card-img-top {
     height: 300px;
+}
+
+@keyframes animasiMasuk {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
