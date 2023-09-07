@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+:root {
+    --color-primary: #8c85ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: DM Sans,sans-serif;
+}
+
+body{
+    background: #f5f6fa;
+}
+
+.container {
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.sidebar {
+    /* background: var(--color-primary); */
+    /* flex: 1; */
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 20px 0;
+    transition: all 0.5s ease;
+    display: flex;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar > .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-weight: 800;
+}
+
+.content {
+    flex: 1;
+}
