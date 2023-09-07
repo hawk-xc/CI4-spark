@@ -2,6 +2,8 @@
 
 :root {
     --color-primary: #8c85ff;
+    --color-primary-1: #1d7af8;
+    --color-secondary: #17c6fe;
 }
 
 * {
@@ -11,7 +13,7 @@
 }
 
 body{
-    background: #f5f6fa;
+    background: #f1f6fa;
 }
 
 .container {
@@ -22,7 +24,7 @@ body{
 }
 
 .sidebar {
-    /* background: var(--color-primary); */
+    background-color: white;
     /* flex: 1; */
     /* position: fixed; */
     top: 0;
@@ -57,4 +59,20 @@ body{
     height: 100px;
     justify-content: space-between;
     padding-inline: 1rem;
+}
+
+.content-body > .panel-info {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+}
+.content-body > .panel-info > .info-box {
+    display: flex;
+    color: white;
+    width: 300px;
+    padding-block: 1rem;
+    padding-inline: 2rem;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background: linear-gradient(to left top, var(--color-primary-1), var(--color-secondary));
 }
