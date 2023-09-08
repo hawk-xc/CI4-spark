@@ -1,9 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('semantic/all.min.css');
 
 :root {
     --color-primary: #8c85ff;
     --color-primary-1: #1d7af8;
     --color-secondary: #17c6fe;
+
+    /* box shadow */
+    --box-shadow-1: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    --box-shadow-2: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 * {
@@ -61,13 +65,69 @@ body{
     padding-inline: 1rem;
 }
 
-.content-body > .panel-info {
-    background-color: white;
-    display: flex;
-    flex-direction: row;
+.content-body {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-areas: 
+    "grid-header grid-header"
+    "grid-user grid-logs";
 }
+
+/* panel info & grid-header config */
+
+.content-body > .panel-info {
+    background-color: #ffffff;
+    /* background-color: black; */
+    padding: 1rem;
+    margin-inline: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: row;
+    box-shadow: var(--box-shadow-1);
+    border-radius: 10px;
+}
+
+.content-body > .grid-header {
+    grid-area: grid-header;
+}
+
+/* end grid-header config */
+
+/* panel info & grid-user config */
+
+.content-body > .panel-user {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    margin-left: 2rem;
+    box-shadow: var(--box-shadow-1);
+    margin-bottom: 2rem;
+}
+
+.content-body > .grid-user {
+    grid-area: grid-user;
+}
+
+/* end grid-user config */
+
+.content-body > .panel-logs {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    margin-right: 2rem;
+    box-shadow: var(--box-shadow-1);
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+}
+
+.content-body > .grid-logs {
+    grid-area: grid-logs;
+}
+
 .content-body > .panel-info > .info-box {
     display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    box-shadow: var(--box-shadow-2);
     color: white;
     width: 300px;
     padding-block: 1rem;
@@ -75,4 +135,7 @@ body{
     box-sizing: border-box;
     border-radius: 10px;
     background: linear-gradient(to left top, var(--color-primary-1), var(--color-secondary));
+    &:hover {
+        animation: pulse 0.2s 1
+    }
 }
