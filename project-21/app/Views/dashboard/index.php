@@ -32,6 +32,10 @@
                     <h2 class="ui header"># Fresh Dashboard</h2>
                 </div>
                 <div class="content-header-menu">
+                    <button class="ui labeled icon green button">
+                        <i class="fa-solid fa-plus icon"></i>
+                        New ticket
+                    </button>
                     <div class="ui action input">
                         <input type="text" placeholder="Search...">
                         <button class="ui button">Search</button>
@@ -84,22 +88,22 @@
                         <div class="item">
                             <img class="ui avatar image" src="assets/users/guest-default-man.png">
                             <div class="content">
-                                <a class="header">Daniel Louise</a>
-                                <div class="description">Last seen watching <a><b>Arrested Development</b></a> just now.</div>
+                                <a class="header">Nathanael Candika</a>
+                                <div class="description">add new installation ticket <a><b>Sri Hayati</b></a> just now.</div>
                             </div>
                         </div>
                         <div class="item">
                             <img class="ui avatar image" src="assets/users/guest-default-man.png">
                             <div class="content">
-                                <a class="header">Stevie Feliciano</a>
-                                <div class="description">Last seen watching <a><b>Bob's Burgers</b></a> 10 hours ago.</div>
+                                <a class="header">Nathanael Candika</a>
+                                <div class="description">close installation ticket <a><b>Bob's Burgers</b></a> 10 hours ago.</div>
                             </div>
                         </div>
                         <div class="item">
                             <img class="ui avatar image" src="assets/users/guest-default-lady.png">
                             <div class="content">
-                                <a class="header">Elliot Fu</a>
-                                <div class="description">Last seen watching <a><b>The Godfather Part 2</b></a> yesterday.</div>
+                                <a class="header">Kikisan Mala</a>
+                                <div class="description">add new installation ticket <a><b>Jefry Al Buchori</b></a> yesterday.</div>
                             </div>
                         </div>
                     </div>
