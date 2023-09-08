@@ -80,6 +80,29 @@
                 </div>
                 <div class="panel-user grid-user">
                     <h2><i class="fa-solid fa-list"></i> Activity logs</h2>
+                    <div class="ui relaxed list">
+                        <div class="item">
+                            <img class="ui avatar image" src="assets/users/guest-default-man.png">
+                            <div class="content">
+                                <a class="header">Daniel Louise</a>
+                                <div class="description">Last seen watching <a><b>Arrested Development</b></a> just now.</div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="assets/users/guest-default-man.png">
+                            <div class="content">
+                                <a class="header">Stevie Feliciano</a>
+                                <div class="description">Last seen watching <a><b>Bob's Burgers</b></a> 10 hours ago.</div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="assets/users/guest-default-lady.png">
+                            <div class="content">
+                                <a class="header">Elliot Fu</a>
+                                <div class="description">Last seen watching <a><b>The Godfather Part 2</b></a> yesterday.</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-logs grid-logs">
                     <h2><i class="fa-regular fa-chart-bar"></i> On progress</h2>
@@ -108,6 +131,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="ui center aligned container">
+                <span class="ui header center">&copy;2023 build with Semantic.ui and <i class="fa-solid fa-heart"></i></span>
             </div>
         </div>
     </div>
