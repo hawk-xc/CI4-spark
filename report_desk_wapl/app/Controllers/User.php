@@ -10,6 +10,7 @@ class User extends BaseController
     public $session;
     public function __construct()
     {
+
         $this->session = session();
     }
 
