@@ -20,6 +20,6 @@ class User extends BaseController
             'session' => $this->session,
         ];
 
-        return view('login', $data);
+        return view('user/login', $data);
     }
 }
