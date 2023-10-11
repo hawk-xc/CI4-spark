@@ -7,5 +7,5 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 $routes->setAutoRoute(true);
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Dashboard::index');
 $routes->get('/login', 'User::login');
