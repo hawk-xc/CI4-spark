@@ -10,11 +10,11 @@ passwd_field.addEventListener("input", function () {
 });
 
 passwd_toggle.addEventListener("click", function () {
-  if (passwd_toggle.classList.contains("ri-eye-line")) {
-    passwd_toggle.classList.replace("ri-eye-line", "ri-eye-off-line");
+  if (passwd_toggle.classList.contains("ri-eye-off-line")) {
+    passwd_toggle.classList.replace("ri-eye-off-line", "ri-eye-line");
     passwd_field.setAttribute("type", "text");
   } else {
-    passwd_toggle.classList.replace("ri-eye-off-line", "ri-eye-line");
+    passwd_toggle.classList.replace("ri-eye-line", "ri-eye-off-line");
     passwd_field.setAttribute("type", "password");
   }
 });
