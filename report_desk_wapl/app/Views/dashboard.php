@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <?= $this->extend('particle/dashboard_particle.php'); ?>
+    <?= $this->extend('particle/dashboardParticle.php'); ?>
     <?= $this->section('content'); ?>
     <h1 class="text-2xl font-extrabold text-center">testing</h1>
     <h1 class="text-2xl font-extrabold text-center">ora ngono anjeng</h1>

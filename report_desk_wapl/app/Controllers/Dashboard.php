@@ -16,6 +16,7 @@ class Dashboard extends BaseController
     public function index()
     {
         $data = [
+            'name' => 'dashboard',
             'title' => 'laman dashboard',
             'session' => $this->session,
         ];
