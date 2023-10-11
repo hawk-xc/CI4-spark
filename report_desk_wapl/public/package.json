@@ -78,7 +78,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tailwind": "npx tailwindcss -i tailwind/input.css -o tailwind/output.css --watch"
+    "dev": "npx tailwindcss -i tailwind/input.css -o tailwind/output.css --watch"
   },
   "keywords": [],
   "author": "",
