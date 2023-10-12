@@ -26,4 +26,15 @@ class Dashboard extends BaseController
 
         return view('dummydash', $data);
     }
+
+    public function contact()
+    {
+        $data = [
+            'name' => 'Contact',
+            'title' => 'laman Contact',
+            'session' => $this->session,
+        ];
+
+        return view('contact', $data);
+    }
 }
