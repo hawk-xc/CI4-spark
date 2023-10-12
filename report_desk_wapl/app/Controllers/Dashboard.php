@@ -21,6 +21,6 @@ class Dashboard extends BaseController
             'session' => $this->session,
         ];
 
-        return view('dashboard.php', $data);
+        return view('dummydash', $data);
     }
 }
