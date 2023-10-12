@@ -19,6 +19,8 @@ class Dashboard extends BaseController
             'name' => 'dashboard',
             'title' => 'laman dashboard',
             'session' => $this->session,
+            'homeNavButton' => true,
+            'ticketNavButton' => false,
         ];
 
         return view('dummydash', $data);
