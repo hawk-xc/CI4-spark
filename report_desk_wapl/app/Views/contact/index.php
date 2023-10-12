@@ -24,7 +24,7 @@
                 <h2 class="text-2xl font-semibold mb-4">Formulir Kontak</h2>
                 <form action="submit_contact_form" method="post">
                     <div class="mb-4">
-                        <label for="name" class="block text-gray-600">Nama Lengkap</label>
+                        <label for="name" class="block text-GGgray-600">Nama Lengkap</label>
                         <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500" required>
                     </div>
                     <div class="mb-4">
