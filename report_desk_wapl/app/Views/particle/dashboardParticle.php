@@ -17,8 +17,9 @@
             <ul class="text-slate-300 flex flex-col gap-2 mt-3">
 
                 <!-- navigasi home -->
-                <li id="homeNavButton" class="<?= $homeNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-home-heart-line text-2xl"></i> home</li>
-
+                <a href="../home">
+                    <li id="homeNavButton" class="<?= $homeNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-home-heart-line text-2xl"></i> home</li>
+                </a>
                 <!-- navigasi ticket -->
                 <a href="../ticket">
                     <li id="ticketNavButton" class="<?= $ticketNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-coupon-3-fill text-2xl"></i> ticket</li>
