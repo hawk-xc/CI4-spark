@@ -15,11 +15,23 @@
             <span class="text-2xl font-semibold dashboard-title duration-150 transition-all"><i class="ri-verified-badge-line"></i> dashboard</span>
             <hr class="border-b border-white w-40 mt-5">
             <ul class="text-slate-300 flex flex-col gap-2 mt-3">
-                <li class="button-click translate-x-2 hover:translate-x-4 hover:font-bold duration-150 transition-all ease-out"><i class="ri-home-heart-line text-2xl"></i> home</li>
-                <li class="active-click flex items-center gap-2"><i class="ri-file-info-line text-2xl"></i> panel 2</li>
-                <li class="button-click translate-x-2 hover:translate-x-4 hover:font-bold duration-150 transition-all ease-out"><i class="ri-file-info-line text-2xl"></i> panel 1</li>
-                <li class="button-click translate-x-2 hover:translate-x-4 hover:font-bold duration-150 transition-all ease-out"><i class="ri-file-info-line text-2xl"></i> panel 3</li>
-                <li class="button-click translate-x-2 hover:translate-x-4 hover:font-bold duration-150 transition-all ease-out"><i class="ri-file-info-line text-2xl"></i> panel 4</li>
+
+                <!-- navigasi home -->
+                <a href="../home">
+                    <li id="homeNavButton" class="<?= $homeNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-home-heart-line text-2xl"></i> home</li>
+                </a>
+                <!-- navigasi ticket -->
+                <a href="../ticket">
+                    <li id="ticketNavButton" class="<?= $ticketNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-coupon-3-fill text-2xl"></i> ticket</li>
+                </a>
+
+                <!-- navigasi contact -->
+                <a href="../contact">
+                    <li id="" class="<?= $contactNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-contacts-book-2-fill text-2xl"></i> contact</li>
+                </a>
+
+                <li id="" class="button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out"><i class="ri-file-info-line text-2xl"></i> panel 3</li>
+                <li id="" class="button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out"><i class="ri-file-info-line text-2xl"></i> panel 4</li>
             </ul>
             <section id="footer" class="bottom-0 absolute mb-10 flex flex-col items-center text-center -translate-x-5">
                 <span class="text-white font-bold">kerkom @ 2023</span>
@@ -46,7 +58,7 @@
                 </span>
             </span>
             <span id="hamburgerMenu" class="flex flex-row gap-1 bg-slate-200 rounded-full max-sm:w-7 max-sm:h-7 md:hidden items-center justify-center">
-                <i class="text-slate-800 ri-menu-2-line max-sm:text-sm"></i>
+                <i id="hamburgerIcon" class="text-slate-800 ri-menu-2-line max-sm:text-sm"></i>
             </span>
         </span>
     </div>

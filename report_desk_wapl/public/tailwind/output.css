@@ -881,11 +881,6 @@ li {
   background-color: transparent;
 }
 
-.bg-white{
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
 .p-2{
   padding: 0.5rem;
 }
@@ -937,9 +932,6 @@ li {
   padding-bottom: 2rem;
 }
 
-.pl-5{
-  padding-left: 1.25rem;
-}
 
 .pl-56{
   padding-left: 14rem;
