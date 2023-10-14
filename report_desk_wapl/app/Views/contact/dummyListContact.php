@@ -1,6 +1,6 @@
 <?= $this->extend('particle/dashboardParticle'); ?>
 <?= $this->section("content"); ?>
-<div class="bg-slate-300 pl-56 pr-4 ">
+<div class="bg-slate-300 ">
     <div class="container mx-auto p-6">
         <div class="bg-white shadow-md rounded my-6">
             <table class="min-w-max w-full table-auto">
