@@ -16,10 +16,25 @@ class Dashboard extends BaseController
     public function index()
     {
         $data = [
+            'name' => 'dashboard',
             'title' => 'laman dashboard',
+            'session' => $this->session,
+            'homeNavButton' => true,
+            'ticketNavButton' => false,
+            'contactNavButton' => false,
+        ];
+
+        return view('dummydash', $data);
+    }
+
+    public function contact()
+    {
+        $data = [
+            'name' => 'Contact',
+            'title' => 'laman Contact',
             'session' => $this->session,
         ];
 
-        return view('dashboard.php', $data);
+        return view('contact', $data);
     }
 }
