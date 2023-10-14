@@ -8,10 +8,12 @@ const userBox = document.getElementById("userBox");
 window.addEventListener("scroll", function () {
   if (window.scrollY > 100) {
     toolPanel.classList.replace("md:py-4", "md:py-1");
+    toolPanel.classList.add("bg-opacity-30", "backdrop-blur-sm");
     searchBox.classList.replace("md:scale-100", "md:scale-[70%]");
     userBox.classList.replace("md:scale-100", "md:scale-[70%]");
   } else {
     toolPanel.classList.replace("md:py-1", "md:py-4");
+    toolPanel.classList.remove("bg-opacity-30", "backdrop-blur-sm");
     searchBox.classList.replace("md:scale-[70%]", "md:scale-100");
     userBox.classList.replace("md:scale-[70%]", "md:scale-100");
   }
