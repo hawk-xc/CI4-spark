@@ -16,6 +16,7 @@ class Contact extends BaseController
             'contactNavButton' => true,
         ];
 
-        return view('contact/index', $data);
+        // return view('contact/index', $data);
+        return view('contact/dummyListContact', $data);
     }
 }
