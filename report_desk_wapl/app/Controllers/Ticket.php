@@ -16,6 +16,6 @@ class Ticket extends BaseController
             'contactNavButton' => false,
         ];
 
-        return view('ticket', $data);
+        return view('ticketing/ticket', $data);
     }
 }

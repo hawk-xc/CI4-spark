@@ -8,8 +8,8 @@
     <title><?= $title ?></title>
 </head>
 
-<body class="">
-    <section name="panel" class="h-screen absolute">
+<body class="h-screen">
+    <section name="panel" class="h-screen absolute max-sm:fixed md:fixed lg:fixed z-10">
         <!-- this is panel of dashboard -->
         <section id="right_panel" class="w-52 bg-slate-800 max-sm:-translate-x-52 h-screen md:absolute lg:absolute pl-5 pt-8 duration-150 ease-in-out transition-all">
             <span class="text-2xl font-semibold dashboard-title duration-150 transition-all"><i class="ri-verified-badge-line"></i> dashboard</span>
@@ -39,30 +39,38 @@
             </section>
         </section>
     </section>
-    <div class="max-sm:pl-3 py-4 flex flex-row justify-between flex-nowrap overflow-hidden">
-        <span class="max-sm:text-lg md:ml-56 lg:ml-56 md:text-2xl lg:text-2xl font-bold text-slate-800"><?= $name ?></span>
-        <span class="flex flex-row gap-3 mr-4">
-            <span class="flex flex-row gap-1 bg-slate-200 rounded-full max-sm:w-7 max-sm:h-7 md:px-3 items-center justify-center">
-                <i class="text-slate-800 ri-search-2-line max-sm:text-sm"></i>
-                <form action="" method="post" class="max-sm:hidden">
-                    <input type="text" class="placeholder:text-sm bg-transparent active:outline-none focus:outline-none md:w-40" placeholder="Hey, cari semua disini . . .">
-                </form>
-            </span>
-            <span class="flex flex-row items-center align-middle gap-2">
-                <span id="greet" class="md:flex md:flex-col lg:flex lg:flex-col max-sm:hidden">
-                    <span>Denny irawan</span>
-                    <span class="text-xs">Pengoprek hamdal</span>
+
+    <section class="">
+        <div id="toolPanel" class="fixed max-sm:pl-3 max-sm:py-4 md:py-4 flex flex-row justify-between flex-nowrap overflow-hidden duration-150 transition-all bg-white  w-full">
+            <span class="max-sm:text-lg md:ml-56 lg:ml-56 md:text-2xl lg:text-2xl font-bold text-slate-800"><?= $name ?></span>
+            <span class="flex flex-row gap-3 mr-4">
+                <span id="searchBox" class="md:scale-100 duration-150 transition-all flex flex-row gap-1 bg-slate-200 rounded-full max-sm:w-7 max-sm:h-7 md:px-3 items-center justify-center">
+                    <i class="text-slate-800 ri-search-2-line max-sm:text-sm"></i>
+                    <form action="" method="post" class="max-sm:hidden">
+                        <input type="text" class="placeholder:text-sm bg-transparent active:outline-none focus:outline-none md:w-40" placeholder="Hey, cari semua disini . . .">
+                    </form>
                 </span>
-                <span id="image" class="max-sm:w-7 max-sm:h-7 md:w-10 md:h-10 lg:w-10 lg:h-10 rounded-full bg-slate-200 flex justify-center align-middle items-center">
-                    <i class="ri-user-5-fill max-sm:text-lg md:text-2xl text-slate-500"></i>
+                <span class="flex flex-row items-center align-middle gap-2">
+                    <span id="greet" class="md:flex md:flex-col lg:flex lg:flex-col max-sm:hidden">
+                        <span>Denny irawan</span>
+                        <span class="text-xs">Pengoprek hamdal</span>
+                    </span>
+                    <span id="userBox" class="md:scale-100 duration-150 transition-all  max-sm:w-7 max-sm:h-7 md:w-10 md:h-10 lg:w-10 lg:h-10 rounded-full bg-slate-200 flex justify-center align-middle items-center">
+                        <i class="ri-user-5-fill max-sm:text-lg md:text-2xl text-slate-500"></i>
+                    </span>
+                </span>
+                <span id="hamburgerMenu" class="flex flex-row gap-1 bg-slate-200 rounded-full max-sm:w-7 max-sm:h-7 md:hidden items-center justify-center">
+                    <i id="hamburgerIcon" class="text-slate-800 ri-menu-2-line max-sm:text-sm"></i>
                 </span>
             </span>
-            <span id="hamburgerMenu" class="flex flex-row gap-1 bg-slate-200 rounded-full max-sm:w-7 max-sm:h-7 md:hidden items-center justify-center">
-                <i id="hamburgerIcon" class="text-slate-800 ri-menu-2-line max-sm:text-sm"></i>
-            </span>
-        </span>
+        </div>
+    </section>
+
+    <div class="w-screen p-5 bg-slate-100 h-screen">
+        <div class="max-sm:pt-12 md:pl-52 md:pt-16 lg:pl-52 lg:pt-16">
+            <?= $this->renderSection('content') ?>
+        </div>
     </div>
-    <?= $this->renderSection('content') ?>
 </body>
 <script src="js/dashboardPanel.js"></script>
 
