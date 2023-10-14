@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="h-full bg-white shadow-sm mt-3 rounded-lg p-3 box-border relative flex flex-col">
-                    <span class="text-slate-600 uppercase">filters</span>
+                    <span class="text-slate-600 uppercase">filter</span>
                 </div>
             </div>
         </div>
