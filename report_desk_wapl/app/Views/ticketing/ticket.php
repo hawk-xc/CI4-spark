@@ -21,8 +21,12 @@
             </div>
         </div>
         <div name="sideback" id="sideback" class="flex flex-row max-w-full box-border gap-3 mt-3 h-96">
-            <div class="w-full bg-white shadow-sm rounded-lg">
-                right
+            <div class="w-full flex flex-col overflow-y-scroll gap-3 h-[29rem]">
+                <div class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-sm p-7 rounded-lg">
+                    <span class="w-7 aspect-square flex justify-center align-middle items-center bg-white text-slate-700 rounded-lg shadow-sm">
+                        <i class="ri-flag-line"></i>
+                    </span>
+                </div>
             </div>
             <div class="w-1/3">
                 <div class="flex flex-row justify-between">
