@@ -22,11 +22,61 @@
         </div>
         <div name="sideback" id="sideback" class="flex flex-row max-w-full box-border gap-3 mt-3 h-96">
             <div class="w-full flex flex-col overflow-y-scroll gap-3 h-[29rem]">
-                <div class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-sm p-7 rounded-lg">
-                    <span class="w-7 aspect-square flex justify-center align-middle items-center bg-white text-slate-700 rounded-lg shadow-sm">
-                        <i class="ri-flag-line"></i>
+
+                <!-- ticket section -->
+                <div class="ticketCard">
+                    <span class="w-11 h-11 flex justify-center align-middle items-center bg-sky-100 text-slate-700 rounded-lg shadow-sm">
+                        R
                     </span>
+                    <div class="flex flex-col max-w-full w-full">
+                        <span class="flex justify-between">
+                            <span name="label" class="text-[14px] bg-orange-200 w-10 rounded-lg text-center border border-slate-500">open</span>
+                            <span class="text-slate-700"><i class="ri-contacts-book-2-line"></i> Rizki Anto / +6282129387811</span>
+                        </span>
+                        <span class="text-slate-600 font-bold text-xl">NEW INSTALLATION <span id="ticketId" class="text-slate-400">#1</span></span>
+                        <span class="text-sm text-slate-500"><i class="ri-user-star-line"></i> Created by denny <i class="ri-bubble-chart-line"></i> 14 menit yang lalu</span>
+                    </div>
                 </div>
+                <div class="ticketCard">
+                    <span class="w-11 h-11 flex justify-center align-middle items-center bg-sky-100 text-slate-700 rounded-lg shadow-sm">
+                        M
+                    </span>
+                    <div class="flex flex-col max-w-full w-full">
+                        <span class="flex justify-between">
+                            <span name="label" class="text-[14px] bg-orange-200 w-10 rounded-lg text-center border border-slate-500">open</span>
+                            <span class="text-slate-700"><i class="ri-contacts-book-2-line"></i> Muhammad Mahmud / +6234511231121</span>
+                        </span>
+                        <span class="text-slate-600 font-bold text-xl">NEW INSTALLATION <span id="ticketId" class="text-slate-400">#2</span></span>
+                        <span class="text-sm text-slate-500"><i class="ri-user-star-line"></i> Created by denny <i class="ri-bubble-chart-line"></i> 34 menit yang lalu</span>
+                    </div>
+                </div>
+                <div class="ticketCardClose">
+                    <span class="w-11 h-11 flex justify-center align-middle items-center bg-sky-100 text-slate-700 rounded-lg shadow-sm">
+                        B
+                    </span>
+                    <div class="flex flex-col max-w-full w-full">
+                        <span class="flex justify-between">
+                            <span name="label" class="text-[14px] bg-orange-200 w-10 rounded-lg text-center border border-slate-500">close</span>
+                            <span class="text-slate-700"><i class="ri-contacts-book-2-line"></i> Bayu Tri Kusuma / +6234567451121</span>
+                        </span>
+                        <span class="text-slate-600 font-bold text-xl">NEW INSTALLATION <span id="ticketId" class="text-slate-400">#3</span></span>
+                        <span class="text-sm text-slate-500"><i class="ri-user-star-line"></i> Created by grace <i class="ri-bubble-chart-line"></i> 39 menit yang lalu</span>
+                    </div>
+                </div>
+                <div class="ticketCard">
+                    <span class="w-11 h-11 flex justify-center align-middle items-center bg-sky-100 text-slate-700 rounded-lg shadow-sm">
+                        C
+                    </span>
+                    <div class="flex flex-col max-w-full w-full">
+                        <span class="flex justify-between">
+                            <span name="label" class="text-[14px] bg-orange-200 w-10 rounded-lg text-center border border-slate-500">open</span>
+                            <span class="text-slate-700"><i class="ri-contacts-book-2-line"></i> Candika Putra / +6299877761162</span>
+                        </span>
+                        <span class="text-slate-600 font-bold text-xl">NEW MAINTENANCE <span id="ticketId" class="text-slate-400">#4</span></span>
+                        <span class="text-sm text-slate-500"><i class="ri-user-star-line"></i> Created by grace <i class="ri-bubble-chart-line"></i> 44 menit yang lalu</span>
+                    </div>
+                </div>
+
             </div>
             <div class="w-1/3">
                 <div class="flex flex-row justify-between">
