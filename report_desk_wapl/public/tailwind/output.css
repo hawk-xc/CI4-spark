@@ -737,6 +737,10 @@ li {
   margin-top: 1.75rem;
 }
 
+.ml-2{
+  margin-left: 0.5rem;
+}
+
 .box-border{
   box-sizing: border-box;
 }

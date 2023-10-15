@@ -15,9 +15,9 @@
         <div class="flex flex-row box-border justify-between px-3 py-4 bg-white rounded-lg shadow-sm">
             <!-- this is filter toolbar -->
             <span>sort by : date created</span>
-            <div>
+            <div class="">
                 <span class="p-2 bg-blue-300 rounded-lg text-white hover:bg-blue-400 cursor-pointer"><i class="ri-add-circle-fill max-sm:text-sm"></i> add new</span>
-                <span>1/2</span>
+                <span class="ml-2">1 - 10 of 192</span>
             </div>
         </div>
         <div name="sideback" id="sideback" class="flex flex-row max-w-full box-border gap-3 mt-3 h-96">
