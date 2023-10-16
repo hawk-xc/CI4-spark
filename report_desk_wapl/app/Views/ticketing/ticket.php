@@ -50,11 +50,11 @@
                         <span class="text-sm text-slate-500"><i class="ri-user-star-line"></i> Created by denny <i class="ri-bubble-chart-line"></i> 34 menit yang lalu</span>
                     </div>
                 </div>
-                <div class="ticketCardClose">
+                <div class="ticketCardClose ">
                     <span class="w-11 h-11 flex justify-center align-middle items-center bg-sky-100 text-slate-700 rounded-lg shadow-sm">
                         B
                     </span>
-                    <div class="flex flex-col max-w-full w-full">
+                    <div class="flex flex-col max-w-full w-full ">
                         <span class="flex justify-between">
                             <span name="label" class="text-[14px] bg-orange-200 w-10 rounded-lg text-center border border-slate-500">close</span>
                             <span class="text-slate-700"><i class="ri-contacts-book-2-line"></i> Bayu Tri Kusuma / +6234567451121</span>
