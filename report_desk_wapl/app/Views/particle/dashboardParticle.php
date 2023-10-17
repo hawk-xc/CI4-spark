@@ -57,6 +57,7 @@
                     </span>
                     <span id="userBox" class="md:scale-100 duration-150 transition-all  max-sm:w-7 max-sm:h-7 md:w-10 md:h-10 lg:w-10 lg:h-10 rounded-full bg-slate-200 flex justify-center align-middle items-center">
                         <i class="ri-user-5-fill max-sm:text-lg md:text-2xl text-slate-500"></i>
+                        <!-- dropdown -->
                     </span>
                 </span>
                 <span id="hamburgerMenu" class="flex flex-row gap-1 bg-slate-200 rounded-full max-sm:w-7 max-sm:h-7 md:hidden items-center justify-center">
@@ -65,7 +66,6 @@
             </span>
         </div>
     </section>
-
     <div class="w-screen p-5 bg-slate-100 h-screen">
         <div class="max-sm:pt-12 md:pl-52 md:pt-16 lg:pl-52 lg:pt-16">
             <?= $this->renderSection('content') ?>
@@ -73,5 +73,10 @@
     </div>
 </body>
 <script src="js/dashboardPanel.js"></script>
+<script>
+    function hello() {
+        console.log('hello');
+    }
+</script>
 
 </html>
