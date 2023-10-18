@@ -14,6 +14,7 @@ $routes->get('/register', 'User::register');
 
 // routes untuk ticketing => wahyu 
 $routes->get('/ticket', 'Ticket::index');
+$routes->get('/ticket/create', 'Ticket::create');
 
 // routes untuk contact => denny
 $routes->get('/contact', 'Contact::index');

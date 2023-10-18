@@ -23,12 +23,3 @@ window.addEventListener("scroll", function () {
 hamburgerMenu.addEventListener("click", function () {
   navPanel.classList.toggle("max-sm:-translate-x-52");
 });
-
-userBox.addEventListener("click", function () {
-  console.log("success");
-  if (dropdown.classList.contains == "hidden") {
-    dropdown.classList.add("hidden");
-  } else {
-    dropdown.classList.remove("hidden");
-  }
-});
