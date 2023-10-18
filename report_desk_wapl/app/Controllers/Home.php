@@ -7,7 +7,6 @@ use App\Controllers\BaseController;
 class Home extends BaseController
 {
     public function index()
-
     {
         $data = [
             'name' => 'dashboard',
@@ -19,5 +18,18 @@ class Home extends BaseController
         ];
 
         return view('dummydash', $data);
+    }
+
+    public function testing()
+    {
+        $data = [
+            'name' => 'testing',
+            'title' => 'halaman testing',
+            'homeNavButton' => false,
+            'ticketNavButton' => false,
+            'contactNavButton' => false,
+        ];
+
+        return view('testing', $data);
     }
 }

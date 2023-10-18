@@ -23,4 +23,13 @@ class User extends BaseController
 
         return view('user/login', $data);
     }
+
+    public function register()
+    {
+        $data = [
+            'title' => 'Register akun baru',
+        ];
+
+        return view('user/register', $data);
+    }
 }

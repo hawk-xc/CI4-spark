@@ -4,6 +4,7 @@ const hamburderIcon = document.querySelector("i[name=hamburgerIcon]");
 const toolPanel = document.getElementById("toolPanel");
 const searchBox = document.getElementById("searchBox");
 const userBox = document.getElementById("userBox");
+const dropdown = document.getElementById("dropdown");
 
 window.addEventListener("scroll", function () {
   if (window.scrollY > 100) {
@@ -21,4 +22,13 @@ window.addEventListener("scroll", function () {
 
 hamburgerMenu.addEventListener("click", function () {
   navPanel.classList.toggle("max-sm:-translate-x-52");
+});
+
+userBox.addEventListener("click", function () {
+  console.log("success");
+  if (dropdown.classList.contains == "hidden") {
+    dropdown.classList.add("hidden");
+  } else {
+    dropdown.classList.remove("hidden");
+  }
 });
