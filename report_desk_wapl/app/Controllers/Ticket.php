@@ -3,9 +3,16 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\TicketModel;
 
 class Ticket extends BaseController
 {
+    public $ticketModel;
+    public function __construct()
+    {
+        $this->ticketModel = new TicketModel();
+    }
+
     public function index()
     {
         $data = [
@@ -27,6 +34,7 @@ class Ticket extends BaseController
             'homeNavButton' => false,
             'ticketNavButton' => true,
             'contactNavButton' => false,
+            'ticket' => $this->ticketModel->findAll()
         ];
 
         return view('ticketing/create', $data);
