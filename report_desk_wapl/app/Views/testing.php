@@ -11,5 +11,17 @@
         </ul>
     </div>
 
+    <div>
+        <form action="ss">
+            <label for="lang">language</label>
+            <select name="language" id="lang" class="selection:rotate-90">
+                <option class="px-2 bg-blue-400 mx-2 py-3" value="java">java</option>
+                <option class="px-2 bg-blue-400 mx-2 py-3" value="python">python</option>
+                <option class="px-2 bg-blue-400 mx-2 py-3" value="typescript">typescript</option>
+                <option class="px-2 bg-blue-400 mx-2 py-3" value="php">php</option>
+            </select>
+        </form>
+    </div>
+
 </div>
 <?= $this->endSection() ?>
