@@ -18,14 +18,20 @@
   }
 
   .ticketCard {
-    @apply w-full bg-white shadow-sm border border-slate-300 p-7 rounded-lg flex flex-row gap-5 items-center hover:bg-slate-50 duration-150 transition-all box-border;
+    @apply w-full bg-white shadow-sm border border-slate-300 p-7 max-sm:p-3 max-sm:text-xs rounded-lg flex flex-row gap-5 items-center hover:bg-slate-50 duration-150 transition-all box-border;
   }
 
   .ticketCardClose {
-    @apply w-full bg-green-200 shadow-sm border border-slate-300 p-7 rounded-lg flex flex-row gap-5 items-center hover:bg-green-300 duration-150 transition-all box-border;
+    @apply w-full bg-green-200 shadow-sm border border-slate-300 p-7 max-sm:p-3 rounded-lg flex flex-row gap-5 items-center hover:bg-green-300 duration-150 transition-all box-border;
   }
 
   li {
     cursor: pointer;
+  }
+}
+
+@layer components {
+  .dropdown:hover .dropdown-menu {
+    display: block;
   }
 }

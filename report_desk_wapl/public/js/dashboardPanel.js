@@ -4,6 +4,7 @@ const hamburderIcon = document.querySelector("i[name=hamburgerIcon]");
 const toolPanel = document.getElementById("toolPanel");
 const searchBox = document.getElementById("searchBox");
 const userBox = document.getElementById("userBox");
+const dropdown = document.getElementById("dropdown");
 
 window.addEventListener("scroll", function () {
   if (window.scrollY > 100) {
