@@ -2,7 +2,9 @@
 module.exports = {
   content: ["../app/Views/**/*.php"],
   theme: {
-    extend: {},
+    extend: {
+      display: ["group-focus"],
+    },
   },
   plugins: [],
 };
