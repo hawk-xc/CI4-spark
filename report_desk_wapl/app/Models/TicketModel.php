@@ -13,7 +13,7 @@ class TicketModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     // protected $protectFields    = true;
-    // protected $allowedFields    = [];
+    protected $allowedFields    = ['subject', 'type', 'contact_id', 'description'];
 
     // Dates
     protected $useTimestamps = true;
