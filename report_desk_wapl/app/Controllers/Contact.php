@@ -17,6 +17,7 @@ class Contact extends BaseController
         ];
 
         // return view('contact/index', $data);
-        return view('contact/dummyListContact', $data);
+        // return view('contact/dummyListContact', $data);
+        return view('contact/contact', $data);
     }
 }
