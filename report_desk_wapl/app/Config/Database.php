@@ -26,10 +26,10 @@ class Database extends Config
      */
     public array $default = [
         'DSN'          => '',
-        'hostname'     => '127.0.0.1',
-        'username'     => 'root',
-        'password'     => '',
-        'database'     => 'report_deskDb',
+        'hostname'     => 'localhost',
+        'username'     => 'popo',
+        'password'     => 'rootme',
+        'database'     => 'report_deskdb',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,

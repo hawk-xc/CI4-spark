@@ -8,6 +8,6 @@ class ContactTruncate extends Seeder
 {
     public function run()
     {
-        //
+        $this->db->table('contact')->truncate();
     }
 }
