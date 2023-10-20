@@ -8,6 +8,11 @@ class ContactTruncate extends Seeder
 {
     public function run()
     {
-        //
+        $data = [
+            'name',
+            'email',
+            'phone',
+            'address'
+        ];
     }
 }
