@@ -15,7 +15,7 @@ class Ticketing extends Seeder
             'description' => 'REPORT FROM CUSTOMER AT 08.22 12 September 2023'
         ];
 
-        $this->db->query("INSERT INTO tickets (subject, type, contact_id, description) VALUES (:subject:, :type:, :contact_id:, :description:)", $data);
+        $this->db->query("INSERT INTO ticket (subject, type, contact_id, description) VALUES (:subject:, :type:, :contact_id:, :description:)", $data);
 
         // $this->db->table('tickets')->insert($data);
     }
