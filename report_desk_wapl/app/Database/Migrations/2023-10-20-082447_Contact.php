@@ -3,6 +3,7 @@
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
+use CodeIgniter\I18n\Time;
 
 class Contact extends Migration
 {
@@ -20,7 +21,7 @@ class Contact extends Migration
                 'constraint'  => 255,
                 // 'unsigned' => true
             ],
-            'mail' => [
+            'email' => [
                 'type'        => 'VARCHAR',
                 'constraint'  => 255,
                 // 'unsigned' => true
@@ -37,11 +38,16 @@ class Contact extends Migration
             ],
             'description'     => [
                 'type'        => 'VARCHAR',
-                'constraint'  => 255
+                'constraint'  => 255,
+                'null'        => true
+            ],
+            'created_at'      => [
+                'type'        => 'datetime',
+                'null'        => false
             ]
         ]);
 
-        $this->forge->addKey('contact_id');
+        $this->forge->addKey('contact_id', true);
         $this->forge->createTable('contact');
     }
 

@@ -6,6 +6,12 @@ use App\Controllers\BaseController;
 
 class Home extends BaseController
 {
+    public $faker;
+    public function __construct()
+    {
+        $this->faker = \Faker\Factory::create('id_ID');
+    }
+
     public function index()
     {
         $data = [
@@ -28,6 +34,7 @@ class Home extends BaseController
             'homeNavButton' => false,
             'ticketNavButton' => false,
             'contactNavButton' => false,
+            'faker' => [$this->faker->name, $this->faker->address, $this->faker->email]
         ];
 
         return view('testing', $data);

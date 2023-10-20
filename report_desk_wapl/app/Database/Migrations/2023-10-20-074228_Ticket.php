@@ -3,6 +3,7 @@
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
+use CodeIgniter\I18n\Time;
 use DateTime;
 
 class Ticket extends Migration
@@ -37,13 +38,16 @@ class Ticket extends Migration
             'description'    => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255
+            ],
+            'created_at'     => [
+                'type'       => 'datetime',
+                'null'       => false
             ]
         ]);
 
-        // $this->forge->addKey('ticket_id');
-        // $this->forge->createTable('ticket');
+        $this->forge->addKey('ticket_id', true);
+        // $this->forge->addKey('contact_id', false);
 
-        $this->forge->addKey('ticket_id');
         // $this->forge->addForeignKey('contact_id', 'contact', 'contact_id');
         $this->forge->createTable('ticket');
     }

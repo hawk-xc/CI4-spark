@@ -20,6 +20,7 @@
                 <option class="px-2 bg-blue-400 mx-2 py-3" value="typescript">typescript</option>
                 <option class="px-2 bg-blue-400 mx-2 py-3" value="php">php</option>
             </select>
+            <?= d($faker) ?>
         </form>
     </div>
 
