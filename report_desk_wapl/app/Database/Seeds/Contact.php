@@ -22,15 +22,11 @@ class Contact extends Seeder
         // BATCH INPUT FAKE DATA
         for ($i = 0; $i < 20; $i++) {
             $data = [
-                'name' => $this->faker->name,
-                'email' => $this->faker->email,
-                'phone' => $this->faker->phoneNumber,
-                'address' => $this->faker->address,
+                'name'      => $this->faker->name,
+                'email'     => $this->faker->email,
+                'phone'     => $this->faker->phoneNumber,
+                'address'   => $this->faker->address,
                 'created_at' => Time::now()
-                // 'name' => 'name',
-                // 'mail' => 'mail',
-                // 'phone' => '$this->faker->phoneNumber',
-                // 'address' => '$this->faker->address'
             ];
             $this->db->table('contact')->insert($data);
         }
