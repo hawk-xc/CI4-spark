@@ -19,7 +19,8 @@ class Ticket extends Migration
             ],
             'contact_id'     => [
                 'type'       => 'INT',
-                'constraint' => 10
+                'constraint' => 10,
+                'unsigned'   => true
             ],
             'subject'       => [
                 'type'      => 'VARCHAR',
@@ -47,8 +48,7 @@ class Ticket extends Migration
 
         $this->forge->addKey('ticket_id', true);
         // $this->forge->addKey('contact_id', false);
-
-        // $this->forge->addForeignKey('contact_id', 'contact', 'contact_id');
+        $this->forge->addForeignKey('contact_id', 'contact', 'contact_id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('ticket');
     }
 

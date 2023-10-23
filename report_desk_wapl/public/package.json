@@ -78,7 +78,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tailwindcss -i tailwind/input.css -o tailwind/output.css --watch"
+    "dev": "npx tailwindcss -i tailwind/input.css -o tailwind/output.css --watch",
+    "migrations": "php ../spark migrate",
+    "seeds": "php ../spark db:seed Contact"
   },
   "keywords": [],
   "author": "",
