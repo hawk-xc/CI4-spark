@@ -127,3 +127,5 @@ nb-configuration.xml
 
 # contact ignore
 # contact harus dimasukkan ke database untuk dilakukan sirkonisasi
+app/Controllers/Ticket.php
+app/Views/ticketing/ticket.php

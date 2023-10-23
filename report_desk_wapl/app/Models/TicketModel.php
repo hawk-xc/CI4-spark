@@ -7,13 +7,13 @@ use CodeIgniter\Model;
 class TicketModel extends Model
 {
     // protected $DBGroup          = 'default';
-    protected $table            = 'tickets';
-    protected $primaryKey       = 'id';
+    protected $table            = 'ticket';
+    protected $primaryKey       = 'ticket_id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     // protected $protectFields    = true;
-    protected $allowedFields    = ['subject', 'type', 'contact_id', 'description'];
+    protected $allowedFields    = ['contact_id', 'subject', 'type', 'status', 'description'];
 
     // Dates
     protected $useTimestamps = true;
