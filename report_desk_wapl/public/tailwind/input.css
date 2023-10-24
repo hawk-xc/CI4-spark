@@ -29,9 +29,3 @@
     cursor: pointer;
   }
 }
-
-@layer components {
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }
-}
