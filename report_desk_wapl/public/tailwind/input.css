@@ -25,7 +25,26 @@
     @apply w-full bg-green-200 shadow-sm border border-slate-300 p-7 max-sm:p-3 rounded-lg flex flex-row gap-5 items-center hover:bg-green-300 duration-150 transition-all box-border;
   }
 
+  .inputForm {
+    @apply block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-8 rounded-lg leading-tight focus:outline-none focus:border-blue-500  focus:shadow-md sm:text-sm sm:leading-5;
+  }
+
   li {
     cursor: pointer;
+  }
+}
+
+@layer components {
+  .custom-scrollbar-hidden {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+
+  .custom-scrollbar-hidden::-webkit-scrollbar {
+    width: 0.2em;
+  }
+
+  .custom-scrollbar-hidden::-webkit-scrollbar-thumb {
+    background-color: transparent;
   }
 }

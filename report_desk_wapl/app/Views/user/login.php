@@ -21,11 +21,11 @@
             <form action="" method="post" class="flex flex-col gap-5 mt-5">
 
                 <!-- username form field -->
-                <input type="text" placeholder="-> email . . ." class="active:outline-none focus:outline-none focus:outline-dashed duration-150 transition-all placeholder:pl-1 overflow-hidden focus:placeholder:text-teal-700">
+                <input type="text" placeholder=" email . . ." class="active:outline-none focus:outline-none focus:outline-dashed duration-150 transition-all placeholder:pl-1 overflow-hidden focus:placeholder:text-teal-700">
 
                 <!-- password form field -->
                 <div class="relative">
-                    <input type="password" id="password_field" placeholder="-> password . . ." class=" focus:outline-none focus:outline-dashed duration-150 transition-all placeholder:pl-1 overflow-hidden rounded-sm focus:placeholder:text-teal-700">
+                    <input type="password" id="password_field" placeholder=" password . . ." class=" focus:outline-none focus:outline-dashed duration-150 transition-all placeholder:pl-1 overflow-hidden rounded-sm focus:placeholder:text-teal-700">
                     <i id="show_pass_toggle" class="ri-eye-off-line hidden absolute right-0 text-teal-800 z-10"></i>
                 </div>
 

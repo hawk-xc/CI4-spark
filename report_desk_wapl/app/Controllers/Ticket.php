@@ -44,7 +44,8 @@ class Ticket extends BaseController
             'homeNavButton' => false,
             'ticketNavButton' => true,
             'contactNavButton' => false,
-            'ticket' => $this->ticketModel->findAll()
+            'ticket' => $this->ticketModel->findAll(),
+            'contact' => $this->contactModel->select('name')->findAll()
         ];
 
         return view('ticketing/create', $data);

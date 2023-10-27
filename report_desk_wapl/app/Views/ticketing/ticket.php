@@ -28,21 +28,21 @@
 
             <!-- add new button -->
             <div class="">
-                <a href="<?= route_to('ticket/create') ?>">
+                <a href="<?= route_to('ticket/new') ?>">
                     <span class="p-2 bg-blue-300 rounded-lg text-white hover:bg-blue-400 cursor-pointer"><i class="ri-add-circle-fill max-sm:text-sm"></i> add new</span>
                     <span class="ml-2 max-sm:hidden">1 - 10 of 192</span>
                 </a>
             </div>
         </div>
-        <div name="sideback" id="sideback" class="flex max-sm:flex-col md:flex-row lg:flex-row max-w-full box-border gap-3 mt-3 md:h-96 lg:h-96 max-sm:h-[35rem]">
-            <div class="w-full flex flex-col overflow-y-scroll gap-3 md:h-[29rem] max-sm:order-2 max-sm:h-[40rem] max-sm:text-xs">
+        <div name="sideback" id="sideback" class="flex max-sm:flex-col md:flex-row lg:flex-row max-w-full box-border gap-3 mt-3 md:h-96 lg:h-96 max-sm:h-[47rem]">
+            <div class="w-full flex flex-col overflow-y-scroll gap-3 md:h-[29rem] max-sm:order-2 max-sm:h-[47rem] max-sm:text-xs">
                 <!-- ticket section -->
                 <?php $n = 0; ?>
                 <?php foreach ($request as $req) { ?>
                     <?php $p = $requestId[$n]['contact_id'] ?>
                     <div class="ticketCard <?= $request ? ' ' : 'hidden' ?>">
                         <span class="w-11 h-11 flex justify-center align-middle items-center bg-sky-100 text-slate-700 rounded-lg shadow-sm">
-                            R
+                            <?= str_split(strtoupper($contact[$p]['name']))[0] ?>
                         </span>
                         <div class="flex flex-col max-w-full w-full">
                             <span class="flex justify-between max-sm:flex-col gap-2">
