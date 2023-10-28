@@ -21,6 +21,8 @@ class Home extends BaseController
             'homeNavButton' => true,
             'ticketNavButton' => false,
             'contactNavButton' => false,
+            'formNavButton' => false,
+
         ];
 
         return view('dummydash', $data);

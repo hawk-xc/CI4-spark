@@ -21,6 +21,8 @@ class Ticket extends BaseController
             'homeNavButton' => false,
             'ticketNavButton' => true,
             'contactNavButton' => false,
+            'formNavButton' => false,
+
         ];
 
         return view('ticketing/ticket', $data);
