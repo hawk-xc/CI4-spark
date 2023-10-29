@@ -2,16 +2,16 @@
 <?= $this->section('content'); ?>
 <section name="newTicket" class="p-5 bg-white shadow-sm rounded-lg">
     <div class="w-full flex flex-col overflow-y-scroll gap-3 md:h-[29rem] max-sm:order-2 max-sm:h-[47rem] max-sm:text-md custom-scrollbar-hidden">
-        <form action="" method="post" class="">
+        <form action="create" method="post" class="">
             <span></span>
             <span class="flex flex-col box-border gap-3">
                 <label for="contact">Kontak *</label>
                 <div class="relative inline-block text-left">
-                    <select class="inputForm">
+                    <select class="inputForm" name="contact_name">
                         <?php
                         $i = 0;
                         foreach ($contact as $row) { ?>
-                            <option value="$contact[$i]['contact_id']"><?= $contact[$i]['name'] ?></option>
+                            <option value="<?= $contact[$i]['contact_id'] ?>"><?= $contact[$i]['name'] ?></option>
                         <?php
                             $i++;
                         } ?>
@@ -29,11 +29,11 @@
                     <a class="text-xs text-blue-500 hover:underline" href="#">Tambah kontak baru</a>
                 </span>
                 <label for="subject">Subjek *</label>
-                <input type="text" placeholder="Subject" id="subject" class="inputForm">
+                <input type="text" placeholder="Subject" id="subject" class="inputForm" name="subject">
 
                 <label for="contact">Type *</label>
                 <div class="relative inline-block text-left">
-                    <select class="inputForm">
+                    <select class="inputForm" name="type">
                         <option value="new">NEW INSTALLATION</option>
                         <option value="mt">MAINTENANCE</option>
                     </select>
@@ -41,7 +41,7 @@
 
                 <label for="status">Status *</label>
                 <div class="relative inline-block text-left">
-                    <select class="inputForm">
+                    <select class="inputForm" name="status">
                         <option value="open">open</option>
                         <option value="close">close</option>
                     </select>

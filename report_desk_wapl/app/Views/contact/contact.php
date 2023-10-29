@@ -15,7 +15,7 @@
             </thead>
             <tbody class="text-gray-600 text-base font-light">
                 <!-- Dummy Data, nanti pakek foreach untuk akses data dari databases -->
-                <?php for ($i = 1; $i <= 5; $i++) { ?>
+                <?php for ($i = 1; $i <= 6; $i++) { ?>
                     <tr class="border-b border-gray-200 hover-bg-gray-100">
                         <td class="py-3 px-6 text-center"><?= $i ?></td>
                         <td class="py-3 px-6 text-center">Joysmith</td>
