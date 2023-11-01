@@ -8,6 +8,6 @@ class TicketingTruncate extends Seeder
 {
     public function run()
     {
-        $this->db->table('tickets')->truncate();
+        $this->db->table('ticket')->truncate();
     }
 }

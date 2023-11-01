@@ -48,7 +48,7 @@ class Ticket extends Migration
 
         $this->forge->addKey('ticket_id', true);
         // $this->forge->addKey('contact_id', false);
-        $this->forge->addForeignKey('contact_id', 'contact', 'contact_id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('contact_id', 'contact', 'contact_id', 'CASCADE', 'CASCADE', 'contact_fk');
         $this->forge->createTable('ticket');
     }
 
