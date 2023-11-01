@@ -20,7 +20,10 @@ $routes->get('/ticket/new', 'Ticket::new');
 $routes->post('/ticket/create', 'Ticket::create');
 
 // routes untuk contact => denny
+// $routes->get('/contact', 'Contact::index');
 $routes->get('/contact', 'Contact::index');
 
 // routes untuk Home atau landing page => for all
 $routes->get('/home', 'Home::index');
+// routes untuk validasi
+$routes->get('/form', 'Form::index');
