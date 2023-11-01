@@ -6,7 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-$routes->setAutoRoute(true);
+// $routes->setAutoRoute(true);
 $routes->get('/', 'Dashboard::index');
 $routes->get('/testing', 'Home::testing');
 $routes->get('/login', 'User::login');
@@ -14,7 +14,8 @@ $routes->get('/register', 'User::register');
 
 // routes untuk ticketing => wahyu 
 $routes->get('/ticket', 'Ticket::index');
-$routes->get('/ticket/create', 'Ticket::create');
+$routes->get('/ticket/new', 'Ticket::new');
+$routes->post('/ticket/create', 'Ticket::create');
 
 // routes untuk contact => denny
 // $routes->get('/contact', 'Contact::index');
