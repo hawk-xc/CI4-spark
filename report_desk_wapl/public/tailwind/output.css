@@ -910,6 +910,10 @@ li {
   max-width: 20rem;
 }
 
+.max-w-screen-2xl{
+  max-width: 1536px;
+}
+
 .flex-grow{
   flex-grow: 1;
 }

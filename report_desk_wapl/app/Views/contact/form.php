@@ -21,7 +21,7 @@ if ((session()->getFlashdata("success"))) {
     </div>
 </header> -->
 
-<section class="container mx-auto py-8">
+<section class="container mx-auto py-8 overflow-y-scroll max-w-screen-2xl">
     <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <h2 class="text-2xl font-semibold mb-4">Formulir Kontak</h2>
         <form action="" method="post">
