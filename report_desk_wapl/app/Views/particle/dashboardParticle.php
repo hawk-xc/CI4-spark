@@ -76,10 +76,6 @@
     </div>
 </body>
 <script src="js/dashboardPanel.js"></script>
-<script>
-    function hello() {
-        console.log('hello');
-    }
-</script>
+<script src="js/messageBox.js"></script>
 
 </html>
