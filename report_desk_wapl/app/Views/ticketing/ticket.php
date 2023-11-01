@@ -68,7 +68,7 @@
                     <?php $n++; ?>
                 <?php } ?>
 
-                <div class="<?= $request ? 'hidden' : ' ' ?>">
+                <div class="<?= $request ? 'hidden' : ' ' ?> justify-center">
                     <span>data kosong</span>
                 </div>
             </div>
