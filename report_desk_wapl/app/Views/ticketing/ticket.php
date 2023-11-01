@@ -49,15 +49,20 @@
                                 <span name="label" class="text-[14px] bg-orange-200 w-10 rounded-lg text-center border border-slate-500">
                                     <?= $request[$n]['status'] ?>
                                 </span>
-                                <span class="text-slate-700"><i class="ri-contacts-book-2-line"></i> <?= $contact[$p]['name'] ?> / <?= $contact[$p]['phone'] ?></span>
+                                <span class="text-slate-700"><i class="ri-contacts-book-2-line"></i> <?= $request[$n]['ticket_id'] == 1 ? $contact[0]['name'] : $contact[$p]['name'] ?> / <?= $request[$n]['ticket_id'] == 1 ? $contact[0]['phone'] : $contact[$p]['phone'] ?></span>
                             </span>
                             <span class="text-slate-600 font-bold text-xl">
-                                <span id="ticketId" class="text-slate-400">#<?= $request[$n]['ticket_id'] ?></span><?= $request[$n]['subject'] ?></span>
+                                <span id="ticketId" class="text-slate-400">#<?= $request[$n]['ticket_id'] ?></span>
+                                <?= $request[$n]['subject'] ?>
+                            </span>
                             <span class="text-sm text-slate-500"><i class="ri-user-star-line"></i> Created by denny <i class="ri-bubble-chart-line"></i> 14 menit yang lalu</span>
                         </div>
                     </div>
+
+                    <?= $p ?>
                     <?php $n++; ?>
                 <?php } ?>
+
                 <div class="<?= $request ? 'hidden' : ' ' ?>">
                     <span>data kosong</span>
                 </div>
@@ -85,7 +90,6 @@
             </div>
         </div>
     </section>
-
 </body>
 <?= $this->endSection(); ?>
 

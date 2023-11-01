@@ -32,10 +32,11 @@ class Ticket extends BaseController
             'ticketNavButton'   => true,
             'contactNavButton'  => false,
             'request'           => $this->ticketModel->select('*')->findAll(),
-            'requestId'         => $this->ticketModel->select('contact_id')->findAll(),
+            'requestId'         => $this->ticketModel->select('contact_id')->orderBy('contact_id', 'asc')->findAll(),
             'open_ticket'       => $this->ticketModel->where('status', 'open')->countAllResults(),
             'close_ticket'      => $this->ticketModel->where('status', 'close')->countAllResults(),
-            'contact'           => $this->contactModel->select('name')->select('phone')->findAll()
+            'contact'           => $this->contactModel->select('name')->select('phone')->findAll(),
+            'contact_id'        => $this->contactModel->select('contact_id')->select('name')->findAll()
         ];
 
         return view('ticketing/ticket', $data);
@@ -59,7 +60,7 @@ class Ticket extends BaseController
     public function create()
     {
         $data = [
-            'contact_id'     => $this->request->getPost('contact_name') - 1,
+            'contact_id'     => $this->request->getPost('contact_id'),
             'subject'        => $this->request->getPost('subject'),
             'type'           => $this->request->getPost('type'),
             'status'         => $this->request->getPost('status'),
@@ -67,10 +68,12 @@ class Ticket extends BaseController
             'created_at'     => Time::now()
         ];
 
-        // $this->db->table('ticket')->insert($data);
+        $this->db->table('ticket')->insert($data);
         // $this->db->query()
-        $this->db->query("INSERT INTO ticket (contact_id, type, status, description, created_at) VALUES (:contact_id:, :type:, :status:, :description:, :created_at:)", $data);
+        // $this->db->query("INSERT INTO ticket (contact_id, type, status, description, created_at) VALUES (:contact_id:, :type:, :status:, :description:, :created_at:)", $data);
         // $this->session->setFlashdata('message', 'telah berhasil menambahkan ticket baru!');
         return redirect()->to(base_url('ticket'));
+
+        // return (dd($data));
     }
 }

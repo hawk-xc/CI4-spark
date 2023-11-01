@@ -7,7 +7,7 @@
             <span class="flex flex-col box-border gap-3">
                 <label for="contact">Kontak *</label>
                 <div class="relative inline-block text-left">
-                    <select class="inputForm" name="contact_name">
+                    <select class="inputForm" name="contact_id">
                         <?php
                         $i = 0;
                         foreach ($contact as $row) { ?>
