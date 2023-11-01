@@ -31,12 +31,12 @@ class Ticket extends BaseController
             'homeNavButton'     => false,
             'ticketNavButton'   => true,
             'contactNavButton'  => false,
-            'request'           => $this->ticketModel->select('*')->findAll(),
+            'request'           => $this->ticketModel->select('*')->select('name')->select('phone')->join('contact', 'contact_id')->findAll(),
             'requestId'         => $this->ticketModel->select('contact_id')->orderBy('contact_id', 'asc')->findAll(),
             'open_ticket'       => $this->ticketModel->where('status', 'open')->countAllResults(),
             'close_ticket'      => $this->ticketModel->where('status', 'close')->countAllResults(),
             'contact'           => $this->contactModel->select('name')->select('phone')->findAll(),
-            'contact_id'        => $this->contactModel->select('contact_id')->select('name')->findAll()
+            'contact_id'        => $this->contactModel->select('contact_id')->select('name')->findAll(),
         ];
 
         return view('ticketing/ticket', $data);
@@ -71,7 +71,7 @@ class Ticket extends BaseController
         $this->db->table('ticket')->insert($data);
         // $this->db->query()
         // $this->db->query("INSERT INTO ticket (contact_id, type, status, description, created_at) VALUES (:contact_id:, :type:, :status:, :description:, :created_at:)", $data);
-        // $this->session->setFlashdata('message', 'telah berhasil menambahkan ticket baru!');
+        $this->session->setFlashdata('message', 'telah berhasil menambahkan ticket baru!');
         return redirect()->to(base_url('ticket'));
 
         // return (dd($data));

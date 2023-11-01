@@ -37,6 +37,22 @@ class Home extends BaseController
             'faker' => [$this->faker->name, $this->faker->address, $this->faker->email]
         ];
 
+        session()->setFlashdata('message', 'telah berhasil menambahkan ticket baru!');
+
         return view('testing', $data);
+    }
+
+    public function testing2()
+    {
+        $data = [
+            'name' => 'testing',
+            'title' => 'halaman testing',
+            'homeNavButton' => false,
+            'ticketNavButton' => false,
+            'contactNavButton' => false,
+            'faker' => [$this->faker->name, $this->faker->address, $this->faker->email]
+        ];
+
+        return view('testing2', $data);
     }
 }

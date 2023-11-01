@@ -11,7 +11,7 @@
 <?= $this->section('content'); ?>
 
 <body class="">
-    <section name="ticket" class="max-sm:text-sm">
+    <section name="ticket" class="max-sm:textt-sm">
         <div class="flex flex-row box-border justify-between px-3 py-4 bg-white rounded-lg shadow-sm">
             <!-- this is filter toolbar -->
             <span class="flex flex-row">sort by :
@@ -37,29 +37,34 @@
         <div name="sideback" id="sideback" class="flex max-sm:flex-col md:flex-row lg:flex-row max-w-full box-border gap-3 mt-3 md:h-96 lg:h-96 max-sm:h-[47rem]">
             <div class="w-full flex flex-col overflow-y-scroll gap-3 md:h-[29rem] max-sm:order-2 max-sm:h-[47rem] max-sm:text-xs">
                 <!-- ticket section -->
+                <!-- cek apakah ada flash data -->
+                <?php if (session()->getFlashdata('message')) { ?>
+                    <div id="messageBox" class="my-2 max-w-full p-2 bg-orange-200 border border-slate-600 rounded-md flex justify-between">
+                        <span class="flex flex-row"><span><i class="ri-information-fill"></i> <?= session()->getFlashdata('message') ?></span></span> <i class="ri-close-fill font-bold hover:text-red-400" id="closeButton"></i>
+                    </div>
+                <?php } ?>
+
                 <?php $n = 0; ?>
                 <?php foreach ($request as $req) { ?>
-                    <?php $p = $requestId[$n]['contact_id'] ?>
                     <div class="ticketCard <?= $request ? ' ' : 'hidden' ?>">
                         <span class="w-11 h-11 flex justify-center align-middle items-center bg-sky-100 text-slate-700 rounded-lg shadow-sm">
-                            <?= str_split(strtoupper($contact[$p]['name']))[0] ?>
+                            <?= str_split(strtoupper($request[$n]['name']))[0] ?>
                         </span>
                         <div class="flex flex-col max-w-full w-full">
                             <span class="flex justify-between max-sm:flex-col gap-2">
                                 <span name="label" class="text-[14px] bg-orange-200 w-10 rounded-lg text-center border border-slate-500">
                                     <?= $request[$n]['status'] ?>
                                 </span>
-                                <span class="text-slate-700"><i class="ri-contacts-book-2-line"></i> <?= $request[$n]['ticket_id'] == 1 ? $contact[0]['name'] : $contact[$p]['name'] ?> / <?= $request[$n]['ticket_id'] == 1 ? $contact[0]['phone'] : $contact[$p]['phone'] ?></span>
+                                <span class="text-slate-700"><i class="ri-contacts-book-2-line"></i> <?= $request[$n]['name'] ?> / <?= $request[$n]['phone'] ?></span>
                             </span>
                             <span class="text-slate-600 font-bold text-xl">
-                                <span id="ticketId" class="text-slate-400">#<?= $request[$n]['ticket_id'] ?></span>
+                                <span id="ticketId" class="text-slate-400"># <?= $request[$n]['ticket_id'] ?></span>
                                 <?= $request[$n]['subject'] ?>
                             </span>
                             <span class="text-sm text-slate-500"><i class="ri-user-star-line"></i> Created by denny <i class="ri-bubble-chart-line"></i> 14 menit yang lalu</span>
                         </div>
                     </div>
 
-                    <?= $p ?>
                     <?php $n++; ?>
                 <?php } ?>
 
