@@ -29,7 +29,10 @@
                 <a href="../contact">
                     <li id="" class="<?= $contactNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-contacts-book-2-fill text-2xl"></i> contact</li>
                 </a>
-
+                <!-- Navigasi form -->
+                <a href="../form">
+                    <li id="" class="<?= $formNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-todo-fill text-2xl"></i>Form</li>
+                </a>
                 <li id="" class="button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out"><i class="ri-file-info-line text-2xl"></i> panel 3</li>
                 <li id="" class="button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out"><i class="ri-file-info-line text-2xl"></i> panel 4</li>
             </ul>
