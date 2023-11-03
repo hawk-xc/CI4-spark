@@ -31,13 +31,8 @@ class Ticket extends BaseController
             'homeNavButton'     => false,
             'ticketNavButton'   => true,
             'contactNavButton'  => false,
-<<<<<<< HEAD
-            'formNavButton' => false,
-            'request'           => $this->ticketModel->select('*')->findAll(),
-=======
             'formNavButton'     => false,
             'request'           => $this->ticketModel->select('*')->select('name')->select('phone')->join('contact', 'contact_id')->findAll(),
->>>>>>> 6e005ecf779f9e1c23c12a24ccad97c9aa79e081
             'requestId'         => $this->ticketModel->select('contact_id')->orderBy('contact_id', 'asc')->findAll(),
             'open_ticket'       => $this->ticketModel->where('status', 'open')->countAllResults(),
             'close_ticket'      => $this->ticketModel->where('status', 'close')->countAllResults(),
