@@ -8,7 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 
 // $routes->setAutoRoute(true);
 $routes->get('/', 'Dashboard::index');
-// $routes->get('/testing', 'Home::testing');
+$routes->get('/testing', 'Home::testing');
 // $routes->get('/testing2', 'Home::testing2');
 
 $routes->get('/login', 'User::login');
@@ -21,6 +21,8 @@ $routes->post('/ticket/create', 'Ticket::create');
 
 // route ke tampilkan detail ticket
 $routes->get('/ticket/(:num)', 'Ticket::showTicket/$1');
+$routes->get('/ticket/delete/(:num)', 'Ticket::delete/$1');
+$routes->get('/ticket/close/(:num)', 'Ticket::close/$1');
 
 // routes untuk contact => denny
 // $routes->get('/contact', 'Contact::index');

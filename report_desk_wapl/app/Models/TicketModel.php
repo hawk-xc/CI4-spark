@@ -16,7 +16,7 @@ class TicketModel extends Model
     protected $allowedFields    = ['contact_id', 'subject', 'type', 'status', 'description', 'created_at'];
 
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     // protected $updatedField  = 'updated_at';

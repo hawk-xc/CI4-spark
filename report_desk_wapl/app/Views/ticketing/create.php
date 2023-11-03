@@ -3,7 +3,9 @@
 <section name="newTicket" class="p-5 bg-white shadow-sm rounded-lg">
     <div class="w-full flex flex-col overflow-y-scroll gap-3 md:h-[29rem] max-sm:order-2 max-sm:h-[47rem] max-sm:text-md custom-scrollbar-hidden">
         <form action="create" method="post" class="">
-            <span></span>
+            <span>
+                <?php csrf_field() ?>
+            </span>
             <span class="flex flex-col box-border gap-3">
                 <label for="contact">Kontak *</label>
                 <div class="relative inline-block text-left">
