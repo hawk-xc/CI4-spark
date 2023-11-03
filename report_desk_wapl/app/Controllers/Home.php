@@ -25,7 +25,7 @@ class Home extends BaseController
 
         ];
 
-        return view('dummydash', $data);
+        return view('dashboard', $data);
     }
 
     public function testing()
@@ -36,10 +36,11 @@ class Home extends BaseController
             'homeNavButton' => false,
             'ticketNavButton' => false,
             'contactNavButton' => false,
+            'formNavButton' => false,
             'faker' => [$this->faker->name, $this->faker->address, $this->faker->email]
         ];
 
-        session()->setFlashdata('message', 'telah berhasil menambahkan ticket baru!');
+        session()->setFlashdata('message', 'kamu baru saja kembali dari testing!');
 
         return view('testing', $data);
     }

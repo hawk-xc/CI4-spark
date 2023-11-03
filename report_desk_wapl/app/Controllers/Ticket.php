@@ -32,7 +32,7 @@ class Ticket extends BaseController
             'ticketNavButton'   => true,
             'contactNavButton'  => false,
             'formNavButton'     => false,
-            'request'           => $this->ticketModel->select('*')->select('name')->select('phone')->join('contact', 'contact_id')->findAll(),
+            'request'           => $this->ticketModel->select('*')->select('name')->select('phone')->join('contact', 'contact_id')->orderBy('ticket_id', 'desc')->findAll(),
             'requestId'         => $this->ticketModel->select('contact_id')->orderBy('contact_id', 'asc')->findAll(),
             'open_ticket'       => $this->ticketModel->where('status', 'open')->countAllResults(),
             'close_ticket'      => $this->ticketModel->where('status', 'close')->countAllResults(),
@@ -92,5 +92,23 @@ class Ticket extends BaseController
         ];
 
         return view('ticketing/showTicket', $data);
+    }
+
+    public function delete($ticket_id)
+    {
+        $this->ticketModel->where('ticket_id', $ticket_id)->delete();
+        $this->session->setFlashdata('message', 'ticket telah terhapus dari daftar!');
+
+        return redirect()->to(base_url('ticket'));
+    }
+
+    public function close($ticket_id)
+    {
+        $data = [
+            'status'    => 'close'
+        ];
+
+        $this->ticketModel->update($ticket_id, $data);
+        return redirect()->to(base_url('ticket/') . $ticket_id);
     }
 }
