@@ -78,4 +78,19 @@ class Ticket extends BaseController
 
         // return (dd($data));
     }
+
+    public function showTicket($ticketId)
+    {
+        $data = [
+            'name'              => 'ticketing',
+            'title'             => 'Ticketing',
+            'homeNavButton'     => false,
+            'ticketNavButton'   => true,
+            'contactNavButton'  => false,
+            'formNavButton'     => false,
+            'ticket'            => $this->ticketModel->where('ticket_id', $ticketId)->join('contact', 'contact_id')->findAll()
+        ];
+
+        return view('ticketing/showTicket', $data);
+    }
 }
