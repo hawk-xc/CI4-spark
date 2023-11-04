@@ -1,13 +1,15 @@
 <?= $this->extend('./particle/dashboardParticle.php'); ?>
 <?= $this->section('content'); ?>
-<div id="confirmBox" class="absolute mx-auto w-72 bg-white top-[45%] left-[45%] py-6 flex flex-col items-center rounded-md border border-slate-400">
-    <span class="text-2xl text-slate-600"><i class="ri-information-line"></i> Info...</span>
-    <span class="text-md text-slate-500 mt-2">apakah anda yakin?</span>
-    <span class="flex flex-row mt-4 gap-4">
-        <span id="toggleBox" href="" class="hover:brightness-105 w-16 flex justify-center rounded-md text-white px-2 py-1 bg-blue-300 border border-slate-400 cursor-pointer">tidak</span>
+<div id="confirmBox" class="scale-0 duration-200 transition-all ease-out shadow-md absolute mx-auto w-72 backdrop-blur-md top-[45%] left-[45%] py-6 flex flex-col items-center rounded-md border border-slate-400">
+    <div class="text-2xl text-slate-600"><i class="ri-information-line"></i> Info...</div>
+    <div class="text-md text-slate-500 mt-2">apakah anda yakin?</div>
+    <div class="flex flex-row mt-4 gap-4">
+        <button id="dropConfirmBox" href="" class="hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 w-16 flex justify-center rounded-md text-white px-2 py-1 bg-violet-500 border border-slate-400 cursor-pointer">tidak</button>
 
-        <a href="delete/<?= $ticket[0]['ticket_id'] ?>" class="hover:brightness-105 w-16 flex justify-center rounded-md text-white px-2 py-1 bg-blue-300 border border-slate-400 cursor-pointer">iya</a>
-    </span>
+        <a href="delete/<?= $ticket[0]['ticket_id'] ?>">
+            <button class="hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 w-16 flex justify-center rounded-md text-white px-2 py-1 bg-violet-500 border border-slate-400 cursor-pointer">iya</button>
+        </a>
+    </div>
 </div>
 
 <div class="p-1">
@@ -18,7 +20,7 @@
                 <i class="ri-checkbox-circle-line"></i> Close
             </a>
         </span>
-        <span id="toggleBox" class="bg-red-300 px-2 py-1 rounded-md border border-slate-500 cursor-pointer hover:brightness-105 duration-150"><i class="ri-delete-bin-5-line"></i> Delete</span>
+        <button id="upConfirmBox" class="bg-red-300 px-2 py-1 focus:bg-red-400 focus:ring focus:ring-red-500 rounded-md border border-slate-500 cursor-pointer hover:brightness-105 duration-150"><i class="ri-delete-bin-5-line"></i> Delete</button>
     </div>
     <div class="flex mt-2 flex-row max-w-full w-full gap-2">
         <div class="p-5 bg-white rounded-md shadow-sm flex flex-col w-full overflow-y-scroll custom-scrollbar-hidden md:h-[29rem]">
@@ -66,4 +68,16 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    const confirmBox = document.getElementById("confirmBox");
+    const dropConfirmBox = document.getElementById("dropConfirmBox");
+    const upConfirmBox = document.getElementById("upConfirmBox");
+
+    function confirmBoxAction() {
+        confirmBox.classList.contains('scale-0') ? confirmBox.classList.replace('scale-0', 'scale-100') : confirmBox.classList.replace('scale-100', 'scale-0');
+    }
+
+    dropConfirmBox.addEventListener("click", confirmBoxAction);
+    upConfirmBox.addEventListener("click", confirmBoxAction);
+</script>
 <?= $this->endSection() ?>
