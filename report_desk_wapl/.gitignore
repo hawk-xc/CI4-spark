@@ -125,3 +125,7 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
+# contact ignore
+# contact harus dimasukkan ke database untuk dilakukan sirkonisasi
+# app/Controllers/Ticket.php
+# report_desk_wapl/app/Views/ticketing/ticket.php
