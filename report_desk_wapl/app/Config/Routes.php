@@ -6,7 +6,8 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-// $routes->setAutoRoute(true);
+$routes->setAutoRoute(true);
+// routes 
 $routes->get('/', 'Dashboard::index');
 $routes->get('/testing', 'Home::testing');
 // $routes->get('/testing2', 'Home::testing2');
@@ -33,5 +34,9 @@ $routes->get('/contact', 'Contact::index');
 $routes->get('/home', 'Home::index');
 // routes untuk validasi
 $routes->get('/form', 'Form::index');
+$routes->get('/form/create', 'Form::create');
+$routes->get('form/delete/(:num)', 'Form::delete/$1');
+
+
 // routes untuk contact => denny
 // $routes->get('/contact', 'Contact::index');
