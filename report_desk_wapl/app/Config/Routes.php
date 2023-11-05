@@ -24,6 +24,7 @@ $routes->post('/ticket/create', 'Ticket::create');
 $routes->get('/ticket/(:num)', 'Ticket::showTicket/$1');
 $routes->get('/ticket/delete/(:num)', 'Ticket::delete/$1');
 $routes->get('/ticket/close/(:num)', 'Ticket::close/$1');
+$routes->get('/ticket/open/(:num)', 'Ticket::open/$1');
 
 // routes untuk contact => denny
 // $routes->get('/contact', 'Contact::index');

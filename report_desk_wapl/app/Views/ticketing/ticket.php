@@ -49,7 +49,7 @@
                 <?php $n = 0; ?>
                 <?php foreach ($request as $req) { ?>
                     <a href="ticket/<?= $request[$n]['ticket_id'] ?>">
-                        <div class="ticketCard <?= $request ? ' ' : 'hidden' ?>">
+                        <div class="ticketCard <?= $request[$n]['status'] == 'close' ? 'bg-teal-200 hover:bg-teal-300' : '' ?> <?= $request ? ' ' : 'hidden' ?>">
                             <span class="w-11 h-11 flex justify-center align-middle items-center bg-sky-100 text-slate-700 rounded-lg shadow-sm">
                                 <?= str_split(strtoupper($request[$n]['name']))[0] ?>
                             </span>
@@ -64,7 +64,7 @@
                                     <span id="ticketId" class="text-slate-400"># <?= $request[$n]['ticket_id'] ?></span>
                                     <?= $request[$n]['subject'] ?>
                                 </span>
-                                <span class="text-sm text-slate-500"><i class="ri-user-star-line"></i> Created by denny <i class="ri-bubble-chart-line"></i> 14 menit yang lalu</span>
+                                <span class="text-sm text-slate-500"><i class="ri-user-star-line"></i> Created by denny <i class="ri-bubble-chart-line"></i> <?= $setdatetime[$n] ?></span>
                             </div>
                         </div>
                     </a>

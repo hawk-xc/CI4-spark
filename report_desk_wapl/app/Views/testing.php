@@ -2,7 +2,7 @@
 <?= $this->section('content'); ?>
 <div class="flex bg-blue-100 p-10 ">
     <span>
-        <?= $homeNavButton = true ?>
+        <?= dd($setdatetime) ?>
     </span>
 </div>
 <?= $this->endSection() ?>
