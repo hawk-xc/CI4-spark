@@ -3,10 +3,12 @@ let openDropdown = null;
 document.addEventListener("DOMContentLoaded", function () {
   // Ini buat perulangan nggawe menu Id yang berbeda ben gak podo
 
-  for (let i = 1; i <= 10000; i++) {
+  for (let i = 1; i <= 1000000; i++) {
     const menuButton = document.getElementById("menu-button" + i);
     const menu = document.getElementById("menu-button-menu" + i);
 
+    if (menuButton && id) {
+    }
     menuButton.addEventListener("click", function (event) {
       if (openDropdown !== menu) {
         // hide dropdown

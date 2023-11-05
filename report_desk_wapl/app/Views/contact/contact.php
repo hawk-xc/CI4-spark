@@ -44,7 +44,7 @@
                                     <div class="py-1 text-left " role="none">
                                         <a class="block px-4 py-2 hover:bg-gray-200" href="#"><i class="ri-edit-2-line pr-4"></i>Edit</a>
                                         <a class="block px-4 py-2 hover:bg-gray-200" href="#"><i class="ri-chat-check-line pr-4"></i>Aprove</a>
-                                        <a class="block px-4 py-2 hover:bg-gray-200" href="#"><i class="ri-delete-bin-6-line pr-4"></i>Delete</a>
+                                        <a class="block px-4 py-2 hover:bg-gray-200" href="<?= base_url('form/delete' . $ct['contact_id']); ?>"><i class="ri-delete-bin-6-line pr-4"></i>Delete</a>
                                         <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Action 2</a>
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Action 3</a> -->
                                     </div>

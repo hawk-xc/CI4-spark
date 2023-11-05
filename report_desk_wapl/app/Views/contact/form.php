@@ -18,7 +18,8 @@
     <div class="w-full flex flex-col overflow-y-scroll gap-3 md:h-[29rem] max-sm:order-2 max-sm:h-[47rem] max-sm:text-md custom-scrollbar-hidden">
         <div class="max-w-full w-full mx-auto bg-white p-6 rounded-lg shadow-md">
             <h2 class="text-2xl font-semibold mb-4">Formulir Kontak</h2>
-            <form action="<?= base_url('form/create'); ?>" method="post">
+            <form action="<?= base_url('form'); ?>" method="post">
+                <?= csrf_field(); ?>
                 <div class="mb-4">
                     <label for="name" class="block text-gray-600 text-xl">Nama Lengkap <span class="text-red-600">*</span></label>
                     <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500" value="<?= old('name'); ?>">
