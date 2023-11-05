@@ -39,7 +39,7 @@
                         <!-- terhubung ke kontak -->
                         <span class="font-bold text-blue-300 hover:underline"><?= $ticket[0]['name'] ?></span> <span class="text-slate-600">reported via app</span>
                     </a>
-                    <span>a year ago</span>
+                    <span>Created at <?= $getdatetime ?></span>
                 </span>
             </div>
             <div class="flex flex-row gap-4 mt-4">

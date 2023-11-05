@@ -23,6 +23,39 @@ class Ticket extends BaseController
         $this->db = db_connect();
     }
 
+    public function gettimestamp($datetime)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $currentTimestamp = time();
+        $currentDate = date('Y-m-d H:i:s', $currentTimestamp);
+        $date = strtotime($datetime);
+        $elapse = $currentTimestamp - $date;
+
+        // echo "waktu saat ini -> " . $currentDate . "\n" . "jumlah selisih detik -> " . $currentTimestamp - $date . "\n";
+
+        if ($elapse < 60) {
+            return "one minutes ago!";
+        } elseif ($elapse < 60 * 5) {
+            return "5 minutes ago!";
+        } elseif ($elapse < 60 * 15) {
+            return "15 minutes ago!";
+        } elseif ($elapse < 60 * 30) {
+            return "30 minutes ago!";
+        } elseif ($elapse < 60 * 60) {
+            return "one hour ago!";
+        } elseif ($elapse < (60 * 60 * 24 / 2)) {
+            return "12 hour ago!";
+        } elseif ($elapse < (60 * 60 * 24)) {
+            return "one day ago!";
+        } elseif ($elapse < (60 * 60 * 24 * 7)) {
+            return "one week ago!";
+        } elseif ($elapse < (60 * 60 * 24 * 30)) {
+            return "one month ago!";
+        } else {
+            return "a year ago";
+        }
+    }
+
     public function index()
     {
         $data = [
@@ -88,7 +121,9 @@ class Ticket extends BaseController
             'ticketNavButton'   => true,
             'contactNavButton'  => false,
             'formNavButton'     => false,
-            'ticket'            => $this->ticketModel->where('ticket_id', $ticketId)->join('contact', 'contact_id')->findAll()
+            'ticket'            => $this->ticketModel->where('ticket_id', $ticketId)->join('contact', 'contact_id')->findAll(),
+            'ticket_date'       => $this->ticketModel->select('created_at')->where('ticket_id', $ticketId)->find(),
+            'getdatetime'       => $this->gettimestamp($this->ticketModel->select('created_at')->where('ticket_id', $ticketId)->find()[0]['created_at'])
         ];
 
         return view('ticketing/showTicket', $data);
