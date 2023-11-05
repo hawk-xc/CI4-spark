@@ -73,6 +73,10 @@ class Ticket extends BaseController
             'contact_id'        => $this->contactModel->select('contact_id')->select('name')->findAll(),
         ];
 
+        for ($i = 0; $i < count($this->ticketModel->findAll()); $i++) {
+            $data['setdatetime'][] = $this->gettimestamp($this->ticketModel->select('created_at')->orderBy('ticket_id', 'desc')->findAll()[$i]['created_at']);
+        }
+
         return view('ticketing/ticket', $data);
     }
 
@@ -144,6 +148,18 @@ class Ticket extends BaseController
         ];
 
         $this->ticketModel->update($ticket_id, $data);
+        $this->session->setFlashdata('message', 'ticket sudah diubah menjadi close!');
+        return redirect()->to(base_url('ticket/') . $ticket_id);
+    }
+
+    public function open($ticket_id)
+    {
+        $data = [
+            'status'    => 'open'
+        ];
+
+        $this->ticketModel->update($ticket_id, $data);
+        $this->session->setFlashdata('message', 'ticket sudah diubah menjadi open!');
         return redirect()->to(base_url('ticket/') . $ticket_id);
     }
 }

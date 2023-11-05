@@ -2,10 +2,10 @@
 const messageBox = document.getElementById("messageBox");
 const closeButton = document.getElementById("closeButton");
 
+closeButton.addEventListener("click", function () {
+  messageBox.classList.add("hidden");
+});
 setTimeout(function () {
-  closeButton.addEventListener("click", function () {
-    messageBox.classList.add("hidden");
-  });
   messageBox.classList.add("opacity-0");
   setTimeout(function () {
     messageBox.classList.add("hidden");
