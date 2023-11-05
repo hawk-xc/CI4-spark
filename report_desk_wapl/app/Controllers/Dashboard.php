@@ -26,7 +26,7 @@ class Dashboard extends BaseController
 
         ];
 
-        return view('dummydash', $data);
+        return view('dashboard', $data);
     }
 
     public function contact()

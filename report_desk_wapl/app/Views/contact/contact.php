@@ -2,8 +2,13 @@
 <?= $this->section("content"); ?>
 
 
-<div class="container mx-auto p-6">
-    <div class="bg-white shadow-md rounded my-6">
+<div class="container mx-auto shadow-sm rounded-lg">
+    <div class="bg-white shadow-md rounded w-full flex flex-col overflow-y-scroll gap-3 md:h-[29rem] max-sm:order-2 max-sm:h-[47rem] max-sm:text-md ">
+        <?php if (session()->getFlashdata('message')) { ?>
+            <div id="messageBox" class="my-2 max-w-full p-2 bg-orange-200 border border-slate-600 rounded-md flex justify-between">
+                <span class="flex flex-row"><span><i class="ri-information-fill"></i> <?= session()->getFlashdata('message') ?></span></span> <i class="ri-close-fill font-bold hover:text-red-400" id="closeButton"></i>
+            </div>
+        <?php } ?>
         <table class="min-w-max w-full table-auto">
             <thead>
                 <tr class="bg-gray-200 text-gray-600 uppercase text-base leading-normal">
@@ -18,7 +23,7 @@
                 <!-- Dummy Data, nanti pakek foreach untuk akses data dari databases -->
 
                 <?php foreach ($contact as $ct) : ?>
-                    <tr class="border-b border-gray-200 hover-bg-gray-100">
+                    <tr class="border-b border-gray-200 hover-bg-gray-100 hover:bg-slate-100">
                         <td class="py-3 px-6 text-center"><?= $ct['contact_id'] ?></td>
                         <td class="py-3 px-6 text-center"><?= $ct['name']; ?></td>
                         <td class="py-3 px-6 text-center"><?= $ct['email']; ?></td>
@@ -44,6 +49,7 @@
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Action 3</a> -->
                                     </div>
                                 </div>
+
                             </div>
                         </td>
                     </tr>
