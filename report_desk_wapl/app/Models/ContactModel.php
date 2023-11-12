@@ -13,7 +13,7 @@ class ContactModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'email', 'phone', 'address', 'description', 'created_at'];
+    protected $allowedFields    = ['name', 'email', 'phone', 'address', 'description', 'created_at', 'updated_at'];
 
     // Dates
     protected $useTimestamps = true;
@@ -38,4 +38,14 @@ class ContactModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    public function getContact($contact_id = false)
+    {
+        if ($contact_id == false) {
+            return $this->findAll();
+        }
+
+        return $this->where(['contact_ID' => $contact_id])->first();
+    }
 }
