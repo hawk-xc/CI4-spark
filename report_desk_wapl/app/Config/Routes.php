@@ -35,7 +35,10 @@ $routes->get('/home', 'Home::index');
 // routes untuk validasi
 $routes->get('/form', 'Form::index');
 $routes->get('/form/create', 'Form::create');
-$routes->get('form/delete/(:num)', 'Form::delete/$1');
+$routes->get('/form/edit/(:segment)', 'Form::edit/$1');
+$routes->delete('/form/(:num)', 'Form::delete/$1');
+// $routes->get('form/delete/(:num)', 'Form::delete/$1');
+$routes->get('/form/(:any)', 'Form::edit/$1');
 
 
 // routes untuk contact => denny

@@ -223,9 +223,104 @@ class Form extends BaseController
             $this->contactModel->delete($contact_id);
             $this->session->setFlashdata("message", "Data Kontak Berhasil Dihapus!");
         } else {
-            $this->session->setFlashdata("error", "Data Kontak Tidak Dimtemukan!");
+            $this->session->setFlashdata("error", "Data Kontak Tidak Ditemukan!");
         }
 
         return redirect()->to(base_url("contact"));
+    }
+    public function edit($contact_id)
+    {
+
+
+        $data = [
+            'name' => 'contact',
+            'title' => 'Form Edit',
+            'homeNavButton' => false,
+            'ticketNavButton' => false,
+            'contactNavButton' => false,
+            'formNavButton' => true,
+            // 'request' => $this->contactModel->select("*")->select("name")->select("phone")->join('contact', 'contact_id')->orderBy('contact_id', 'desc')->findAll(),
+            'contact' => $this->contactModel->getContact($contact_id),
+
+        ];
+
+
+
+        // return view('contact/index', $data);
+        // return view('contact/dummyListContact', $data);
+        return view('contact/edit', $data);
+    }
+    public function update($contact_id)
+    {
+        $contactLama = $this->contactModel->getContact($contact_id);
+        if ($contactLama['name'] == $this->request->getVar('name')) {
+            $rule_nama = 'required';
+        } else {
+            $rule_nama = 'required|is_unique[contact.name]|min_length[5]|max_length[25]';
+        }
+        $validation = \Config\Services::validation();
+        $valid = [
+            'name' => [
+                'label' => 'Nama',
+                'rules' => $rule_nama,
+                'errors' => [
+                    'required' => '{field} Tidak Boleh Kosong!',
+                    'is_unique' => '{field} Sudah Ada! Tidak Boleh Sama',
+                    'min_length' => '{field} Anda Terlalu Pendek',
+                    'max_length' => '{field} Anda Melebihi 25 Karakter',
+                ],
+            ],
+            'email' => [
+                'label' => 'Email',
+                'rules' => 'required|valid_email',
+                'errors' => [
+                    'required' => '{field} Tidak Boleh Kosong!',
+                    'valid_email' => '{field} Yang Anda Masukkan Tidak Valid!',
+                ],
+            ],
+            'phone' => [
+                'label' => 'No. Telepon',
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => '{field} Tidak Boleh Kosong!',
+                    'numeric' => '{field} Tidak Valid Harap Masukkan Berupa Angka',
+                ],
+            ],
+            'address' => [
+                'label' => 'Alamat Lengkap',
+                'rules' => 'required|min_length[3]',
+                'errors' => [
+                    'required' => '{field} Tidak Boleh Kosong!',
+                    'min_length' => '{field} Anda Terlalu Pendek',
+                ],
+            ],
+            'description' => [
+                'label' => 'Pesan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Tidak Boleh Kosong!',
+                ],
+            ],
+        ];
+        $validation->setRules($valid);
+        if ($validation->withRequest($this->request)->run()) {
+            $data = [
+                'id' => $contact_id,
+                'name' => $this->request->getVar('name'),
+                'email' => $this->request->getVar('email'),
+                'phone' => $this->request->getVar('phone'),
+                'address' => $this->request->getVar('address'),
+                'description' => $this->request->getVar('description'),
+                'created_at' => Time::now(),
+                'updated_at' => Time::now(),
+            ];
+            $this->contactModel->update($contact_id, $data);
+            $this->session->setFlashdata('message', 'Telah Berhasil Mengedit dan Mengubah  Contact Baru!');
+            return redirect()->to(base_url('contact'));
+        } else {
+            $error = $validation->getErrors();
+            session()->setFlashdata('error', $error);
+            return redirect()->back()->withInput();
+        }
     }
 }
