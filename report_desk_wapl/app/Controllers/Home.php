@@ -73,13 +73,10 @@ class Home extends BaseController
             'ticketNavButton' => false,
             'contactNavButton' => false,
             'formNavButton' => false,
-            'ticket' => $this->ticket->select('created_at')->findAll(),
+            'contact'   => $this->contact->paginate(5, 'contact'),
+            'pager'     => $this->contact->pager,
             'faker' => [$this->faker->name, $this->faker->address, $this->faker->email],
         ];
-
-        for ($i = 0; $i < count($this->ticket->findAll()); $i++) {
-            $data['setdatetime'][] = $this->gettimestamp($this->ticket->select('created_at')->orderBy('ticket_id', 'desc')->findAll()[$i]['created_at']);
-        }
 
         session()->setFlashdata('message', 'kamu baru saja kembali dari testing!');
 

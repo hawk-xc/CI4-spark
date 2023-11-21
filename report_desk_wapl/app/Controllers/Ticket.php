@@ -58,6 +58,14 @@ class Ticket extends BaseController
 
     public function index()
     {
+        $keyword = $this->request->getPost('keyword');
+
+        if ($keyword) {
+            $result = $this->ticketModel->search($keyword);
+        } else {
+            $result = $this->ticketModel;
+        }
+
         $data = [
             'name'              => 'ticketing',
             'title'             => 'Ticketing',
@@ -65,7 +73,8 @@ class Ticket extends BaseController
             'ticketNavButton'   => true,
             'contactNavButton'  => false,
             'formNavButton'     => false,
-            'request'           => $this->ticketModel->select('*')->select('name')->select('phone')->join('contact', 'contact_id')->orderBy('ticket_id', 'desc')->findAll(),
+            'request'           => $result->select('*')->select('name')->select('phone')->join('contact', 'contact_id')->orderBy('ticket_id', 'desc')->paginate(3, 'ticket'),
+            'pager'             => $result->select('*')->select('name')->select('phone')->join('contact', 'contact_id')->orderBy('ticket_id', 'desc')->pager,
             'requestId'         => $this->ticketModel->select('contact_id')->orderBy('contact_id', 'asc')->findAll(),
             'open_ticket'       => $this->ticketModel->where('status', 'open')->countAllResults(),
             'close_ticket'      => $this->ticketModel->where('status', 'close')->countAllResults(),
@@ -109,9 +118,11 @@ class Ticket extends BaseController
 
         $this->db->table('ticket')->insert($data);
         // $this->db->query()
-        // $this->db->query("INSERT INTO ticket (contact_id, type, status, description, created_at) VALUES (:contact_id:, :type:, :status:, :description:, :created_at:)", $data);
+        // $this->db->query("INSERT INTO ticket (contact_id, subject, type, status, description, created_at) VALUES (:contact_id:, :type:, :type:, :status:, :description:, :created_at:)", $data);
         $this->session->setFlashdata('message', 'telah berhasil menambahkan ticket baru!');
         return redirect()->to(base_url('ticket'));
+
+        return dd($data);
 
         // return (dd($data));
     }
@@ -126,6 +137,7 @@ class Ticket extends BaseController
             'contactNavButton'  => false,
             'formNavButton'     => false,
             'ticket'            => $this->ticketModel->where('ticket_id', $ticketId)->join('contact', 'contact_id')->findAll(),
+            'description'       => $this->ticketModel->select('description')->where('ticket_id', $ticketId)->findAll(),
             'ticket_date'       => $this->ticketModel->select('created_at')->where('ticket_id', $ticketId)->find(),
             'getdatetime'       => $this->gettimestamp($this->ticketModel->select('created_at')->where('ticket_id', $ticketId)->find()[0]['created_at'])
         ];
