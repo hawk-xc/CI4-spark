@@ -27,8 +27,8 @@
             <span class="flex flex-row text-white"><span><i class="ri-information-line"></i> <?= session()->getFlashdata('message') ?></span></span> <i class="ri-close-fill font-bold hover:text-red-400 text-white" id="closeButton"></i>
         </div>
     <?php } ?>
-    <div class="flex mt-2 flex-row max-w-full w-full gap-2">
-        <div class="p-5 bg-white rounded-md shadow-sm flex flex-col w-full overflow-y-scroll custom-scrollbar-hidden md:h-[29rem]">
+    <div class="flex mt-2 max-sm:flex-col md:flex-row lg:flex-row max-w-full w-full gap-2">
+        <div class="p-5 bg-white rounded-md shadow-sm flex flex-col w-full md:h-[29rem] max-sm:order-2 overflow-y-scroll">
             <span>
                 <span class="text-slate-500 font-extrabold text-2xl mr-2">#<?= $ticket[0]['ticket_id'] ?></span><span class="text-2xl"><?= $ticket[0]['subject'] ?></span>
             </span>
@@ -47,7 +47,7 @@
                     <span>Created at <?= $getdatetime ?></span>
                 </span>
             </div>
-            <div class="flex flex-row gap-4 mt-4 border border-slate-400 rounded-md overflow-hidden">
+            <div class="flex flex-row gap-4 mt-4 border border-slate-400">
                 <span class="w-11 h-11 flex justify-center align-middle items-center text-slate-700 rounded-lg flex-auto">
                     <i class="ri-sticky-note-line text-lg text-slate-600"></i>
                 </span>
@@ -55,19 +55,42 @@
                     <?= $ticket[0]['description'] ? $ticket[0]['description'] : 'tidak ada data' ?>
                     <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda earum, dolores distinctio omnis, veniam eaque cum quis dolorem culpa corporis necessitatibus commodi, impedit dicta vitae quam officia dolor porro sed.</span>
                 </span>
-                <textarea name="description" id="description" cols="30" rows="10" class="max-w-full w-full focus:outline-none py-2" placeholder="tidak ada komentar tersedia..."></textarea>
+                <textarea name="description" id="description" cols="50" rows="10" class="max-w-full w-full focus:outline-none py-2  block" placeholder="tidak ada komentar tersedia..." value=""><?= $description[0]['description'] ?></textarea>
             </div>
-            <input type="file" class="file:bg-sky-300 file:rounded-md border file:border-slate-300 mt-3">
+
+
+            <div class="flex items-center justify-center w-full mt-4">
+                <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed cursor-pointer bg-gray-50 dark:hover:bg-bray-800 hover:bg-gray-100">
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                        </svg>
+                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                    </div>
+                    <input id="dropzone-file" type="file" class="hidden" />
+                </label>
+            </div>
+
+
         </div>
-        <div class="w-1/3 p-2 rounded-md bg-white">
+        <div class="w-1/3 p-2 rounded-md bg-white max-sm:order-1 max-sm:w-full">
             ini kanan
         </div>
     </div>
 </div>
 <script type="text/javascript">
+    console.log('hello');
     const confirmBox = document.getElementById("confirmBox");
     const dropConfirmBox = document.getElementById("dropConfirmBox");
     const upConfirmBox = document.getElementById("upConfirmBox");
+    const hamburgerMenu = document.getElementById("hamburgerMenu");
+    const navPanel = document.getElementById("right_panel");
+    const hamburderIcon = document.querySelector("i[name=hamburgerIcon]");
+    const toolPanel = document.getElementById("toolPanel");
+    const searchBox = document.getElementById("searchBox");
+    const userBox = document.getElementById("userBox");
+    const dropdown = document.getElementById("dropdown");
 
     function confirmBoxAction() {
         confirmBox.classList.contains('scale-0') ? confirmBox.classList.replace('scale-0', 'scale-100') : confirmBox.classList.replace('scale-100', 'scale-0');
@@ -89,5 +112,9 @@
             messageBox.classList.add("hidden");
         }, 500);
     }, 3000);
+
+    hamburgerMenu.addEventListener("click", function() {
+        navPanel.classList.toggle("max-sm:-translate-x-52");
+    });
 </script>
 <?= $this->endSection() ?>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,7 @@
 
 <body class="">
     <section name="ticket" class="max-sm:textt-sm">
-        <div class="flex flex-row box-border justify-between px-3 py-4 bg-white rounded-lg shadow-sm">
+        <div class="flex flex-row box-border justify-between px-3 py-4 bg-white rounded-lg shadow-sm align-middle items-center">
             <!-- this is filter toolbar -->
             <span class="flex flex-row">sort by :
                 <form action="">
@@ -27,10 +27,10 @@
             </span>
 
             <!-- add new button -->
-            <div class="">
-                <a href="<?= route_to('ticket/new') ?>">
+            <div class="flex flex-row align-middle items-center gap-5">
+                <?= $pager->links('ticket', 'default_new') ?>
+                <a href="<?= route_to('ticket/new') ?>" class="flex flex-row">
                     <span class="p-2 bg-blue-300 rounded-lg text-white hover:bg-blue-400 cursor-pointer"><i class="ri-add-circle-fill max-sm:text-sm"></i> add new</span>
-                    <span class="ml-2 max-sm:hidden">1 - 10 of 192</span>
                 </a>
             </div>
         </div>

@@ -38,4 +38,9 @@ class TicketModel extends Model
     // protected $afterFind      = [];
     // protected $beforeDelete   = [];
     // protected $afterDelete    = [];
+
+    public function search($keyword)
+    {
+        return $this->table('orang')->like('name', $keyword);
+    }
 }
