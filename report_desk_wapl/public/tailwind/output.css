@@ -802,10 +802,6 @@ li {
   margin-bottom: 0.5rem;
 }
 
-.mb-4{
-  margin-bottom: 1rem;
-}
-
 .ml-4{
   margin-left: 1rem;
 }
@@ -1750,10 +1746,6 @@ li {
 
 .ease-out{
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-}
-
-.placeholder\:pl-1::-moz-placeholder{
-  padding-left: 0.25rem;
 }
 
 .placeholder\:pl-1::placeholder{
