@@ -3,10 +3,16 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\ContactModel;
 use Config\App;
 
 class Contact extends BaseController
 {
+    public $contactModel;
+    public function __construct()
+    {
+        $this->contactModel = new ContactModel;
+    }
     public function index()
     {
         $data = [
@@ -65,6 +71,8 @@ class Contact extends BaseController
             $data['error'] = "";
             $data['title'] = "";
         }
+        $data['contact'] = $this->contactModel->findAll();
+
         // return view('contact/index', $data);
         // return view('contact/dummyListContact', $data);
         echo view('contact/contact', $data);
