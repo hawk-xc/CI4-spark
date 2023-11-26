@@ -59,6 +59,8 @@ class Home extends BaseController
             'ticketNavButton' => false,
             'contactNavButton' => false,
             'formNavButton' => false,
+            'open_ticket'   => $this->ticket->where('status', 'open')->countAllResults(),
+            'close_ticket'  => $this->ticket->where('status', 'close')->countAllResults(),
         ];
 
         return view('dashboard', $data);
