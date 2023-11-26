@@ -107,12 +107,26 @@ class Ticket extends BaseController
 
     public function create()
     {
+        $media = $this->request->getFile('media');
+
+        if ($media->isValid() && !$media->hasMoved()) {
+            $newName = $media->getRandomName();
+            $media->move(ROOTPATH . 'media/', $newName);
+
+            // Save data to the database using the model
+            $this->ticketModel->insertImage($title, $newName);
+
+            return redirect()->to('/success_page');
+        } else {
+            echo "File upload failed.";
+        }
+
         $data = [
-            'contact_id'     => $this->request->getPost('contact_id'),
-            'subject'        => $this->request->getPost('subject'),
-            'type'           => $this->request->getPost('type'),
-            'status'         => $this->request->getPost('status'),
-            'description'    => $this->request->getPost('description'),
+            'contact_id'     => htmlspecialchars($this->request->getPost('contact_id')),
+            'subject'        => htmlspecialchars($this->request->getPost('subject')),
+            'type'           => htmlspecialchars($this->request->getPost('type')),
+            'status'         => htmlspecialchars($this->request->getPost('status')),
+            'description'    => htmlspecialchars($this->request->getPost('description')),
             'created_at'     => Time::now()
         ];
 

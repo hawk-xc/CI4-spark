@@ -34,8 +34,8 @@
                 <a href="../form">
                     <li id="" class="<?= $formNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-todo-fill text-2xl"></i>Form</li>
                 </a>
-                <li id="" class="button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out"><i class="ri-file-info-line text-2xl"></i> panel 3</li>
-                <li id="" class="button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out"><i class="ri-file-info-line text-2xl"></i> panel 4</li>
+                <li id="" class="button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out"><i class="ri-account-pin-circle-line text-2xl"></i> buat akun</li>
+                <li id="" class="button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out"><i class="ri-message-2-line text-2xl"></i> forum diskusi</li>
             </ul>
             <section id="footer" class="bottom-0 absolute mb-10 flex flex-col items-center text-center -translate-x-5">
                 <span class="text-white font-bold">kerkom @ 2023</span>

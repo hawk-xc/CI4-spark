@@ -3,14 +3,17 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\TicketModel;
 use CodeIgniter\Session\Session;
 
 class Dashboard extends BaseController
 {
     public $session;
+    public $ticketModel;
     public function __construct()
     {
         $this->session = session();
+        $this->ticketModel = new TicketModel();
     }
 
     public function index()
@@ -23,7 +26,8 @@ class Dashboard extends BaseController
             'ticketNavButton' => false,
             'contactNavButton' => false,
             'formNavButton' => false,
-
+            'open_ticket'       => $this->ticketModel->where('status', 'open')->countAllResults(),
+            'close_ticket'      => $this->ticketModel->where('status', 'close')->countAllResults(),
         ];
 
         return view('dashboard', $data);

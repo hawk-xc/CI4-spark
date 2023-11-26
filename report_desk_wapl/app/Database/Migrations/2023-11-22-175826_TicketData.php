@@ -3,38 +3,22 @@
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
-use CodeIgniter\I18n\Time;
-use DateTime;
 
-class Ticket extends Migration
+class TicketData extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'ticket_id'      => [
+            'ticket_data_id' => [
                 'type'       => 'INT',
                 'constraint' => 10,
                 'unsigned'   => true,
                 'auto_increment' => true
             ],
-            'contact_id'     => [
+            'ticket_id'      => [
                 'type'       => 'INT',
                 'constraint' => 10,
                 'unsigned'   => true
-            ],
-            'subject'       => [
-                'type'      => 'VARCHAR',
-                'constraint' => 255
-            ],
-            'type' => [
-                'type'       => 'ENUM',
-                'constraint' => ['new', 'mt'],
-                'default'    => 'new',
-            ],
-            'status'         => [
-                'type'       => 'ENUM',
-                'constraint' => ['open', 'close', 'pending'],
-                'default'    => 'open'
             ],
             'description'    => [
                 'type'       => 'VARCHAR',
@@ -51,14 +35,14 @@ class Ticket extends Migration
             ]
         ]);
 
-        $this->forge->addKey('ticket_id', true);
+        $this->forge->addKey('ticket_data_id', true);
         // $this->forge->addKey('contact_id', false);
-        $this->forge->addForeignKey('contact_id', 'contact', 'contact_id', 'CASCADE', 'CASCADE', 'contact_fk');
-        $this->forge->createTable('ticket');
+        $this->forge->addForeignKey('ticket_id', 'ticket', 'ticket_id', 'CASCADE', 'CASCADE', 'ticket_data_fk');
+        $this->forge->createTable('ticket_data');
     }
 
     public function down()
     {
-        $this->forge->dropTable('ticket');
+        //
     }
 }
