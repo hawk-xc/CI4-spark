@@ -66,7 +66,11 @@
 
             <div class="p-2 border border-dashed mt-4 duration-150 transition-all border-slate-700 rounded-md">
                 <span class="font-bold text-slate-700">Dokumentasi</span>
-                <img src="<?= base_url('media/testing.png') ?>" alt="gambar tidak ada">
+                <?php if ($ticket[0]['media']) {  ?>
+                    <img src="<?= base_url('media/' . $ticket[0]['media']) ?>" alt="gambar tidak ada" class="w-[200px]">
+                <?php } else {
+                    echo '';
+                } ?>
             </div>
 
             <span>
