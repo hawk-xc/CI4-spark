@@ -91,6 +91,7 @@ class Ticket extends BaseController
 
     public function new()
     {
+        $this->session;
         $data = [
             'name' => 'create ticketing',
             'title' => 'Create Ticketing',
@@ -99,7 +100,8 @@ class Ticket extends BaseController
             'contactNavButton' => false,
             'formNavButton' => false,
             'ticket' => $this->ticketModel->findAll(),
-            'contact' => $this->contactModel->select('name')->select('contact_id')->findAll()
+            'contact' => $this->contactModel->select('name')->select('contact_id')->findAll(),
+            'validation' => \Config\Services::validation()
         ];
 
         return view('ticketing/create', $data);
@@ -107,36 +109,62 @@ class Ticket extends BaseController
 
     public function create()
     {
-        $media = $this->request->getFile('media');
+        // validation
+        $validation = \Config\Services::validation();
+        $valid = [
+            'subject' => [
+                'label' => 'subject',
+                'rules' => 'required|min_length[5]',
+                'errors' => [
+                    'required' => '{field} harus diisi!',
+                    'min_length' => 'keterangan {field} terlalu pendek!'
+                ],
+            ],
+            'media' => [
+                'label' => 'dokumentasi',
+                'rules' => 'uploaded[media]|is_image[media]|max_size[media,1024]|mime_in[media,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'uploaded'  => '{field} belum diupload!',
+                    'is_image'  => 'file yang diupload haru berekstensi gambar!',
+                    'max_size'  => 'file yang diupload terlalu besar, minmal 1Mb!',
+                    'mime_in'   => 'format tidak didukung/diketahui!'
+                ]
+            ]
+        ];
+        $validation->setRules($valid);
 
-        if ($media->isValid() && !$media->hasMoved()) {
-            $newName = $media->getRandomName();
-            $media->move(ROOTPATH . 'media/', $newName);
+        function media($media)
+        {
+            $dir = 'media';
 
-            // Save data to the database using the model
-            $this->ticketModel->insertImage($title, $newName);
+            $mediaRandomName = $media->getRandomName();
+            $media->move($dir, $mediaRandomName);
 
-            return redirect()->to('/success_page');
-        } else {
-            echo "File upload failed.";
+            return $mediaRandomName;
         }
 
-        $data = [
-            'contact_id'     => htmlspecialchars($this->request->getPost('contact_id')),
-            'subject'        => htmlspecialchars($this->request->getPost('subject')),
-            'type'           => htmlspecialchars($this->request->getPost('type')),
-            'status'         => htmlspecialchars($this->request->getPost('status')),
-            'description'    => htmlspecialchars($this->request->getPost('description')),
-            'created_at'     => Time::now()
-        ];
+        if ($validation->withRequest($this->request)->run()) {
+            $data = [
+                'contact_id'     => htmlspecialchars($this->request->getPost('contact_id')),
+                'subject'        => htmlspecialchars($this->request->getPost('subject')),
+                'type'           => htmlspecialchars($this->request->getPost('type')),
+                'status'         => htmlspecialchars($this->request->getPost('status')),
+                'description'    => htmlspecialchars($this->request->getPost('description')),
+                'media'          => media($this->request->getFile('media')),
+                'created_at'     => Time::now()
+            ];
 
-        $this->db->table('ticket')->insert($data);
+            $this->session->setFlashdata('message', 'telah berhasil menambahkan ticket baru!');
+            $this->db->table('ticket')->insert($data);
+            return redirect()->to(base_url('ticket'));
+        } else {
+            $errors = $validation->getErrors();
+            session()->setFlashdata("error", $errors);
+            return redirect()->back()->withInput();
+        }
+
         // $this->db->query()
         // $this->db->query("INSERT INTO ticket (contact_id, subject, type, status, description, created_at) VALUES (:contact_id:, :type:, :type:, :status:, :description:, :created_at:)", $data);
-        $this->session->setFlashdata('message', 'telah berhasil menambahkan ticket baru!');
-        return redirect()->to(base_url('ticket'));
-
-        return dd($data);
 
         // return (dd($data));
     }
@@ -161,6 +189,14 @@ class Ticket extends BaseController
 
     public function delete($ticket_id)
     {
+
+
+        $image = 'media/' . $this->ticketModel->select('media')->where('ticket_id', $ticket_id)->find()[0]['media'];
+
+        if (file_exists($image)) {
+            unlink($image);
+        }
+
         $this->ticketModel->where('ticket_id', $ticket_id)->delete();
         $this->session->setFlashdata('message', 'ticket telah terhapus dari daftar!');
 

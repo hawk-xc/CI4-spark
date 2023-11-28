@@ -1,13 +1,15 @@
 <?= $this->extend('particle/dashboardParticle.php'); ?>
 <?= $this->section('content'); ?>
 
+<script src="node_modules/chart.js/dist/chart.js"></script>
+
 <div class="flex flex-col p-2 gap-4 md:h-[40rem] max-sm:h-[63rem]">
     <div class="flex bg-white rounded-md shadow-sm p-3 h-full">
         <div class="flex justify-between h-10 items-center max-w-full w-full">
             <span class="text-slate-500 font-bold text-lg">
                 <i class="ri-home-gear-line text-sky-400"></i> panel utama
             </span>
-            <span class="p-2 bg-slate-200 rounded-md" id="realTimeDate"></span>
+            <span class="p-2 bg-slate-200 rounded-md max-sm:text-[10px]" id="realTimeDate"></span>
         </div>
     </div>
     <div class="flex md:flex-row max-sm:flex-col gap-4 h-full">
