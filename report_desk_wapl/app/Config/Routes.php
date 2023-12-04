@@ -20,6 +20,8 @@ $routes->get('/register', 'User::register');
 $routes->get('/ticket', 'Ticket::index');
 $routes->get('/ticket/new', 'Ticket::new');
 $routes->post('/ticket/create', 'Ticket::create');
+$routes->post('/ticket/edit/(:num:)', 'Ticket::edit/$1');
+$routes->get('/ticket/remove/(:num)', 'Ticket::removeComment/$1');
 
 // route ke tampilkan detail ticket
 $routes->get('/ticket/(:num)', 'Ticket::showTicket/$1');

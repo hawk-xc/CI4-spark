@@ -43,6 +43,6 @@ class TicketData extends Migration
 
     public function down()
     {
-        //
+        $this->forge->dropTable('ticket_data');
     }
 }
