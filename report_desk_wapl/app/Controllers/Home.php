@@ -76,8 +76,6 @@ class Home extends BaseController
             'contactNavButton' => false,
             'formNavButton' => false,
             'contact'   => $this->contact->paginate(5, 'contact'),
-            'pager'     => $this->contact->pager,
-            'faker' => [$this->faker->name, $this->faker->address, $this->faker->email],
         ];
 
         session()->setFlashdata('message', 'kamu baru saja kembali dari testing!');
@@ -88,14 +86,11 @@ class Home extends BaseController
     public function testing2()
     {
         $data = [
-            'name' => 'testing',
-            'title' => 'halaman testing',
-            'homeNavButton' => false,
-            'ticketNavButton' => false,
-            'contactNavButton' => false,
-            'faker' => [$this->faker->name, $this->faker->address, $this->faker->email]
+            'media' => $this->request->getFile('media'),
+            'namespace' => $this->request->getVar('namespace')
         ];
 
-        return view('testing2', $data);
+        $file = $this->request->getFile('media');
+        dd($file->getMimeType());
     }
 }

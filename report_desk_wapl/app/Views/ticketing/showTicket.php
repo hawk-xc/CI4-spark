@@ -1,5 +1,7 @@
 <?= $this->extend('./particle/dashboardParticle.php'); ?>
 <?= $this->section('content'); ?>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+
 <div id="confirmBox" class="scale-0 duration-200 transition-all ease-out shadow-md absolute mx-auto w-72 backdrop-blur-md top-[45%] left-[45%] py-6 flex flex-col items-center rounded-md border border-slate-400">
     <div class="text-2xl text-slate-600"><i class="ri-information-line"></i> Info...</div>
     <div class="text-md text-slate-500 mt-2">apakah anda yakin?</div>
@@ -54,26 +56,77 @@
                     </a>
                 </span>
             </div>
-            <div class="flex flex-row gap-4 mt-4 border border-slate-400">
-                <span class="w-11 h-11 flex justify-center align-middle items-center text-slate-700 rounded-lg flex-auto">
-                    <i class="ri-sticky-note-line text-lg text-slate-600"></i>
-                </span>
-                <span class="text-sm <?= $ticket[0]['description'] ? '' : 'hidden' ?>">
-                    <?= $ticket[0]['description'] ? $ticket[0]['description'] : 'tidak ada data' ?>
-                </span>
-                <textarea name="description" id="description" cols="50" rows="<?= strlen($ticket[0]['description']) > 20 ? '10' : '5' ?>" class="max-w-full w-full focus:outline-none py-2  block" placeholder="tidak ada komentar tersedia..." value=""><?= $description[0]['description'] ?></textarea>
+
+            <div class="container mt-4 border border-dashed border-slate-900 rounded-r-lg rounded-bl-lg p-2 text-slate-800 flex flex-col gap-2">
+                <?= $description[0]['description'] ?>
+                <?php if ($ticket[0]['media']) {  ?>
+                    <img src="<?= base_url('media/' . $ticket[0]['media']) ?>" alt="gambar tidak ada" class="w-[200px]">
+                <?php } else {
+                    echo '';
+                } ?>
             </div>
 
-            <div class="p-2 border border-dashed mt-4 duration-150 transition-all border-slate-700 rounded-md">
-                <span class="font-bold text-slate-700">Dokumentasi</span>
-                <img src="<?= base_url('media/testing.png') ?>" alt="gambar tidak ada">
-            </div>
+            <?php if ($ticketData) { ?>
+                <?php foreach ($ticketData as $ticketDat) { ?>
+                    <div class="container flex flex-row">
+                        <div class="md:w-[38rem] lg:w-[38rem] max-sm:w-[18rem] mt-4 border border-dashed border-slate-900 rounded-l-lg rounded-br-lg p-2 text-slate-800 flex flex-col gap-2">
+                            <?= $ticketDat['description'] ?>
+                            <?php if ($ticketDat['media']) {  ?>
+                                <img src="<?= base_url('media/' . $ticketDat['media']) ?>" alt="gambar tidak ada" class="w-[200px] rounded-md">
+                            <?php } else {
+                                echo '';
+                            } ?>
+                            <form action="remove/<?= $ticketDat['ticket_data_id'] ?>" method="get">
+                                <button class="mt-3 border border-dashed p-2 border-slate-700 w-48 flex justify-center align-middle items-center rounded-md hover:bg-slate-200 cursor-pointer active:bg-slate-300 gap-3">
+                                    <i class="ri-delete-bin-5-line"></i> hapus dokumentasi
+                                </button>
+                            </form>
+                        </div>
+                        <div class="ml-3">
+                            <img src="<?= base_url('media/wahyu.jpg') ?>" class=" rounded-md w-10 h-10 mt-4" alt="">
+                        </div>
+                    </div>
+                <?php } ?>
+            <?php } ?>
 
-            <span>
-                <a href="">
-                    <div class="bg-sky-100 hover:bg-sky-50 duration-150 transition-all border border-dashed rounded-md border-slate-700 my-4 flex items-center align-middle justify-center gap-1"><i class="ri-link-unlink-m"></i>tambah dokumentasi</div>
-                </a>
-            </span>
+
+            <!-- tambah pesan dialog -->
+            <div class="mt-2 mb-10 container max-w-full flex justify-center align-middle items-center flex-col gap-2">
+                <button id="atractiveButton" class="max-w-full bg-sky-200 flex w-full items-center align-middle rounded-md py-2 text-slate-700 gap-2 hover:bg-sky-300 active:bg-sky-400 justify-between px-4">
+                    <span>
+                        <i class="ri-chat-new-line"></i> klik untuk menambahkan pesan baru
+                    </span>
+                    <span id="dropDownIcon" class="transform duration-150 ease-out">
+                        <i class="ri-arrow-down-s-line font-bold"></i>
+                    </span>
+                </button>
+
+                <!-- add comment new area -->
+                <form action="<?= base_url('ticket/edit/') . $ticket[0]['ticket_id'] ?>" method="post" enctype="multipart/form-data" id="dialogBox" class="w-full text-slate-800 flex flex-col max-w-full gap-2 hidden">
+                    <input type="text" value="<?= $ticket[0]['ticket_id'] ?>" class="hidden">
+                    <textarea name="description" class="rounded-md bg-slate-100 border border-slate-400 p-3 w-full" placeholder="add some description!"><?= old('description'); ?></textarea>
+                    <?php if (session()->getFlashdata('error') && array_key_exists('description', session()->getFlashdata('error'))) : ?>
+                        <span class="text-sm text-red-500">
+                            <!-- this is validation message -->
+                            <i class="ri-corner-left-up-line"></i> <?= session()->getFlashdata('error')['description'] ?>
+                        </span>
+                    <?php endif; ?>
+                    <div class="mb-3">
+                        <label for="formFileSm" class="mb-2 inline-block text-slate-800">Unggah dokumentasi</label>
+                        <input name="media" class="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-xs font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none" id="formFileSm" type="file" />
+                        <?php if (session()->getFlashdata('error') && array_key_exists('media', session()->getFlashdata('error'))) : ?>
+                            <span class="text-sm text-red-500">
+                                <!-- this is validation message -->
+                                <i class="ri-corner-left-up-line"></i> <?= session()->getFlashdata('error')['media'] ?>
+                            </span>
+                        <?php endif; ?>
+                    </div>
+
+                    <button type="submit" id="sendData" class="bg-sky-200 p-2 rounded-md hover:bg-sky-300 active:bg-sky-400">
+                        <i class="ri-menu-add-line"></i> update
+                    </button>
+                </form>
+            </div>
 
 
         </div>
@@ -83,41 +136,48 @@
     </div>
 </div>
 <script type="text/javascript">
-    console.log('hello');
-    const confirmBox = document.getElementById("confirmBox");
-    const dropConfirmBox = document.getElementById("dropConfirmBox");
+    // const confirmBox = document.getElementById("confirmBox");
+    // const dropConfirmBox = document.getElementById("dropConfirmBox");
     const upConfirmBox = document.getElementById("upConfirmBox");
-    const hamburgerMenu = document.getElementById("hamburgerMenu");
-    const navPanel = document.getElementById("right_panel");
-    const hamburderIcon = document.querySelector("i[name=hamburgerIcon]");
-    const toolPanel = document.getElementById("toolPanel");
-    const searchBox = document.getElementById("searchBox");
-    const userBox = document.getElementById("userBox");
-    const dropdown = document.getElementById("dropdown");
+    // const hamburgerMenu = document.getElementById("hamburgerMenu");
+    // const navPanel = document.getElementById("right_panel");
+    // const hamburderIcon = document.querySelector("i[name=hamburgerIcon]");
+    // const toolPanel = document.getElementById("toolPanel");
+    // const searchBox = document.getElementById("searchBox");
+    // const userBox = document.getElementById("userBox");
+    // const dropdown = document.getElementById("dropdown");
 
     function confirmBoxAction() {
         confirmBox.classList.contains('scale-0') ? confirmBox.classList.replace('scale-0', 'scale-100') : confirmBox.classList.replace('scale-100', 'scale-0');
     }
 
-    dropConfirmBox.addEventListener("click", confirmBoxAction);
+    // dropConfirmBox.addEventListener("click", confirmBoxAction);
     upConfirmBox.addEventListener("click", confirmBoxAction);
 
     // flash data function
-    const messageBox = document.getElementById("messageBox");
-    const closeButton = document.getElementById("closeButton");
+    // const messageBox = document.getElementById("messageBox");
+    // const closeButton = document.getElementById("closeButton");
 
-    closeButton.addEventListener("click", function() {
-        messageBox.classList.add("hidden");
-    });
-    setTimeout(function() {
-        messageBox.classList.add("opacity-0");
-        setTimeout(function() {
-            messageBox.classList.add("hidden");
-        }, 500);
-    }, 3000);
+    // closeButton.addEventListener("click", function() {
+    //     messageBox.classList.add("hidden");
+    // });
+    // setTimeout(function() {
+    //     messageBox.classList.add("opacity-0");
+    //     setTimeout(function() {
+    //         messageBox.classList.add("hidden");
+    //     }, 500);
+    // }, 3000);
 
-    hamburgerMenu.addEventListener("click", function() {
-        navPanel.classList.toggle("max-sm:-translate-x-52");
-    });
+    // hamburgerMenu.addEventListener("click", function() {
+    //     navPanel.classList.toggle("max-sm:-translate-x-52");
+    // });
+
+    $(document).ready(function() {
+        $('#atractiveButton').on('click', function() {
+            $('#dialogBox').slideToggle()
+            $('#dropDownIcon').toggleClass('rotate-180', 1000)
+            console.log('on')
+        })
+    })
 </script>
 <?= $this->endSection() ?>

@@ -220,6 +220,8 @@ class Form extends BaseController
         $contact = $this->contactModel->find($contact_id);
 
         if ($contact) {
+            // iki ta tambahi den, auto soft delete #wahyu
+            $this->ticketModel->where('contact_id', $contact_id)->delete();
             $this->contactModel->delete($contact_id);
             $this->session->setFlashdata("message", "Data Kontak Berhasil Dihapus!");
         } else {

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= base_url('./tailwind/output.css') ?>">
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="<?= base_url('node_modules/jquery/dist/jquery.min.js') ?>"></script>
     <title><?= $title ?></title>
 </head>
 
@@ -18,20 +18,20 @@
             <ul class="text-slate-300 flex flex-col gap-2 mt-3">
 
                 <!-- navigasi home -->
-                <a href="../home">
+                <a href="<?= base_url('home') ?>">
                     <li id="homeNavButton" class="<?= $homeNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-home-heart-line text-2xl"></i> home</li>
                 </a>
                 <!-- navigasi ticket -->
-                <a href="../ticket">
+                <a href="<?= base_url('ticket') ?>">
                     <li id="ticketNavButton" class="<?= $ticketNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-coupon-3-fill text-2xl"></i> ticket</li>
                 </a>
 
                 <!-- navigasi contact -->
-                <a href="../contact">
+                <a href="<?= base_url('contact') ?>">
                     <li id="" class="<?= $contactNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-contacts-book-2-fill text-2xl"></i> contact</li>
                 </a>
                 <!-- Navigasi form -->
-                <a href="../form">
+                <a href="<?= base_url('form') ?>">
                     <li id="" class="<?= $formNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-todo-fill text-2xl"></i>Form</li>
                 </a>
                 <li id="" class="button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out"><i class="ri-account-pin-circle-line text-2xl"></i> buat akun</li>
@@ -47,36 +47,46 @@
     <section class="">
         <div id="toolPanel" class="fixed max-sm:pl-3 max-sm:py-4 md:py-4 flex flex-row justify-between flex-nowrap overflow-hidden duration-150 transition-all bg-white  w-full">
             <span class="max-sm:text-lg md:ml-56 lg:ml-56 md:text-2xl lg:text-2xl font-bold text-slate-800"><?= $name ?></span>
-            <span class="flex flex-row gap-3 mr-4">
-                <span id="searchBox" class="md:scale-100 duration-150 transition-all flex flex-row gap-1 bg-slate-200 rounded-full max-sm:w-7 max-sm:h-7 md:px-3 items-center justify-center">
-                    <i class="text-slate-800 ri-search-2-line max-sm:text-sm"></i>
-                    <form action="" method="post" class="max-sm:hidden">
-                        <input type="text" class="placeholder:text-sm bg-transparent active:outline-none focus:outline-none md:w-40" placeholder="Hey, cari semua disini . . .">
-                    </form>
-                </span>
-                <span class="flex flex-row items-center align-middle gap-2">
-                    <span id="greet" class="md:flex md:flex-col lg:flex lg:flex-col max-sm:hidden">
-                        <span>Denny irawan</span>
-                        <span class="text-xs">Pengoprek hamdal</span>
-                    </span>
-                    <span id="userBox" class="md:scale-100 duration-150 transition-all  max-sm:w-7 max-sm:h-7 md:w-10 md:h-10 lg:w-10 lg:h-10 rounded-full bg-slate-200 flex justify-center align-middle items-center">
-                        <i class="ri-user-5-fill max-sm:text-lg md:text-2xl text-slate-500"></i>
-                        <!-- dropdown -->
-                    </span>
-                </span>
+            <span class="flex flex-row gap-3 mr-4 items-center">
+
+                <!-- search form -->
+
                 <span id="hamburgerMenu" class="flex flex-row gap-1 bg-slate-200 rounded-full max-sm:w-7 max-sm:h-7 md:hidden items-center justify-center">
                     <i id="hamburgerIcon" class="text-slate-800 ri-menu-2-line max-sm:text-sm"></i>
                 </span>
             </span>
         </div>
+
+        <div class="absolute right-[20px] top-[10px]">
+            <span class="flex flex-row items-center align-middle gap-2 cursor-pointer">
+                <img src="media/wahyu.jpg" id="button" alt="" class="w-10 rounded-md hover:border-2 hover:border-sky-200 box-border duration-150">
+            </span>
+            <ul id="listData" class="bg-white w-40 p-2 flex-col absolute -translate-x-28 z-50 rounded-md hidden">
+                <li class="bg-white max-h-full px-5 py-1 rounded-md my-2 hover:bg-slate-100">maintain user</li>
+                <li class="bg-white max-h-full px-5 py-1 rounded-md hover:bg-slate-100">logout</li>
+            </ul>
+        </div>
+
     </section>
     <div class="w-screen p-5 bg-slate-100 h-screen overflow-hidden">
-        <div class="max-sm:pt-12 md:pl-52 md:pt-16 lg:pl-52 lg:pt-16">
+        <div class="max-sm:pt-12 md:pl-52 md:pt-16 lg:pl-52 lg:pt-16 mb-10">
             <?= $this->renderSection('content') ?>
         </div>
     </div>
 </body>
-<script src="js/dashboardPanel.js"></script>
-<script src="js/messageBox.js"></script>
+<script src="<?= base_url('js/dashboardPanel.js') ?>"></script>
+<script src="<?= base_url('js/messageBox.js') ?>"></script>
+<script type="text/javascript">
+    $(document).ready(() => {
+        $('#button').on('click', function() {
+            $('#dropDownIcon').toggleClass('rotate-90');
+            if ($('#listData').hasClass('hidden')) {
+                $('#listData').fadeIn(200).removeClass('hidden').addClass('flex');
+            } else {
+                $('#listData').slideUp(200).removeClass('flex').addClass('hidden');
+            }
+        })
+    })
+</script>
 
 </html>

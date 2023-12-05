@@ -14,17 +14,13 @@
     <section name="ticket" class="max-sm:textt-sm">
         <div class="flex flex-row box-border justify-between px-3 py-4 bg-white rounded-lg shadow-sm align-middle items-center">
             <!-- this is filter toolbar -->
-            <span class="flex flex-row">sort by :
-                <form action="">
-                    <label for="lang">
-                        <select name="order_by" id="lang" class="focus:outline-none active:outline-none">
-                            <option class="m-10 p-10" value="date">date created</option>
-                            <option class="m-10 p-10" value="name">by name</option>
-                            <option class="m-10 p-10" value="status">by status</option>
-                        </select>
-                    </label>
-                </form>
-            </span>
+            <form action="ticket" method="get">
+                <div class="border-gray-200 border-2 rounded-md px-3 py-2 flex flex-row items-center hover:border-sky-400">
+                    <i class="ri-search-2-line"></i>
+                    <input type="text" name="query" id="query" class="ml-1 focus:outline-none active:outline-none">
+                    <button type="submit" class="p-1 bg-blue-200 flex items-center align-middle rounded-md px-3 active:bg-blue-400 hover:bg-blue-300">cari</button>
+                </div>
+            </form>
 
             <!-- add new button -->
             <div class="flex flex-row align-middle items-center gap-5">

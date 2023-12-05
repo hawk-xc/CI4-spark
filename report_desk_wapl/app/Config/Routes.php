@@ -10,6 +10,7 @@ $routes->setAutoRoute(true);
 // routes 
 $routes->get('/', 'Dashboard::index');
 $routes->get('/testing', 'Home::testing');
+$routes->get('/testing2', 'Home::testing2');
 // $routes->get('/testing2', 'Home::testing2');
 
 $routes->get('/login', 'User::login');
@@ -19,6 +20,8 @@ $routes->get('/register', 'User::register');
 $routes->get('/ticket', 'Ticket::index');
 $routes->get('/ticket/new', 'Ticket::new');
 $routes->post('/ticket/create', 'Ticket::create');
+$routes->post('/ticket/edit/(:num:)', 'Ticket::edit/$1');
+$routes->get('/ticket/remove/(:num)', 'Ticket::removeComment/$1');
 
 // route ke tampilkan detail ticket
 $routes->get('/ticket/(:num)', 'Ticket::showTicket/$1');
