@@ -816,7 +816,6 @@ li {
   margin-bottom: 0.5rem;
 }
 
-<<<<<<< HEAD
 .mb-3{
   margin-bottom: 0.75rem;
 }
@@ -825,8 +824,6 @@ li {
   margin-bottom: 1rem;
 }
 
-=======
->>>>>>> 8dfc57797b053ad7d54eeb8ed37d97bec3ede62b
 .ml-4{
   margin-left: 1rem;
 }
@@ -896,6 +893,10 @@ li {
   display: none;
 }
 
+.h-10{
+  height: 2.5rem;
+}
+
 .h-11{
   height: 2.75rem;
 }
@@ -918,14 +919,6 @@ li {
 
 .h-screen{
   height: 100vh;
-}
-
-.h-3{
-  height: 0.75rem;
-}
-
-.h-10{
-  height: 2.5rem;
 }
 
 .max-h-full{
@@ -1807,7 +1800,6 @@ li {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
-<<<<<<< HEAD
 .file\:-mx-3::file-selector-button{
   margin-left: -0.75rem;
   margin-right: -0.75rem;
@@ -1891,8 +1883,6 @@ li {
   padding-left: 0.25rem;
 }
 
-=======
->>>>>>> 8dfc57797b053ad7d54eeb8ed37d97bec3ede62b
 .placeholder\:pl-1::placeholder{
   padding-left: 0.25rem;
 }
