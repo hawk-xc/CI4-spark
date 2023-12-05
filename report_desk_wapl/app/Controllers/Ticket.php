@@ -186,7 +186,7 @@ class Ticket extends BaseController
             'description'       => $this->ticketModel->select('description')->where('ticket_id', $ticketId)->findAll(),
             'ticket_date'       => $this->ticketModel->select('created_at')->where('ticket_id', $ticketId)->find(),
             'getdatetime'       => $this->gettimestamp($this->ticketModel->select('created_at')->where('ticket_id', $ticketId)->find()[0]['created_at']),
-            'ticketData'        => $this->ticketDataModel->where('ticket_id', $ticketId)->findAll()
+            'ticketData'        => $this->ticketDataModel->where('ticket_id', $ticketId)->findAll(),
         ];
 
         return view('ticketing/showTicket', $data);
@@ -200,11 +200,15 @@ class Ticket extends BaseController
             unlink($image);
         }
 
-        foreach ($this->ticketDataModel->select('media')->where('ticket_id', $ticket_id) as $mediaComment) {
-            if (file_exists($image)) {
-                unlink($mediaComment);
-            }
-        }
+        # bug, during solved
+        // $i = 0;
+        // // foreach ($this->ticketDataModel->select('media')->where('ticket_id', $ticket_id) as $mediaComment) {
+        // foreach ($this->ticketDataModel->select('media')->where('ticket_id', $ticket_id)->find()[0]['media'] as $mediaComment) {
+        //     if (file_exists('media/' . $mediaComment[$i])) {
+        //         unlink('media/' . $mediaComment[$i]);
+        //         $i++;
+        //     }
+        // }
 
         $this->ticketModel->where('ticket_id', $ticket_id)->delete();
         $this->ticketDataModel->where('ticket_id', $ticket_id)->delete();

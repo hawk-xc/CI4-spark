@@ -89,7 +89,6 @@
                 <?php } ?>
             <?php } ?>
 
-
             <!-- tambah pesan dialog -->
             <div class="mt-2 mb-10 container max-w-full flex justify-center align-middle items-center flex-col gap-2">
                 <button id="atractiveButton" class="max-w-full bg-sky-200 flex w-full items-center align-middle rounded-md py-2 text-slate-700 gap-2 hover:bg-sky-300 active:bg-sky-400 justify-between px-4">
@@ -135,6 +134,7 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     // const confirmBox = document.getElementById("confirmBox");
     // const dropConfirmBox = document.getElementById("dropConfirmBox");

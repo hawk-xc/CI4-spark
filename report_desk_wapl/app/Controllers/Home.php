@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ContactModel;
 use App\Models\TicketModel;
+use DateTime;
 
 class Home extends BaseController
 {
@@ -59,8 +60,35 @@ class Home extends BaseController
             'ticketNavButton' => false,
             'contactNavButton' => false,
             'formNavButton' => false,
-            'open_ticket'   => $this->ticket->where('status', 'open')->countAllResults(),
-            'close_ticket'  => $this->ticket->where('status', 'close')->countAllResults(),
+            'ticketAll' => $this->ticket->findAll(),
+            'open_ticket'       => $this->ticket->where('type', 'new')->where('status', 'open')->countAllResults(),
+            'close_ticket'      => $this->ticket->where('type', 'new')->where('status', 'close')->countAllResults(),
+            'open_mt'           => $this->ticket->where('type', 'mt')->where('status', 'open')->countAllResults(),
+            'done_mt'           => $this->ticket->where('type', 'mt')->where('status', 'close')->countAllResults(),
+            'new_Januari'       => $this->ticket->where('type', 'new')->where('MONTH(created_at)', 1)->countAllResults(),
+            'new_Februari'      => $this->ticket->where('type', 'new')->where('MONTH(created_at)', 2)->countAllResults(),
+            'new_Maret'         => $this->ticket->where('type', 'new')->where('MONTH(created_at)', 3)->countAllResults(),
+            'new_April'         => $this->ticket->where('type', 'new')->where('MONTH(created_at)', 4)->countAllResults(),
+            'new_Mei'           => $this->ticket->where('type', 'new')->where('MONTH(created_at)', 5)->countAllResults(),
+            'new_Juni'          => $this->ticket->where('type', 'new')->where('MONTH(created_at)', 6)->countAllResults(),
+            'new_Juli'          => $this->ticket->where('type', 'new')->where('MONTH(created_at)', 7)->countAllResults(),
+            'new_Agustus'       => $this->ticket->where('type', 'new')->where('MONTH(created_at)', 8)->countAllResults(),
+            'new_September'     => $this->ticket->where('type', 'new')->where('MONTH(created_at)', 9)->countAllResults(),
+            'new_Oktober'       => $this->ticket->where('type', 'new')->where('MONTH(created_at)', 10)->countAllResults(),
+            'new_November'      => $this->ticket->where('type', 'new')->where('MONTH(created_at)', 11)->countAllResults(),
+            'new_Desember'      => $this->ticket->where('type', 'new')->where('MONTH(created_at)', 12)->countAllResults(),
+            'mt_Januari'       => $this->ticket->where('type', 'mt')->where('MONTH(created_at)', 1)->countAllResults(),
+            'mt_Februari'      => $this->ticket->where('type', 'mt')->where('MONTH(created_at)', 2)->countAllResults(),
+            'mt_Maret'         => $this->ticket->where('type', 'mt')->where('MONTH(created_at)', 3)->countAllResults(),
+            'mt_April'         => $this->ticket->where('type', 'mt')->where('MONTH(created_at)', 4)->countAllResults(),
+            'mt_Mei'           => $this->ticket->where('type', 'mt')->where('MONTH(created_at)', 5)->countAllResults(),
+            'mt_Juni'          => $this->ticket->where('type', 'mt')->where('MONTH(created_at)', 6)->countAllResults(),
+            'mt_Juli'          => $this->ticket->where('type', 'mt')->where('MONTH(created_at)', 7)->countAllResults(),
+            'mt_Agustus'       => $this->ticket->where('type', 'mt')->where('MONTH(created_at)', 8)->countAllResults(),
+            'mt_September'     => $this->ticket->where('type', 'mt')->where('MONTH(created_at)', 9)->countAllResults(),
+            'mt_Oktober'       => $this->ticket->where('type', 'mt')->where('MONTH(created_at)', 10)->countAllResults(),
+            'mt_November'      => $this->ticket->where('type', 'mt')->where('MONTH(created_at)', 11)->countAllResults(),
+            'mt_Desember'      => $this->ticket->where('type', 'mt')->where('MONTH(created_at)', 12)->countAllResults(),
         ];
 
         return view('dashboard', $data);
