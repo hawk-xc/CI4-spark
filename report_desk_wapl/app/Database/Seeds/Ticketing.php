@@ -4,12 +4,22 @@ namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
 use CodeIgniter\I18n\Time;
+use Config\Database;
 
 class Ticketing extends Seeder
 {
+    public $faker;
+    public $db;
+
+    public function __construct()
+    {
+        $this->faker = \Faker\Factory::create('id_ID');
+        $this->db = Database::connect();
+    }
+
     public function run()
     {
-        for ($i = 0; $i <= 10; $i++) {
+        for ($i = 0; $i <= 100; $i++) {
             $bilangan = rand(1, 20) / 2;
             $putar = is_float($bilangan);
             $data = [
@@ -18,7 +28,9 @@ class Ticketing extends Seeder
                 'type'              => $putar ? 'mt' : 'new',
                 'status'            => $putar ? 'open' : 'close',
                 'description'       => 'Lorem Ipsum testing dolor sit amet',
-                'created_at'        => Time::now()
+                'media'             => 'null',
+                'created_at'        => $this->faker->dateTime->format('Y-m-d H:i:s'),
+                // 'created_at'        => Time::now()
             ];
             $this->db->table('ticket')->insert($data);
         }
