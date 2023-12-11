@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 $routes->setAutoRoute(true);
-// routes 
+// routes   
 // $routes->get('/', 'Dashboard::index');
 $routes->get('/testing', 'Home::testing');
 $routes->get('/testing2', 'Home::testing2');
@@ -36,7 +36,7 @@ $routes->get('/contact', 'Contact::index');
 // routes untuk Home atau landing page => for all
 $routes->get('/', 'Home::index');
 $routes->get('/home', 'Home::index');
-// routes untuk validasi    
+// routes untuk validasi
 $routes->get('/form', 'Form::index');
 $routes->get('/form/create', 'Form::create');
 $routes->get('/form/edit/(:segment)', 'Form::edit/$1');
