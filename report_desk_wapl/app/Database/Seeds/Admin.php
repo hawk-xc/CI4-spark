@@ -17,13 +17,13 @@ class Admin extends Seeder
 
     public function run()
     {
-        $users = [
-            'email'     => 'admin@gmail.com',
-            'username'  => 'admin',
-            'password_hash'  => password_hash('admin123', PASSWORD_DEFAULT),
-            'active'    => 1,
-            'created_at' => Time::now()
-        ];
+        // $users = [
+        //     'email'     => 'admin@gmail.com',
+        //     'username'  => 'admin',
+        //     'password_hash'  => password_hash('admin123', PASSWORD_DEFAULT),
+        //     'active'    => 1,
+        //     'created_at' => Time::now()
+        // ];
 
         $auth_groups = [
             [
@@ -49,8 +49,8 @@ class Admin extends Seeder
             'user_id'       => '1'
         ];
 
-        $this->db->table('users')->insert($users);
-        $this->db->table('auth_groups')->insertBatch($auth_groups);
-        $this->db->table('auth_groups_users')->insert($auth_groups_user);
+        // $this->db->table('users')->insert($users);
+        // $this->db->table('auth_groups')->insertBatch($auth_groups);
+        // $this->db->table('auth_groups_users')->insert($auth_groups_user);
     }
 }

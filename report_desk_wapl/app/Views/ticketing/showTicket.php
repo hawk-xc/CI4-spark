@@ -159,7 +159,7 @@ function defineMonth($num)
             <ol class="relative border-s border-gray-200 dark:border-gray-700 ml-1">
                 <?php foreach ($timeLine as $ticketTimeLine) : ?>
                     <li class="mb-10 ms-4">
-                        <a href="<?= base_url('ticket/') .  $ticketTimeLine['ticket_id'] . "/" . $ticketTimeLine['contact_id'] ?>">
+                        <a href="<?= base_url('ticket/') .  base64_encode($ticketTimeLine['ticket_id']) . "/" . base64_encode($ticketTimeLine['contact_id']) ?>">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
                             <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
                                 <?= date('d', strtotime($ticketTimeLine['created_at'])) . " " . defineMonth(date('m', strtotime($ticketTimeLine['created_at']))) . " " . date('Y', strtotime($ticketTimeLine['created_at'])) ?>
