@@ -32,7 +32,7 @@ function defineMonth($num)
     <div class="flex flex-row mt-4 gap-4">
         <button id="dropConfirmBox" href="" class="hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 w-16 flex justify-center rounded-md text-white px-2 py-1 bg-violet-500 border border-slate-400 cursor-pointer">tidak</button>
 
-        <a href="delete/<?= $ticket[0]['ticket_id'] ?>">
+        <a href="<?= base_url('ticket/delete/') . $ticket[0]['ticket_id'] ?>">
             <button class="hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 w-16 flex justify-center rounded-md text-white px-2 py-1 bg-violet-500 border border-slate-400 cursor-pointer">iya</button>
         </a>
     </div>
