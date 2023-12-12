@@ -1,5 +1,29 @@
 <?= $this->extend('./particle/dashboardParticle.php'); ?>
 <?= $this->section('content'); ?>
+
+<?php
+function defineMonth($num)
+{
+    $month = [
+        'null',
+        'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember',
+    ];
+
+    return $month[intval($num)];
+}
+?>
+
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
 <div id="confirmBox" class="scale-0 duration-200 transition-all ease-out shadow-md absolute mx-auto w-72 backdrop-blur-md top-[45%] left-[45%] py-6 flex flex-col items-center rounded-md border border-slate-400">
@@ -129,8 +153,23 @@
 
 
         </div>
-        <div class="w-1/3 p-2 rounded-md bg-white max-sm:order-1 max-sm:w-full">
-            ini kanan
+        <div class="w-1/3 p-2 rounded-md bg-white max-sm:order-1 max-sm:w-full overflow-scroll md:h-[29rem]">
+            Customer Timeline
+
+            <ol class="relative border-s border-gray-200 dark:border-gray-700 ml-1">
+                <?php foreach ($timeLine as $ticketTimeLine) : ?>
+                    <li class="mb-10 ms-4">
+                        <a href="<?= base_url('ticket/') .  $ticketTimeLine['ticket_id'] . "/" . $ticketTimeLine['contact_id'] ?>">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                                <?= date('d', strtotime($ticketTimeLine['created_at'])) . " " . defineMonth(date('m', strtotime($ticketTimeLine['created_at']))) . " " . date('Y', strtotime($ticketTimeLine['created_at'])) ?>
+                            </time>
+                            <h3 class="text-md font-bold text-gray-600 dark:text-white"><?= $ticketTimeLine['subject'] ?> # <span class="text-blue-400"><?= $ticketTimeLine['ticket_id'] ?></span></h3>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400"><?= $ticketTimeLine['description'] ?></p>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
         </div>
     </div>
 </div>

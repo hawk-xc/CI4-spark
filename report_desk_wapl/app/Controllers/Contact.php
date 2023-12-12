@@ -22,6 +22,7 @@ class Contact extends BaseController
             'ticketNavButton' => false,
             'contactNavButton' => true,
             'formNavButton' => false,
+            'manageUserNavButton' => false,
             'error' => \Config\Services::validation(),
         ];
         if ($this->request->getMethod() == 'post') {
@@ -85,6 +86,7 @@ class Contact extends BaseController
             'homeNavButton' => false,
             'ticketNavButton' => false,
             'contactNavButton' => true,
+            'manageUserNavButton' => false,
             'error' => [],
         ];
         if ($this->request->getMethod() == 'post') {
@@ -146,6 +148,7 @@ class Contact extends BaseController
             'homeNavButton' => false,
             'ticketNavButton' => false,
             'contactNavButton' => true,
+            'manageUserNavButton' => false,
         ];
         return view('contact/coba', $data);
     }
