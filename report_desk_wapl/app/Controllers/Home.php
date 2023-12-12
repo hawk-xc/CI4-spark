@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ContactModel;
 use App\Models\TicketModel;
+use App\Models\Users;
 use DateTime;
 
 class Home extends BaseController
@@ -12,11 +13,14 @@ class Home extends BaseController
     public $faker;
     public $ticket;
     public $contact;
+    public $users;
+
     public function __construct()
     {
         $this->ticket = new TicketModel();
         $this->contact = new ContactModel();
         $this->faker = \Faker\Factory::create('id_ID');
+        $this->users = new Users();
     }
 
     public function gettimestamp($datetime)
@@ -60,6 +64,7 @@ class Home extends BaseController
             'ticketNavButton' => false,
             'contactNavButton' => false,
             'formNavButton' => false,
+            'manageUserNavButton' => false,
             'ticketAll' => $this->ticket->findAll(),
             'open_ticket'       => $this->ticket->where('type', 'new')->where('status', 'open')->countAllResults(),
             'close_ticket'      => $this->ticket->where('type', 'new')->where('status', 'close')->countAllResults(),
@@ -94,6 +99,38 @@ class Home extends BaseController
         return view('dashboard', $data);
     }
 
+    public function manageUser()
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('users');
+        $builder->distinct()->select('users.id as userid, username, users.email as usermail, auth_groups.name as role, auth_logins.success as status');
+        $builder->join('auth_groups_users', 'auth_groups_users.user_id = users.id');
+        $builder->join('auth_groups', 'auth_groups.id = auth_groups_users.group_id');
+        $builder->join('auth_logins', 'auth_logins.user_id = users.id');
+        $query = $builder->get();
+
+        // $q = $this->users->distinct()
+        //     ->select('users.id as userid, username, users.email as usermail, auth_groups.name as role, auth_logins.success as status')
+        //     ->join('auth_groups', 'auth_groups.user_id = users.id')
+        //     ->join('auth_logins', 'auth_logins.user_id = users.id')
+        //     ->get()
+        //     ->getResult();
+
+        $data = [
+            'name' => 'manajemen akun',
+            'title' => 'menu manajemen akun',
+            'homeNavButton' => false,
+            'ticketNavButton' => false,
+            'contactNavButton' => false,
+            'formNavButton' => false,
+            'manageUserNavButton' => true,
+            'users' => $query->getResult(),
+            // 'users' => $q,
+        ];
+
+        return view('user/manageUser', $data);
+    }
+
     public function testing()
     {
         $data = [
@@ -103,6 +140,7 @@ class Home extends BaseController
             'ticketNavButton' => false,
             'contactNavButton' => false,
             'formNavButton' => false,
+            'manageUserNavButton' => false,
             'contact'   => $this->contact->paginate(5, 'contact'),
         ];
 
