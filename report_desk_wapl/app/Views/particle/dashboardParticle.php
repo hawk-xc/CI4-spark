@@ -27,14 +27,23 @@
                 </a>
 
                 <!-- navigasi contact -->
-                <a href="<?= base_url('contact') ?>">
-                    <li id="" class="<?= $contactNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-contacts-book-2-fill text-2xl"></i> contact</li>
-                </a>
-                <!-- Navigasi form -->
-                <a href="<?= base_url('form') ?>">
-                    <li id="" class="<?= $formNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-todo-fill text-2xl"></i>Form</li>
-                </a>
-                <li id="" class="button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out"><i class="ri-account-pin-circle-line text-2xl"></i> buat akun</li>
+                <?php if (in_groups('noc,admin')) : ?>
+                    <a href="<?= base_url('contact') ?>">
+                        <li id="" class="<?= $contactNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-contacts-book-2-fill text-2xl"></i> contact</li>
+                    </a>
+                    <!-- Navigasi form -->
+                    <a href="<?= base_url('form') ?>">
+                        <li id="" class="<?= $formNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-todo-fill text-2xl"></i>form</li>
+                    </a>
+                <?php endif; ?>
+                <?php if (in_groups('admin')) : ?>
+                    <a href="<?= base_url('manageuser') ?>">
+                        <li id="" class="<?= $manageUserNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-group-2-fill text-2xl"></i>manajemen akun</li>
+                    </a>
+                    <a href="<?= base_url('registerAdmin') ?>">
+                        <li id="" class="button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out"><i class="ri-user-add-fill text-2xl"></i> buat akun</li>
+                    </a>
+                <?php endif; ?>
                 <li id="" class="button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out"><i class="ri-message-2-line text-2xl"></i> forum diskusi</li>
             </ul>
             <section id="footer" class="bottom-0 absolute mb-10 flex flex-col items-center text-center -translate-x-5">
@@ -62,8 +71,10 @@
                 <img src="media/wahyu.jpg" id="button" alt="" class="w-10 rounded-md hover:border-2 hover:border-sky-200 box-border duration-150">
             </span>
             <ul id="listData" class="bg-white w-40 p-2 flex-col absolute -translate-x-28 z-50 rounded-md hidden">
-                <li class="bg-white max-h-full px-5 py-1 rounded-md my-2 hover:bg-slate-100">maintain user</li>
-                <li class="bg-white max-h-full px-5 py-1 rounded-md hover:bg-slate-100">logout</li>
+                <li class="bg-white max-h-full px-5 py-1 rounded-md my-2 hover:bg-slate-100">profilku</li>
+                <a href="<?= base_url('logout') ?>">
+                    <li class="bg-white max-h-full px-5 py-1 rounded-md hover:bg-slate-100">logout</li>
+                </a>
             </ul>
         </div>
 

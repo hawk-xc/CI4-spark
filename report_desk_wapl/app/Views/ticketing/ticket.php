@@ -44,7 +44,7 @@
 
                 <?php $n = 0; ?>
                 <?php foreach ($request as $req) { ?>
-                    <a href="ticket/<?= $request[$n]['ticket_id'] ?>">
+                    <a href="ticket/<?= $request[$n]['ticket_id'] ?>/<?= $request[$n]['contact_id'] ?>">
                         <div class="ticketCard <?= $request[$n]['status'] == 'close' ? 'bg-teal-200 hover:bg-teal-300' : '' ?> <?= $request ? ' ' : 'hidden' ?>">
                             <span class="w-11 h-11 flex justify-center align-middle items-center bg-sky-100 text-slate-700 rounded-lg shadow-sm">
                                 <?= str_split(strtoupper($request[$n]['name']))[0] ?>

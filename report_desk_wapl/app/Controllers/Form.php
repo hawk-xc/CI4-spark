@@ -33,6 +33,7 @@ class Form extends BaseController
             'ticketNavButton' => false,
             'contactNavButton' => false,
             'formNavButton' => true,
+            'manageUserNavButton' => false,
             // 'request' => $this->contactModel->select("*")->select("name")->select("phone")->join('contact', 'contact_id')->orderBy('contact_id', 'desc')->findAll(),
             'request' => ''
 
@@ -241,6 +242,7 @@ class Form extends BaseController
             'ticketNavButton' => false,
             'contactNavButton' => false,
             'formNavButton' => true,
+            'manageUserNavButton' => false,
             // 'request' => $this->contactModel->select("*")->select("name")->select("phone")->join('contact', 'contact_id')->orderBy('contact_id', 'desc')->findAll(),
             'contact' => $this->contactModel->getContact($contact_id),
 
