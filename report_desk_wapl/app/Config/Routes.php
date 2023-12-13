@@ -21,7 +21,7 @@ $routes->post('/ticket/edit/(:num)', 'Ticket::edit/$1', ['filter' => 'role:noc,a
 $routes->get('/ticket/remove/(:num)', 'Ticket::removeComment/$1', ['filter' => 'role:noc,admin']);
 
 // route ke tampilkan detail ticket
-$routes->get('/ticket/(:num)/(:num)', 'Ticket::showTicket/$1/$2');
+$routes->get('/ticket/(:any)/(:any)', 'Ticket::showTicket/$1/$2');
 $routes->get('/ticket/delete/(:num)', 'Ticket::delete/$1', ['filter' => 'role:noc,admin']);
 $routes->get('/ticket/close/(:num)', 'Ticket::close/$1', ['filter' => 'role:noc,admin']);
 $routes->get('/ticket/open/(:num)', 'Ticket::open/$1', ['filter' => 'role:noc,admin']);

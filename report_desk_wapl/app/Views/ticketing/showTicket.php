@@ -32,7 +32,7 @@ function defineMonth($num)
     <div class="flex flex-row mt-4 gap-4">
         <button id="dropConfirmBox" href="" class="hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 w-16 flex justify-center rounded-md text-white px-2 py-1 bg-violet-500 border border-slate-400 cursor-pointer">tidak</button>
 
-        <a href="delete/<?= $ticket[0]['ticket_id'] ?>">
+        <a href="<?= base_url('ticket/delete/') . $ticket[0]['ticket_id'] ?>">
             <button class="hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 w-16 flex justify-center rounded-md text-white px-2 py-1 bg-violet-500 border border-slate-400 cursor-pointer">iya</button>
         </a>
     </div>
@@ -159,7 +159,7 @@ function defineMonth($num)
             <ol class="relative border-s border-gray-200 dark:border-gray-700 ml-1">
                 <?php foreach ($timeLine as $ticketTimeLine) : ?>
                     <li class="mb-10 ms-4">
-                        <a href="<?= base_url('ticket/') .  $ticketTimeLine['ticket_id'] . "/" . $ticketTimeLine['contact_id'] ?>">
+                        <a href="<?= base_url('ticket/') .  base64_encode($ticketTimeLine['ticket_id']) . "/" . base64_encode($ticketTimeLine['contact_id']) ?>">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
                             <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
                                 <?= date('d', strtotime($ticketTimeLine['created_at'])) . " " . defineMonth(date('m', strtotime($ticketTimeLine['created_at']))) . " " . date('Y', strtotime($ticketTimeLine['created_at'])) ?>

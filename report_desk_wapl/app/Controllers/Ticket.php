@@ -78,7 +78,7 @@ class Ticket extends BaseController
             'contactNavButton'  => false,
             'formNavButton'     => false,
             'manageUserNavButton' => false,
-            'request'           => $result->select('*')->select('name')->select('phone')->join('contact', 'contact_id')->orderBy('ticket_id', 'desc')->paginate(3, 'ticket'),
+            'request'           => $result->select('*')->select('name')->select('phone')->join('contact', 'contact_id')->orderBy('ticket_id', 'desc')->paginate(5, 'ticket'),
             'pager'             => $result->select('*')->select('name')->select('phone')->join('contact', 'contact_id')->orderBy('ticket_id', 'desc')->pager,
             'requestId'         => $this->ticketModel->select('contact_id')->orderBy('contact_id', 'asc')->findAll(),
             'open_ticket'       => $this->ticketModel->where('status', 'open')->countAllResults(),
@@ -177,6 +177,9 @@ class Ticket extends BaseController
 
     public function showTicket($ticketId, $contactId = null)
     {
+        $ticketId_en = base64_decode($ticketId);
+        $contactId_en = base64_decode($contactId);
+
         $data = [
             'name'                => 'ticketing',
             'title'               => 'Ticketing',
@@ -185,13 +188,13 @@ class Ticket extends BaseController
             'contactNavButton'    => false,
             'formNavButton'       => false,
             'manageUserNavButton' => false,
-            'ticket'              => $this->ticketModel->where('ticket_id', $ticketId)->join('contact', 'contact_id')->findAll(),
-            'description'         => $this->ticketModel->select('description')->where('ticket_id', $ticketId)->findAll(),
-            'ticket_date'         => $this->ticketModel->select('created_at')->where('ticket_id', $ticketId)->find(),
-            'getdatetime'         => $this->gettimestamp($this->ticketModel->select('created_at')->where('ticket_id', $ticketId)->find()[0]['created_at']),
-            'ticketData'          => $this->ticketDataModel->where('ticket_id', $ticketId)->findAll(),
-            'timeLine'            => $this->ticketModel->where('ticket_id', $ticketId)->orderBy('created_at')->findAll(),
-            'timeLine'            => $this->ticketModel->where('contact_id', $contactId)->orderBy('created_at', 'asc')->findAll(),
+            'ticket'              => $this->ticketModel->where('ticket_id', $ticketId_en)->join('contact', 'contact_id')->findAll(),
+            'description'         => $this->ticketModel->select('description')->where('ticket_id', $ticketId_en)->findAll(),
+            'ticket_date'         => $this->ticketModel->select('created_at')->where('ticket_id', $ticketId_en)->find(),
+            'getdatetime'         => $this->gettimestamp($this->ticketModel->select('created_at')->where('ticket_id', $ticketId_en)->find()[0]['created_at']),
+            'ticketData'          => $this->ticketDataModel->where('ticket_id', $ticketId_en)->findAll(),
+            'timeLine'            => $this->ticketModel->where('ticket_id', $ticketId_en)->orderBy('created_at')->findAll(),
+            'timeLine'            => $this->ticketModel->where('contact_id', $contactId_en)->orderBy('created_at', 'asc')->findAll(),
         ];
 
         return view('ticketing/showTicket', $data);
