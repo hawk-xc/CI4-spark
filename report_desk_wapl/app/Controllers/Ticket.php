@@ -78,7 +78,7 @@ class Ticket extends BaseController
             'contactNavButton'  => false,
             'formNavButton'     => false,
             'manageUserNavButton' => false,
-            'request'           => $result->select('*')->select('name')->select('phone')->join('contact', 'contact_id')->orderBy('ticket_id', 'desc')->paginate(3, 'ticket'),
+            'request'           => $result->select('*')->select('name')->select('phone')->join('contact', 'contact_id')->orderBy('ticket_id', 'desc')->paginate(5, 'ticket'),
             'pager'             => $result->select('*')->select('name')->select('phone')->join('contact', 'contact_id')->orderBy('ticket_id', 'desc')->pager,
             'requestId'         => $this->ticketModel->select('contact_id')->orderBy('contact_id', 'asc')->findAll(),
             'open_ticket'       => $this->ticketModel->where('status', 'open')->countAllResults(),
