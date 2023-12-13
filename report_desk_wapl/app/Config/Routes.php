@@ -33,19 +33,19 @@ $routes->get('/contact', 'Contact::index', ['filter' => 'role:noc,admin']);
 // routes untuk Home atau landing page => for all
 $routes->get('/', 'Home::index');
 $routes->get('/home', 'Home::index');
-<<<<<<< HEAD
+
 // routes untuk validasi
 $routes->get('/form', 'Form::index');
 $routes->get('/form/create', 'Form::create');
 $routes->get('/form/edit/(:segment)', 'Form::edit/$1');
 $routes->delete('/form/(:num)', 'Form::delete/$1');
-=======
+
 // routes untuk validasi    
 $routes->get('/form', 'Form::index', ['filter' => 'role:noc,admin']);
 $routes->get('/form/create', 'Form::create', ['filter' => 'role:noc,admin']);
 $routes->get('/form/edit/(:segment)', 'Form::edit/$1', ['filter' => 'role:noc,admin']);
 $routes->delete('/form/(:num)', 'Form::delete/$1', ['filter' => 'role:noc,admin']);
->>>>>>> 14b536a6a69bbaf409527547232830cfa78f254a
+
 // $routes->get('form/delete/(:num)', 'Form::delete/$1');
 $routes->get('/form/(:any)', 'Form::edit/$1', ['filter' => 'role:noc,admin']);
 
