@@ -40,7 +40,7 @@
                     <a href="<?= base_url('manageuser') ?>">
                         <li id="" class="<?= $manageUserNavButton == true ? 'active-click flex items-center gap-2' : 'button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out'; ?>"><i class="ri-group-2-fill text-2xl"></i>manajemen akun</li>
                     </a>
-                    <a href="<?= base_url('registerAdmin') ?>">
+                    <a href="<?= base_url('register') ?>">
                         <li id="" class="button-click translate-x-2 hover:translate-x-4  duration-150 transition-all ease-out"><i class="ri-user-add-fill text-2xl"></i> buat akun</li>
                     </a>
                 <?php endif; ?>

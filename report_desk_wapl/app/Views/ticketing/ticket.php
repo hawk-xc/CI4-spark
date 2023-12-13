@@ -44,27 +44,20 @@
 
                 <?php $n = 0; ?>
                 <?php foreach ($request as $req) { ?>
-                    <a href="ticket/<?= $request[$n]['ticket_id'] ?>/<?= $request[$n]['contact_id'] ?>">
-                        <div class="ticketCard <?= $request[$n]['status'] == 'close' ? 'bg-teal-200 hover:bg-teal-300' : '' ?> <?= $request ? ' ' : 'hidden' ?>">
-                            <span class="w-11 h-11 flex justify-center align-middle items-center bg-sky-100 text-slate-700 rounded-lg shadow-sm">
-                                <?= str_split(strtoupper($request[$n]['name']))[0] ?>
-                            </span>
-                            <div class="flex flex-col max-w-full w-full">
-                                <span class="flex justify-between max-sm:flex-col gap-2">
-                                    <span name="label" class="text-[14px] bg-orange-200 w-10 rounded-lg text-center border border-slate-500">
-                                        <?= $request[$n]['status'] ?>
-                                    </span>
-                                    <span class="text-slate-700"><i class="ri-contacts-book-2-line"></i> <?= $request[$n]['name'] ?> / <?= $request[$n]['phone'] ?></span>
-                                </span>
-                                <span class="text-slate-600 font-bold text-xl">
-                                    <span id="ticketId" class="text-slate-400"># <?= $request[$n]['ticket_id'] ?></span>
-                                    <?= $request[$n]['subject'] ?>
-                                </span>
-                                <span class="text-sm text-slate-500"><i class="ri-user-star-line"></i> Created by denny <i class="ri-bubble-chart-line"></i> <?= $setdatetime[$n] ?></span>
+                    <a href="ticket/<?= base64_encode($request[$n]['ticket_id']) ?>/<?= base64_encode($request[$n]['contact_id']) ?>">
+                        <div class="container max-w-full flex justify-center align-middle items-center flex-col gap-2">
+                            <div class="hover:shadow-sm duration-150 transition-all cursor-pointer px-2 py-3 bg-white border border-sky-300 flex flex-row rounded-md max-w-full w-full justify-between items-center">
+                                <div class="flex flex-row items-center gap-3 px-3">
+                                    <span class="p-2 h-9 aspect-square bg-blue-200 flex justify-center align-middle items-center rounded-md"><?= str_split(strtoupper($request[$n]['name']))[0] ?></span>
+                                    <div class="flex flex-col">
+                                        <span><span class="font-bold text-slate-500">#<?= $request[$n]['ticket_id'] ?> </span> <?= $request[$n]['subject'] ?></span>
+                                        <span class="text-[13px] max-sm:text-[8px]"><i class="ri-history-line"></i> <?= $setdatetime[$n] ?> | <i class="ri-phone-find-line"></i> <?= $request[$n]['name'] ?> / <?= $request[$n]['phone'] ?></span>
+                                    </div>
+                                </div>
+                                <span class="px-3 <?= $request[$n]['status'] == 'close' ? 'bg-green-100' : 'bg-blue-100' ?> p-1 rounded-md mr-3"><?= $request[$n]['status'] ?></span>
                             </div>
                         </div>
                     </a>
-
                     <?php $n++; ?>
                 <?php } ?>
 
