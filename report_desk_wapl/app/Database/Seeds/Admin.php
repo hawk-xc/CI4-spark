@@ -50,7 +50,7 @@ class Admin extends Seeder
         ];
 
         // $this->db->table('users')->insert($users);
-        // $this->db->table('auth_groups')->insertBatch($auth_groups);
+        $this->db->table('auth_groups')->insertBatch($auth_groups);
         // $this->db->table('auth_groups_users')->insert($auth_groups_user);
 
         // update auth_groups_users set groups_id=1 where user_id=1
