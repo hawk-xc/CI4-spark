@@ -22,9 +22,10 @@ $routes->get('/ticket/remove/(:num)', 'Ticket::removeComment/$1', ['filter' => '
 
 // route ke tampilkan detail ticket
 $routes->get('/ticket/(:any)/(:any)', 'Ticket::showTicket/$1/$2');
-$routes->get('/ticket/delete/(:num)', 'Ticket::delete/$1', ['filter' => 'role:noc,admin']);
-$routes->get('/ticket/close/(:num)', 'Ticket::close/$1', ['filter' => 'role:noc,admin']);
-$routes->get('/ticket/open/(:num)', 'Ticket::open/$1', ['filter' => 'role:noc,admin']);
+// $routes->get('/ticket/delete/(:num)', 'TicketManage::delete/$1', ['filter' => 'role:noc,admin']);
+$routes->get('/delete/(:num)', 'TicketManage::delete/$1');
+$routes->get('/ticket/close/(:num)', 'TicketManage::close/$1');
+$routes->get('/ticket/open/(:num)', 'TicketManage::open/$1');
 
 // routes untuk contact => denny
 // $routes->get('/contact', 'Contact::index');

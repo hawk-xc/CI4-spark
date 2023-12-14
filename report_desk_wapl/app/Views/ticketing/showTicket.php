@@ -32,7 +32,7 @@ function defineMonth($num)
     <div class="flex flex-row mt-4 gap-4">
         <button id="dropConfirmBox" href="" class="hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 w-16 flex justify-center rounded-md text-white px-2 py-1 bg-violet-500 border border-slate-400 cursor-pointer">tidak</button>
 
-        <a href="<?= base_url('ticket/delete/') . $ticket[0]['ticket_id'] ?>">
+        <a href="<?= base_url('delete/') . $ticket['ticket_id'] ?>">
             <button class="hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 w-16 flex justify-center rounded-md text-white px-2 py-1 bg-violet-500 border border-slate-400 cursor-pointer">iya</button>
         </a>
     </div>
@@ -42,8 +42,8 @@ function defineMonth($num)
     <div class="bg-white p-3 rounded-md flex flex-row gap-4 box-border justify-between">
         <span class="rounded-md flex flex-row gap-4 box-border">
             <a href="<?= base_url('ticket') ?>" class="bg-blue-200 px-2 py-1 rounded-md border border-slate-500 cursor-pointer hover:brightness-105 duration-150"><i class="ri-arrow-go-back-fill"></i> goback</a>
-            <a href="<?= $ticket[0]['status'] == 'close' ? 'open/' . $ticket[0]['ticket_id'] : 'close/' . $ticket[0]['ticket_id'] ?>" class="<?= $ticket[0]['status'] == 'close' ? 'bg-blue-200' : 'bg-green-300' ?> px-2 py-1 rounded-md border border-slate-500 cursor-pointer hover:brightness-105 duration-150">
-                <i class="ri-checkbox-circle-line"></i> <?= $ticket[0]['status'] == 'close' ? 'Open' : 'Close' ?>
+            <a href="<?= $ticket['status'] == 'close' ? base_url('ticket/open/') . $ticket['ticket_id'] : base_url('ticket/close/') . $ticket['ticket_id'] ?>" class="<?= $ticket['status'] == 'close' ? 'bg-blue-200' : 'bg-green-300' ?> px-2 py-1 rounded-md border border-slate-500 cursor-pointer hover:brightness-105 duration-150">
+                <i class="ri-checkbox-circle-line"></i> <?= $ticket['status'] == 'close' ? 'Open' : 'Close' ?>
             </a>
         </span>
         <button id="upConfirmBox" class="bg-red-300 px-2 py-1 focus:bg-red-400 focus:ring focus:ring-red-500 rounded-md border border-slate-500 cursor-pointer hover:brightness-105 duration-150"><i class="ri-delete-bin-5-line"></i> Delete</button>
@@ -56,7 +56,7 @@ function defineMonth($num)
     <div class="flex mt-2 max-sm:flex-col md:flex-row lg:flex-row max-w-full w-full gap-2">
         <div class="p-5 bg-white rounded-md shadow-sm flex flex-col w-full md:h-[29rem] max-sm:order-2 overflow-y-scroll">
             <span>
-                <span class="text-slate-500 font-extrabold text-2xl mr-2">#<?= $ticket[0]['ticket_id'] ?></span><span class="text-2xl"><?= $ticket[0]['subject'] ?></span>
+                <span class="text-slate-500 font-extrabold text-2xl mr-2">#<?= $ticket['ticket_id'] ?></span><span class="text-2xl"><?= $ticket['subject'] ?></span>
             </span>
             <span class="text-slate-500 text-sm">Created by <span class="font-bold">$this->name</span></span>
 
@@ -64,12 +64,12 @@ function defineMonth($num)
             <div id="pembungkus" class="flex flex-row justify-between items-center">
                 <div class="mt-6 flex flex-row align-middle items-center">
                     <span class="w-11 h-11 flex justify-center align-middle items-center bg-sky-100 text-slate-700 rounded-lg shadow-sm">
-                        <?= str_split(strtoupper($ticket[0]['name']))[0] ?>
+                        <?= str_split(strtoupper($ticket['name']))[0] ?>
                     </span>
                     <span class="ml-4 flex flex-col">
                         <a href="#" class="">
                             <!-- terhubung ke kontak -->
-                            <span class="font-bold text-blue-300 hover:underline"><?= $ticket[0]['name'] ?></span> <span class="text-slate-600">reported via app</span>
+                            <span class="font-bold text-blue-300 hover:underline"><?= $ticket['name'] ?></span> <span class="text-slate-600">reported via app</span>
                         </a>
                         <span>Created at <?= $getdatetime ?></span>
                     </span>
@@ -83,8 +83,8 @@ function defineMonth($num)
 
             <div class="container mt-4 border border-dashed border-slate-900 rounded-r-lg rounded-bl-lg p-2 text-slate-800 flex flex-col gap-2">
                 <?= $description[0]['description'] ?>
-                <?php if ($ticket[0]['media']) {  ?>
-                    <img src="<?= base_url('media/' . $ticket[0]['media']) ?>" alt="gambar tidak ada" class="w-[200px]">
+                <?php if ($ticket['media']) {  ?>
+                    <img src="<?= base_url('media/' . $ticket['media']) ?>" alt="gambar tidak ada" class="w-[200px]">
                 <?php } else {
                     echo '';
                 } ?>
@@ -125,8 +125,8 @@ function defineMonth($num)
                 </button>
 
                 <!-- add comment new area -->
-                <form action="<?= base_url('ticket/edit/') . $ticket[0]['ticket_id'] ?>" method="post" enctype="multipart/form-data" id="dialogBox" class="w-full text-slate-800 flex flex-col max-w-full gap-2 hidden">
-                    <input type="text" value="<?= $ticket[0]['ticket_id'] ?>" class="hidden">
+                <form action="<?= base_url('ticket/edit/') . $ticket['ticket_id'] ?>" method="post" enctype="multipart/form-data" id="dialogBox" class="w-full text-slate-800 flex flex-col max-w-full gap-2 hidden">
+                    <input type="text" value="<?= $ticket['ticket_id'] ?>" class="hidden">
                     <textarea name="description" class="rounded-md bg-slate-100 border border-slate-400 p-3 w-full" placeholder="add some description!"><?= old('description'); ?></textarea>
                     <?php if (session()->getFlashdata('error') && array_key_exists('description', session()->getFlashdata('error'))) : ?>
                         <span class="text-sm text-red-500">
@@ -161,8 +161,8 @@ function defineMonth($num)
                     <li class="mb-10 ms-4">
                         <a href="<?= base_url('ticket/') .  base64_encode($ticketTimeLine['ticket_id']) . "/" . base64_encode($ticketTimeLine['contact_id']) ?>">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-                                <?= date('d', strtotime($ticketTimeLine['created_at'])) . " " . defineMonth(date('m', strtotime($ticketTimeLine['created_at']))) . " " . date('Y', strtotime($ticketTimeLine['created_at'])) ?>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500 flex gap-2 flex-row align-middle items-center">
+                                <?= date('d', strtotime($ticketTimeLine['created_at'])) . " " . defineMonth(date('m', strtotime($ticketTimeLine['created_at']))) . " " . date('Y', strtotime($ticketTimeLine['created_at'])) ?> <span class="p-1 flex justify-center align-middle items-center text-white rounded-md <?= $ticketTimeLine['status'] == 'close' ? 'bg-green-200' : 'bg-sky-200' ?>"><?= $ticketTimeLine['status'] ?></span>
                             </time>
                             <h3 class="text-md font-bold text-gray-600 dark:text-white"><?= $ticketTimeLine['subject'] ?> # <span class="text-blue-400"><?= $ticketTimeLine['ticket_id'] ?></span></h3>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400"><?= $ticketTimeLine['description'] ?></p>
