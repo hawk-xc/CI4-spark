@@ -24,7 +24,7 @@ function defineMonth($num)
 }
 ?>
 
-<div class="flex flex-col p-2 gap-4 md:h-[40rem] max-sm:h-[63rem]">
+<div class="flex flex-col p-2 gap-4 max-sm:h-[63rem]">
     <div class="flex flex-col bg-white rounded-lg shadow-sm p-3 h-full">
         <div class="flex justify-between h-10 items-center max-w-full w-full">
             <span class="text-slate-800 font-bold text-lg">
@@ -42,7 +42,7 @@ function defineMonth($num)
 
         </div>
     </div>
-    <div class="flex md:flex-row max-sm:flex-col gap-4 box-border h-full mb-3">
+    <div class="flex md:flex-row max-sm:flex-col gap-4 box-border h-full">
         <a href="/ticket" class="flex md:bg-white max-sm:bg-blue-200 sm:bg-green-300 w-full rounded-lg shadow-sm p-3 h-[12rem] flex-col hover:shadow-lg hover:border hover:border-slate-300 box-border duration-300 ease-out">
             <span class="text-slate-800 font-bold text-lg">
                 <i class="ri-link text-sky-400"></i> open ticket
