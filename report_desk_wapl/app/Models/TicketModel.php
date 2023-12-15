@@ -43,9 +43,9 @@ class TicketModel extends Model
     {
         // Implement your search logic, for example:
         if (isset($query)) {
-            return $this->like('name', $query)->findAll();
+            return $this->join('contact', 'contact_id')->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->paginate('5', 'ticket');
         } else {
-            return $this->findAll();
+            return $this->join('contact', 'contact_id')->paginate('5', 'ticket');
         }
     }
 }

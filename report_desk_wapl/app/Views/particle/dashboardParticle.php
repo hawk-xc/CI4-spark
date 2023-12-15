@@ -79,8 +79,8 @@
         </div>
 
     </section>
-    <div class="w-screen p-5 bg-slate-100 h-screen overflow-hidden">
-        <div class="max-sm:pt-12 md:pl-52 md:pt-16 lg:pl-52 lg:pt-16 mb-5">
+    <div class="w-screen p-3 bg-slate-100 h-screen overflow-scroll">
+        <div class="max-sm:pt-12 md:pl-52 md:pt-16 lg:pl-52 lg:pt-16 mb-2">
             <?= $this->renderSection('content') ?>
         </div>
     </div>
