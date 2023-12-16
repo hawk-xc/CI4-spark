@@ -14,16 +14,21 @@
     <section name="ticket" class="max-sm:textt-sm">
         <div class="flex flex-row box-border justify-between px-3 py-4 bg-white rounded-lg shadow-sm align-middle items-center">
             <!-- this is filter toolbar -->
-            <form action="ticket" method="get">
-                <div class="border-gray-200 border-2 rounded-md px-3 py-2 flex flex-row items-center hover:border-sky-400">
-                    <i class="ri-search-2-line"></i>
-                    <input type="text" name="query" id="query" class="ml-1 focus:outline-none active:outline-none">
-                    <button type="submit" class="p-1 bg-blue-200 flex items-center align-middle rounded-md px-3 active:bg-blue-400 hover:bg-blue-300">cari</button>
-                </div>
-            </form>
+            <!-- search box -->
+            <div>
+                <form action="" method="get">
+                    <input type="text" name="search" id="search" class="p-2 border border-sky-200 rounded-md placeholder:text-teal-600 my-2" placeholder="cari ticket disini...">
+                    <button type="submit" class="px-3 py-2 bg-sky-200 font-semibold text-slate-500 rounded-md">
+                        cari
+                    </button>
+                </form>
+            </div>
+            <a href="<?= route_to('ticket/new') ?>" class="max-sm:flex flex-row md:hidden lg:hidden">
+                <span class="py-1 px-1 bg-blue-300 rounded-lg text-white hover:bg-blue-400 cursor-pointer max-sm:text-[10px] h-8 w-16 flex justify-center align-middle items-center gap-1"><i class="ri-add-circle-fill"></i> add new</span>
+            </a>
 
             <!-- add new button -->
-            <div class="flex flex-row align-middle items-center gap-5">
+            <div class="flex flex-row align-middle items-center gap-5 max-sm:hidden">
                 <?= $pager->links('ticket', 'default_new') ?>
                 <a href="<?= route_to('ticket/new') ?>" class="flex flex-row">
                     <span class="p-2 bg-blue-300 rounded-lg text-white hover:bg-blue-400 cursor-pointer"><i class="ri-add-circle-fill max-sm:text-sm"></i> add new</span>
@@ -44,7 +49,8 @@
 
                 <?php $n = 0; ?>
                 <?php foreach ($request as $req) { ?>
-                    <a href="ticket/<?= base64_encode($request[$n]['ticket_id']) ?>/<?= base64_encode($request[$n]['contact_id']) ?>">
+                    <!-- ticket -->
+                    <a href="<?= base_url('ticket/') . base64_encode($request[$n]['ticket_id']) . "/" . base64_encode($request[$n]['contact_id']) ?>">
                         <div class="container max-w-full flex justify-center align-middle items-center flex-col gap-2">
                             <div class="hover:shadow-sm duration-150 transition-all cursor-pointer px-2 py-3 bg-white border border-sky-300 flex flex-row rounded-md max-w-full w-full justify-between items-center">
                                 <div class="flex flex-row items-center gap-3 px-3">

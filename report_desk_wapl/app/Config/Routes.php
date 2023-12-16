@@ -10,6 +10,7 @@ $routes->setAutoRoute(true);
 // routes   
 // $routes->get('/', 'Dashboard::index');
 $routes->get('/testing', 'Home::testing');
+// $routes->get('/testing/(:any)', 'Home::testing/$1');
 $routes->get('/testing2', 'Home::testing2');
 // $routes->get('/testing2', 'Home::testing2');
 
