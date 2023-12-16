@@ -48,4 +48,11 @@ class ContactModel extends Model
             return $this->paginate(5, 'contact');
         }
     }
+       public function search($query)
+    {
+        return $this->like('name', $query)
+                    ->orLike('email', $query)
+                    ->orLike('phone', $query)
+                    ->findAll();
+    }
 }

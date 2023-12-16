@@ -76,6 +76,7 @@ class Ticket extends BaseController
             'pager'             => $this->ticketModel->pager,
             'requestId'         => $this->ticketModel->select('contact_id')->orderBy('contact_id', 'asc')->findAll(),
             'open_ticket'       => $this->ticketModel->where('status', 'open')->countAllResults(),
+
             'close_ticket'      => $this->ticketModel->where('status', 'close')->countAllResults(),
             'contact'           => $this->contactModel->select('name')->select('phone')->findAll(),
             'contact_id'        => $this->contactModel->select('contact_id')->select('name')->findAll(),
@@ -182,27 +183,25 @@ class Ticket extends BaseController
             'contactNavButton'    => false,
             'formNavButton'       => false,
             'manageUserNavButton' => false,
-            'ticket'              => $this->ticketModel->where('ticket_id', $ticketId_en)->join('contact', 'contact_id')->first(),
+            'ticket'              => $this->ticketModel->where('ticket_id', $ticketId_en)->join('contact', 'contact_id')->findAll(),
             'description'         => $this->ticketModel->select('description')->where('ticket_id', $ticketId_en)->findAll(),
             'ticket_date'         => $this->ticketModel->select('created_at')->where('ticket_id', $ticketId_en)->find(),
             'getdatetime'         => $this->gettimestamp($this->ticketModel->select('created_at')->where('ticket_id', $ticketId_en)->find()[0]['created_at']),
             'ticketData'          => $this->ticketDataModel->where('ticket_id', $ticketId_en)->findAll(),
+            'timeLine'            => $this->ticketModel->where('ticket_id', $ticketId_en)->orderBy('created_at')->findAll(),
             'timeLine'            => $this->ticketModel->where('contact_id', $contactId_en)->orderBy('created_at', 'asc')->findAll(),
         ];
 
         return view('ticketing/showTicket', $data);
     }
 
-    public function delete($ticket_id, $contact_id = null)
+    public function delete($ticket_id)
     {
-        $ticket_id_en = base64_decode($ticket_id);
-        $image = 'media/' . $this->ticketModel->select('media')->where('ticket_id', $ticket_id)->first()['media'];
+        $image = 'media/' . $this->ticketModel->select('media')->where('ticket_id', $ticket_id)->find()[0]['media'];
 
         if (file_exists($image)) {
             unlink($image);
         }
-
-        // dd('media/' . $this->ticketModel->select('media')->where('ticket_id', $ticket_id)->first()['media']);
 
         # bug, during solved
         // $i = 0;
@@ -219,6 +218,17 @@ class Ticket extends BaseController
         $this->session->setFlashdata('message', 'ticket telah terhapus dari daftar!');
 
         return redirect()->to(base_url('ticket'));
+    }
+
+    public function close($ticket_id)
+    {
+        $data = [
+            'status'    => 'close'
+        ];
+
+        $this->ticketModel->update($ticket_id, $data);
+        $this->session->setFlashdata('message', 'ticket sudah diubah menjadi close!');
+        return redirect()->to(base_url('ticket/') . $ticket_id);
     }
 
     public function open($ticket_id)

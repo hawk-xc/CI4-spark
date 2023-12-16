@@ -75,8 +75,14 @@ class UserModel extends Model
         $group = $this->db->table('auth_groups')->where('name', $groupName)->get()->getFirstRow();
 
         $this->assignGroup = $group->id;
-
+        // if (!empty($group)) {
+        //     $this->assignGroup = $group->id;
+        // }
+        // }else {
+    //     return $this;
+    // }
         return $this;
+
     }
 
     /**
