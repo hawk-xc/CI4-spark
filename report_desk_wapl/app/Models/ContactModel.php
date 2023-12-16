@@ -48,4 +48,11 @@ class ContactModel extends Model
 
         return $this->where(['contact_ID' => $contact_id])->first();
     }
+       public function search($query)
+    {
+        return $this->like('name', $query)
+                    ->orLike('email', $query)
+                    ->orLike('phone', $query)
+                    ->findAll();
+    }
 }

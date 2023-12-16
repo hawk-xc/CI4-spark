@@ -13,71 +13,39 @@ class Contact extends BaseController
     {
         $this->contactModel = new ContactModel;
     }
-    public function index()
-    {
-        $data = [
-            'name' => 'contact',
-            'title' => 'Contact',
-            'homeNavButton' => false,
-            'ticketNavButton' => false,
-            'contactNavButton' => true,
-            'formNavButton' => false,
-            'manageUserNavButton' => false,
-            'error' => \Config\Services::validation(),
-        ];
-        if ($this->request->getMethod() == 'post') {
-            // var_dump($this->request->getVar());
-            $nama = $this->request->getVar('name');
-            $email = $this->request->getVar('email');
-            $message = $this->request->getVar('message');
+public function index()
+{
+    $query = $this->request->getVar('query');
 
-            $validation = \config\Services::validation();
-            $aturan = [
-                'name' => [
-                    'label' => 'Nama',
-                    'rules' => 'required|min_length[5]|max_length[25]',
-                    'errors' => [
-                        'required' => '{field} Tidak Boleh Kosong!',
-                        'min_length' => '{field} Anda Terlalu Pendek',
-                        'max_length' => '{field} Anda Melebihi 25 Karakter',
-                    ],
-                ],
-                'email' => [
-                    'label' => 'Email',
-                    'rules' => 'required|valid_email',
-                    'errors' => [
-                        'required' => '{field} Tidak Boleh Kosong!',
-                        'valid_email' => '{field} Yang Anda Masukkan Tidak Valid!',
-
-                    ],
-                ],
-                'message' => [
-                    'label' => 'Pesan',
-                    'rules' => 'required|max_length[55]',
-                    'errors' => [
-                        'required' => '{field} Tidak Boleh Kosong!',
-                        'max_length' => '{field} Anda Melebihi Karakter Yang Terlalu Panjang',
-                    ],
-                ],
-            ];
-            $validation->setRules($aturan);
-            if ($validation->withRequest($this->request)->run()) {
-                session()->getFlashdata('sukses', 'Berhasil melakukan validasi');
-                return redirect()->back();
-            } else {
-                $error = $validation->getErrors();
-                $data['title'] = 'form valid';
-            }
-        } else {
-            $data['error'] = "";
-            $data['title'] = "";
-        }
-        $data['contact'] = $this->contactModel->findAll();
-
-        // return view('contact/index', $data);
-        // return view('contact/dummyListContact', $data);
-        echo view('contact/contact', $data);
+    if (isset($query)) {
+        $result = $this->contactModel->search($query);
+    } else {
+        $result = $this->contactModel->paginate(20, 'contact');
     }
+   
+    $currentPage =  $this->request->getVar('page_contact') ? $this->request->getVar('page_contact') :1;
+    d($this->request->getVar('query'));
+    $data = [
+        'name' => 'contact',
+        'title' => 'Contact',
+        'homeNavButton' => false,
+        'ticketNavButton' => false,
+        'contactNavButton' => true,
+        'formNavButton' => false,
+        'manageUserNavButton' => false,
+        'error' => \Config\Services::validation(),
+        // 'contact' => $result,
+        // 'pager' => $this->contactModel->pager,
+        // 'currentPage' => $currentPage,
+        'contact' => $query ? $this->contactModel->search($query) : $this->contactModel->paginate(20, 'contact'),
+        'currentPage' => $this->request->getVar('page_contact') ?? 1,
+        'pager' => $this->contactModel->pager,
+    ];
+
+    return view('contact/contact', $data);
+}
+
+
     public function validation()
     {
         $data = [
@@ -152,4 +120,23 @@ class Contact extends BaseController
         ];
         return view('contact/coba', $data);
     }
+// Metode controller untuk menampilkan detail kontak
+public function detail($contact_id)
+{
+    $contact = $this->contactModel->getContact($contact_id);
+
+    $data = [
+        'name' => 'contact',
+        'title' => 'Detail Kontak',
+        'homeNavButton' => false,
+        'ticketNavButton' => false,
+        'contactNavButton' => true,
+        'formNavButton' => false,
+        'manageUserNavButton' => false,
+        'contact' => $contact,
+    ];
+
+    return view('contact/detail', $data);
+}
+
 }
