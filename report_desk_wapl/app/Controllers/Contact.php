@@ -15,16 +15,11 @@ class Contact extends BaseController
     }
 public function index()
 {
-    $query = $this->request->getVar('query');
+     $query = $this->request->getVar('query');
 
-    if (isset($query)) {
-        $result = $this->contactModel->search($query);
-    } else {
-        $result = $this->contactModel->paginate(20, 'contact');
-    }
-   
-    $currentPage =  $this->request->getVar('page_contact') ? $this->request->getVar('page_contact') :1;
-    d($this->request->getVar('query'));
+    // Menentukan model untuk digunakan
+    $contactModel = new ContactModel();
+
     $data = [
         'name' => 'contact',
         'title' => 'Contact',
@@ -34,12 +29,9 @@ public function index()
         'formNavButton' => false,
         'manageUserNavButton' => false,
         'error' => \Config\Services::validation(),
-        // 'contact' => $result,
-        // 'pager' => $this->contactModel->pager,
-        // 'currentPage' => $currentPage,
-        'contact' => $query ? $this->contactModel->search($query) : $this->contactModel->paginate(20, 'contact'),
+        'contact' => $contactModel->search($query),
         'currentPage' => $this->request->getVar('page_contact') ?? 1,
-        'pager' => $this->contactModel->pager,
+        'pager' => $contactModel->pager,
     ];
 
     return view('contact/contact', $data);

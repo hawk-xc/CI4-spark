@@ -50,9 +50,19 @@ class ContactModel extends Model
     }
        public function search($query)
     {
+        if ($query) {
         return $this->like('name', $query)
-                    ->orLike('email', $query)
-                    ->orLike('phone', $query)
-                    ->findAll();
+                    // ->orLike('email', $query)
+                    // ->orLike('phone', $query)
+                    ->paginate(20, 'contact');
+    } else {
+        return $this->paginate(20, 'contact');
     }
+    }
+     public function getContact($contact_id)
+    {
+
+        return $this->where('contact_id', $contact_id)->first();
+    }
+
 }

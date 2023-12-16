@@ -1,23 +1,22 @@
 <?= $this->extend('particle/dashboardParticle'); ?>
 <?= $this->section("content"); ?>
 
-
 <div class="container mx-auto shadow-sm rounded-lg">
-        <div class="flex flex-row box-border justify-between px-3 py-4 bg-white rounded-lg shadow-sm align-middle items-center">
-              <!-- this is filter toolbar -->
-            <form action="" method="post">
-                <div class="border-gray-200 border-2 rounded-md px-3 py-2 flex flex-row items-center hover:border-sky-400">
-                    <i class="ri-search-2-line"></i>
-                    <input type="text" name="query" id="query" class="ml-1 focus:outline-none active:outline-none">
-                    <button name="submit" type="submit" class="p-1 bg-blue-200 flex items-center align-middle rounded-md px-3 active:bg-blue-400 hover:bg-blue-300">cari</button>
-                </div>
-            </form>
-            <!-- Pagination Links -->
-                 <div class="flex flex-row justify-end align-middle items-center gap-5 mr-5 mb-5">
-                    <?= $pager->links('contact', 'default_new') ?>
-                </div>
+    <div class="flex flex-row box-border justify-between px-3 py-4 bg-white rounded-lg shadow-sm align-middle items-center">
+        <!-- Filter toolbar -->
+        <form action="" method="get" class="sm:flex items-center">
+            <div class="border-gray-200 border-2 rounded-md px-3 py-2 flex flex-row items-center hover:border-sky-400">
+                <i class="ri-search-2-line"></i>
+                <input type="text" name="query" id="query" class="ml-1 focus:outline-none active:outline-none">
+                <button type="submit" class="p-1 bg-blue-200 flex items-center align-middle rounded-md px-3 active:bg-blue-400 hover:bg-blue-300">cari</button>
+            </div>
+        </form>
+        <!-- Pagination Links -->
+        <div class="flex flex-row justify-end align-middle items-center gap-5 mr-5 mb-5">
+            <?= $pager->links('contact', 'default_new', 'tailwind-pagination') ?>
         </div>
-    <div class="bg-white shadow-md rounded w-full flex flex-col overflow-y-scroll gap-3 md:h-[29rem] max-sm:order-2 max-sm:h-[47rem] max-sm:text-md ">
+    </div>
+    <div class="bg-white shadow-md rounded w-full flex flex-col gap-3 md:min-h-[29rem] max-sm:order-2 max-sm:min-h-[47rem] max-sm:text-md overflow-y-scroll">
         <?php if (session()->getFlashdata('message')) { ?>
             <div id="messageBox" class="my-2 max-w-full p-2 bg-orange-200 border border-slate-600 rounded-md flex justify-between">
                 <span class="flex flex-row"><span><i class="ri-information-fill"></i> <?= session()->getFlashdata('message') ?></span></span> <i class="ri-close-fill font-bold hover:text-red-400" id="closeButton"></i>
@@ -34,7 +33,6 @@
                 </tr>
             </thead>
             <tbody class="text-gray-600 text-base font-light">
-                <!-- Dummy Data, nanti pakek foreach untuk akses data dari databases -->
                 <?php $i = 1 + (20 * ($currentPage - 1)); ?>
                 <?php foreach ($contact as $ct) : ?>
                     <tr class="border-b border-gray-200 hover-bg-gray-100 hover:bg-slate-100">
@@ -64,24 +62,22 @@
                                             <button id="upConfirmBox" onclick="return confirm('Apakah Anda Yakin Menghapus Ini?')">
                                                 <i class="ri-delete-bin-6-line pr-4"></i>Delete
                                             </button>
-
                                         </form>
-                                        <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Action 2</a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Action 3</a> -->
                                     </div>
                                 </div>
-
                             </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>
-                <!-- End of Dummy Data nantinya -->
             </tbody>
         </table>
+        <div class="<?= $contact ? 'hidden' : ' ' ?> flex flex-col max-h-full text-slate-500 h-full justify-center align-middle items-center">
+            <span><i class="ri-archive-2-fill text-6xl"></i></span>
+            <span>list nama contact kosong...</span>
+        </div>
     </div>
 </div>
 
 <script src="/js/contactDropdown.js"></script>
-
 
 <?= $this->endSection(); ?>

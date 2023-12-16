@@ -1,6 +1,5 @@
 <?= $this->extend('./particle/dashboardParticle.php'); ?>
 <?= $this->section('content'); ?>
-
 <?php
 function defineMonth($num)
 {
