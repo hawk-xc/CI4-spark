@@ -42,7 +42,7 @@ $routes->get('/form/create', 'Form::create');
 $routes->get('/form/edit/(:segment)', 'Form::edit/$1');
 $routes->delete('/form/(:num)', 'Form::delete/$1');
 
-// routes untuk validasi    
+// routes untuk validasi
 $routes->get('/form', 'Form::index', ['filter' => 'role:noc,admin']);
 $routes->get('/form/create', 'Form::create', ['filter' => 'role:noc,admin']);
 $routes->get('/form/edit/(:segment)', 'Form::edit/$1', ['filter' => 'role:noc,admin']);
