@@ -10,7 +10,7 @@
 </head>
 
 <body class="h-screen">
-    <section name="panel" class="h-screen absolute max-sm:fixed md:fixed lg:fixed z-10">
+    <section name="panel" class="h-screen absolute max-sm:fixed md:fixed lg:fixed z-40">
         <!-- this is panel of dashboard -->
         <section id="right_panel" class="w-52 bg-slate-800 max-sm:-translate-x-52 h-screen md:absolute lg:absolute pl-5 pt-8 duration-150 ease-in-out transition-all">
             <span class="text-2xl font-semibold dashboard-title duration-150 transition-all"><i class="ri-verified-badge-line"></i> dashboard</span>
@@ -53,8 +53,9 @@
         </section>
     </section>
 
-    <section class="">
-        <div id="toolPanel" class="fixed max-sm:pl-3 max-sm:py-4 md:py-4 flex flex-row justify-between flex-nowrap overflow-hidden duration-150 transition-all bg-white  w-full">
+    <!-- toolpanel -->
+    <section class="z-50">
+        <div id="toolPanel" class="fixed max-sm:pl-3 max-sm:py-4 md:py-4 flex flex-row justify-between flex-nowrap overflow-hidden duration-150 transition-all bg-white w-full z-10">
             <span class="max-sm:text-lg md:ml-56 lg:ml-56 md:text-2xl lg:text-2xl font-bold text-slate-800"><?= $name ?></span>
             <span class="flex flex-row gap-3 mr-4 items-center">
 
@@ -66,11 +67,13 @@
             </span>
         </div>
 
-        <div class="absolute right-[20px] top-[10px]">
-            <span class="flex flex-row items-center align-middle gap-2 cursor-pointer">
-                <img src="media/wahyu.jpg" id="button" alt="" class="w-10 rounded-md hover:border-2 hover:border-sky-200 box-border duration-150">
+        <!-- user section -->
+        <div class="absolute right-[20px] top-[15px] max-sm:right-[60px] z-50">
+            <span id="button" class="flex flex-row items-center align-middle gap-2 cursor-pointer">
+                <span class="max-sm:hidden">Hi Wahyu</span>
+                <img src="media/wahyu.jpg" alt="" class="w-7 rounded-full hover:border-2 hover:border-sky-200 box-border duration-150">
             </span>
-            <ul id="listData" class="bg-white w-40 p-2 flex-col absolute -translate-x-28 z-50 rounded-md hidden">
+            <ul id="listData" class="bg-white w-40 p-2 flex-col absolute mt-1 md:-translate-x-14 max-sm:-translate-x-20 z-50 rounded-md hidden shadow-md">
                 <li class="bg-white max-h-full px-5 py-1 rounded-md my-2 hover:bg-slate-100">profilku</li>
                 <a href="<?= base_url('logout') ?>">
                     <li class="bg-white max-h-full px-5 py-1 rounded-md hover:bg-slate-100">logout</li>
@@ -79,7 +82,7 @@
         </div>
 
     </section>
-    <div class="w-screen p-3 bg-slate-100 h-screen overflow-scroll">
+    <div class="w-screen p-3 bg-slate-100 h-screen overflow-scroll z-0">
         <div class="max-sm:pt-12 md:pl-52 md:pt-16 lg:pl-52 lg:pt-16 mb-2">
             <?= $this->renderSection('content') ?>
         </div>
