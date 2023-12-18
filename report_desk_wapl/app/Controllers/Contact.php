@@ -13,29 +13,29 @@ class Contact extends BaseController
     {
         $this->contactModel = new ContactModel;
     }
-public function index()
-{
-     $query = $this->request->getVar('query');
+    public function index()
+    {
+        $query = $this->request->getVar('query');
 
-    // Menentukan model untuk digunakan
-    $contactModel = new ContactModel();
+        // Menentukan model untuk digunakan
+        $contactModel = new ContactModel();
 
-    $data = [
-        'name' => 'contact',
-        'title' => 'Contact',
-        'homeNavButton' => false,
-        'ticketNavButton' => false,
-        'contactNavButton' => true,
-        'formNavButton' => false,
-        'manageUserNavButton' => false,
-        'error' => \Config\Services::validation(),
-        'contact' => $contactModel->search($query),
-        'currentPage' => $this->request->getVar('page_contact') ?? 1,
-        'pager' => $contactModel->pager,
-    ];
+        $data = [
+            'name' => 'contact',
+            'title' => 'Contact',
+            'homeNavButton' => false,
+            'ticketNavButton' => false,
+            'contactNavButton' => true,
+            'formNavButton' => false,
+            'manageUserNavButton' => false,
+            'error' => \Config\Services::validation(),
+            'contact' => $contactModel->search($query),
+            'currentPage' => $this->request->getVar('page_contact') ?? 1,
+            'pager' => $contactModel->pager,
+        ];
 
-    return view('contact/contact', $data);
-}
+        return view('contact/contact', $data);
+    }
 
 
     public function validation()
@@ -112,23 +112,22 @@ public function index()
         ];
         return view('contact/coba', $data);
     }
-// Metode controller untuk menampilkan detail kontak
-public function detail($contact_id)
-{
-    $contact = $this->contactModel->getContact($contact_id);
+    // Metode controller untuk menampilkan detail kontak
+    public function detail($contact_id)
+    {
+        $contact = $this->contactModel->getContact($contact_id);
 
-    $data = [
-        'name' => 'contact',
-        'title' => 'Detail Kontak',
-        'homeNavButton' => false,
-        'ticketNavButton' => false,
-        'contactNavButton' => true,
-        'formNavButton' => false,
-        'manageUserNavButton' => false,
-        'contact' => $contact,
-    ];
+        $data = [
+            'name' => 'contact',
+            'title' => 'Detail Kontak',
+            'homeNavButton' => false,
+            'ticketNavButton' => false,
+            'contactNavButton' => true,
+            'formNavButton' => false,
+            'manageUserNavButton' => false,
+            'contact' => $contact,
+        ];
 
-    return view('contact/detail', $data);
-}
-
+        return view('contact/detail', $data);
+    }
 }

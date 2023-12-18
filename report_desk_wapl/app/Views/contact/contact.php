@@ -45,7 +45,7 @@
                                 <div>
                                     <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button<?= $ct['contact_id'] ?>" aria-expanded="false" aria-haspopup="true">
                                         Options
-                                        <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <svg id="dropDownIcon<?= $ct['contact_id'] ?>" class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
                                         </svg>
                                     </button>
@@ -78,6 +78,56 @@
     </div>
 </div>
 
-<script src="/js/contactDropdown.js"></script>
+
+<!-- <script src="/js/contactDropdown.js"></script> -->
+
+<script>
+    $(document).ready(function() {
+        let openDropdown = null;
+
+        // Menggunakan selector atribut untuk mendapatkan elemen dengan ID yang diinginkan
+        for (let i = 1; i <= 1000000; i++) {
+            const menuButton = $("#menu-button" + i);
+            const menu = $("#menu-button-menu" + i);
+            const icon = $("#dropDownIcon" + i);
+
+            if (menuButton.length && menu.length && icon.length) {
+                // Mengganti metode addEventListener dengan metode on pada elemen jQuery
+                menuButton.on("click", function(event) {
+                    if (openDropdown !== menu[0]) {
+                        if (openDropdown) {
+                            openDropdown.addClass("hidden");
+                        }
+                        event.stopPropagation();
+                        menu.removeClass("hidden");
+                        icon.addClass("rotate-180");
+                        openDropdown = menu[0];
+                    } else {
+                        menu.addClass("hidden");
+                        icon.removeClass("rotate-180");
+                        openDropdown = null;
+                    }
+                });
+
+                // Mengganti addEventListener untuk dokumen dengan metode on pada elemen jQuery
+                $(document).on("click", function() {
+                    if (openDropdown) {
+                        openDropdown.addClass("hidden");
+                        icon.removeClass("rotate-180");
+                        openDropdown = null;
+                    }
+                });
+
+                // Mengganti addEventListener untuk elemen menu dengan metode on pada elemen jQuery
+                menu.on("click", function(event) {
+                    event.stopPropagation();
+                });
+            }
+        }
+    });
+</script>
+
+
+
 
 <?= $this->endSection(); ?>
