@@ -1238,10 +1238,6 @@ li {
   border-width: 1px;
 }
 
-.border-2{
-  border-width: 2px;
-}
-
 .border-b{
   border-bottom-width: 1px;
 }
@@ -1292,6 +1288,11 @@ li {
   border-color: rgb(224 242 254 / var(--tw-border-opacity));
 }
 
+.border-sky-200{
+  --tw-border-opacity: 1;
+  border-color: rgb(186 230 253 / var(--tw-border-opacity));
+}
+
 .border-sky-300{
   --tw-border-opacity: 1;
   border-color: rgb(125 211 252 / var(--tw-border-opacity));
@@ -1325,11 +1326,6 @@ li {
 .border-white{
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
-.border-sky-200{
-  --tw-border-opacity: 1;
-  border-color: rgb(186 230 253 / var(--tw-border-opacity));
 }
 
 .bg-blue-100{
@@ -1459,6 +1455,16 @@ li {
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-sky-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(56 189 248 / var(--tw-bg-opacity));
+}
+
+.bg-sky-300{
+  --tw-bg-opacity: 1;
+  background-color: rgb(125 211 252 / var(--tw-bg-opacity));
 }
 
 .bg-clip-padding{
@@ -2105,11 +2111,6 @@ li {
   border-color: rgb(186 230 253 / var(--tw-border-opacity));
 }
 
-.hover\:border-sky-400:hover{
-  --tw-border-opacity: 1;
-  border-color: rgb(56 189 248 / var(--tw-border-opacity));
-}
-
 .hover\:border-slate-300:hover{
   --tw-border-opacity: 1;
   border-color: rgb(203 213 225 / var(--tw-border-opacity));
@@ -2235,10 +2236,6 @@ li {
   background-color: rgb(248 113 113 / var(--tw-bg-opacity));
 }
 
-.focus\:bg-transparent:focus{
-  background-color: transparent;
-}
-
 .focus\:text-neutral-700:focus{
   --tw-text-opacity: 1;
   color: rgb(64 64 64 / var(--tw-text-opacity));
@@ -2295,11 +2292,6 @@ li {
   --tw-ring-offset-width: 2px;
 }
 
-.active\:bg-blue-400:active{
-  --tw-bg-opacity: 1;
-  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
-}
-
 .active\:bg-blue-600:active{
   --tw-bg-opacity: 1;
   background-color: rgb(37 99 235 / var(--tw-bg-opacity));
@@ -2313,10 +2305,6 @@ li {
 .active\:bg-slate-300:active{
   --tw-bg-opacity: 1;
   background-color: rgb(203 213 225 / var(--tw-bg-opacity));
-}
-
-.active\:bg-transparent:active{
-  background-color: transparent;
 }
 
 .active\:bg-violet-700:active{
@@ -2621,10 +2609,6 @@ li {
 
   .md\:w-40{
     width: 10rem;
-  }
-
-  .md\:w-80{
-    width: 20rem;
   }
 
   .md\:w-\[38rem\]{
