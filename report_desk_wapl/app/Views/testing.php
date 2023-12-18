@@ -10,12 +10,24 @@
     </form>
 </div>
 
-<select class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
-    <option value="4">User</option>
-    <option value="3">Teknisi</option>
-    <option value="2">Noc</option>
-    <option value="1">Admin</option>
-</select>
+<form class="container flex flex-row gap-3" method="get" action="">
+    <select name="count" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
+        <option value="2" <?= (old('status') === '2') ? 'selected' : '' ?>>1 showlist</option>
+        <option value="3" <?= (old('status') === '3') ? 'selected' : '' ?>>2 showlist</option>
+        <option value="4" <?= (old('status') === '4') ? 'selected' : '' ?>>3 showlist</option>
+        <option value="100" <?= (old('status') === '100') ? 'selected' : '' ?>>100 showlist</option>
+    </select>
+    <select name="type" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
+        <option value="mt" <?= (old('status') === 'mt') ? 'selected' : '' ?>>Perbaikan</option>
+        <option value="new" <?= (old('type') === 'new') ? 'selected' : '' ?>>Installasi baru</option>
+    </select>
+    <select name="order_by" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
+        <option value="name" <?= (old('status') === 'name') ? 'selected' : '' ?>>urutkan berdasarkan abjad nama</option>
+        <option value="subject" <?= (old('status') === 'subject') ? 'selected' : '' ?>>urutkan berdasarkan abjad subject</option>
+        <option value="ticket.created_at" <?= (old('status') === 'created_at') ? 'selected' : '' ?>>urutkan berdasarkan tanggal</option>
+    </select>
+    <button type="submit" class="px-2 py-2 bg-sky-300 font-semibold rounded-md shadow-sm text-white">aplikasikan</button>
+</form>
 
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg my-3" id="dataListing" name="dataListing">

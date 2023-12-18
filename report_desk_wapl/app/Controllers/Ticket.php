@@ -63,6 +63,10 @@ class Ticket extends BaseController
     public function index()
     {
         $query = $this->request->getGet('search');
+        $count = $this->request->getGet('count');
+        $type = $this->request->getGet('type');
+        $order_by = $this->request->getGet('order_by');
+        $status = $this->request->getGet('status');
 
         $data = [
             'name'              => 'ticketing',
@@ -72,7 +76,7 @@ class Ticket extends BaseController
             'contactNavButton'  => false,
             'formNavButton'     => false,
             'manageUserNavButton' => false,
-            'request'           => $this->ticketModel->searchData($query),
+            'request'           => $this->ticketModel->searchData($query, $count, $type, $order_by, $status),
             'pager'             => $this->ticketModel->pager,
             'requestId'         => $this->ticketModel->select('contact_id')->orderBy('contact_id', 'asc')->findAll(),
             'open_ticket'       => $this->ticketModel->where('status', 'open')->countAllResults(),

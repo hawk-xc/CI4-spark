@@ -134,11 +134,15 @@ class Home extends BaseController
     public function testing()
     {
         $query = $this->request->getGet('search');
+        $count = $this->request->getGet('count');
+        $type = $this->request->getGet('type');
+        $order_by = $this->request->getGet('order_by');
+        $status = $this->request->getGet('status');
 
         $data = [
             'name' => 'testing',
             'title' => 'halaman testing',
-            'query' => $this->ticket->searchData($query),
+            'query' => $this->ticket->searchData($query, $count, $type, $order_by, $status),
             'pager' => $this->ticket->pager,
             'homeNavButton' => false,
             'ticketNavButton' => false,
