@@ -89,8 +89,31 @@
                         </span>
                     </div>
                 </div>
-                <div class="h-full bg-white shadow-sm mt-3 rounded-lg p-3 box-border relative flex flex-col">
+                <div class="h-full bg-white shadow-sm mt-3 rounded-lg p-3 box-border relative flex flex-col gap-3">
                     <span class="text-slate-600 uppercase">filter</span>
+                    <form action="" method="get" class="flex flex-col gap-3">
+                        <select name="count" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
+                            <option value="5" <?= (old('count') === '5') ? 'selected' : '' ?>>5 showlist</option>
+                            <option value="10" <?= (old('count') === '10') ? 'selected' : '' ?>>10 showlist</option>
+                            <option value="25" <?= (old('count') === '25') ? 'selected' : '' ?>>25 showlist</option>
+                            <option value="50" <?= (old('count') === '50') ? 'selected' : '' ?>>50 showlist</option>
+                            <option value="100" <?= (old('count') === '100') ? 'selected' : '' ?>>100 showlist</option>
+                        </select>
+                        <select name="type" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
+                            <option value="mt" <?= (old('type') === 'mt') ? 'selected' : '' ?>>Perbaikan</option>
+                            <option value="new" <?= (old('type') === 'new') ? 'selected' : '' ?>>Installasi baru</option>
+                        </select>
+                        <select name="order_by" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
+                            <option value="name" <?= (old('order_by') === 'name') ? 'selected' : '' ?>>berdasarkan nama</option>
+                            <option value="subject" <?= (old('order_by') === 'subject') ? 'selected' : '' ?>>berdasarkan subject</option>
+                            <option value="ticket.created_at" <?= (old('order_by') === 'created_at') ? 'selected' : '' ?>>berdasarkan tanggal</option>
+                        </select>
+                        <select name="status" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
+                            <option value="open" <?= (old('status') === 'open') ? 'selected' : '' ?>>open</option>
+                            <option value="close" <?= (old('status') === 'close') ? 'selected' : '' ?>>close</option>
+                        </select>
+                        <button type="submit" class="px-2 py-2 bg-sky-300 font-semibold rounded-md shadow-sm text-white">aplikasikan</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -39,13 +39,134 @@ class TicketModel extends Model
     // protected $beforeDelete   = [];
     // protected $afterDelete    = [];
 
-    public function searchData($query)
+    public function searchData($query = null, $count = null, $type = null, $order_by = null, $status = null)
     {
         // Implement your search logic, for example:
-        if (isset($query)) {
-            return $this->join('contact', 'contact_id')->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->paginate('5', 'ticket');
+
+        if (!isset($count)) {
+            if (isset($type)) {
+                if (isset($order_by)) {
+                    if (isset($status)) {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->where('status', $status)->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->orderBy($order_by, 'asc')->paginate('5', 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->where('status', $status)->orderBy($order_by, 'asc')->paginate('5', 'ticket');
+                        }
+                    } else {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->orderBy($order_by, 'asc')->paginate('5', 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->orderBy($order_by, 'asc')->paginate('5', 'ticket');
+                        }
+                    }
+                } else {
+                    if (isset($status)) {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->where('status', $status)->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->paginate('5', 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->where('status', $status)->paginate('5', 'ticket');
+                        }
+                    } else {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->paginate('5', 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->paginate('5', 'ticket');
+                        }
+                    }
+                }
+            } else {
+                if (isset($order_by)) {
+                    if (isset($status)) {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->where('status', $status)->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->orderBy($order_by, 'asc')->paginate('5', 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->where('status', $status)->orderBy($order_by, 'asc')->paginate('5', 'ticket');
+                        }
+                    } else {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->orderBy($order_by, 'asc')->paginate('5', 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->orderBy($order_by, 'asc')->paginate('5', 'ticket');
+                        }
+                    }
+                } else {
+                    if (isset($status)) {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->where('status', $status)->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->paginate('5', 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->where('status', $status)->paginate('5', 'ticket');
+                        }
+                    } else {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->paginate('5', 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->paginate('5', 'ticket');
+                        }
+                    }
+                }
+            }
         } else {
-            return $this->join('contact', 'contact_id')->paginate('5', 'ticket');
+            if (isset($type)) {
+                if (isset($order_by)) {
+                    if (isset($status)) {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->where('status', $status)->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->orderBy($order_by, 'asc')->paginate($count, 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->where('status', $status)->orderBy($order_by, 'asc')->paginate($count, 'ticket');
+                        }
+                    } else {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->orderBy($order_by, 'asc')->paginate($count, 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->orderBy($order_by, 'asc')->paginate($count, 'ticket');
+                        }
+                    }
+                } else {
+                    if (isset($status)) {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->where('status', $status)->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->paginate($count, 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->where('status', $status)->paginate($count, 'ticket');
+                        }
+                    } else {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->paginate($count, 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->where('type', $type)->paginate($count, 'ticket');
+                        }
+                    }
+                }
+            } else {
+                if (isset($order_by)) {
+                    if (isset($status)) {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->where('status', $status)->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->orderBy($order_by, 'asc')->paginate($count, 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->where('status', $status)->orderBy($order_by, 'asc')->paginate($count, 'ticket');
+                        }
+                    } else {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->orderBy($order_by, 'asc')->paginate($count, 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->orderBy($order_by, 'asc')->paginate($count, 'ticket');
+                        }
+                    }
+                } else {
+                    if (isset($status)) {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->where('status', $status)->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->paginate($count, 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->where('status', $status)->paginate($count, 'ticket');
+                        }
+                    } else {
+                        if (isset($query)) {
+                            return $this->join('contact', 'contact_id')->like('subject', $query)->orLike('contact.name', $query)->orLike('contact.phone', $query)->paginate($count, 'ticket');
+                        } else {
+                            return $this->join('contact', 'contact_id')->paginate($count, 'ticket');
+                        }
+                    }
+                }
+            }
         }
     }
 }

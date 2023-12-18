@@ -38,7 +38,7 @@ $routes->get('/home', 'Home::index');
 // routes untuk validasi    
 $routes->get('/form', 'Form::index', ['filter' => 'role:noc,admin']);
 $routes->get('/form/create', 'Form::create', ['filter' => 'role:noc,admin']);
-$routes->get('/form/edit/(:segment)', 'Form::edit/$1', ['filter' => 'role:noc,admin']);
+$routes->get('/form/edit/(:any)', 'Form::edit/$1', ['filter' => 'role:noc,admin']);
 $routes->delete('/form/(:num)', 'Form::delete/$1', ['filter' => 'role:noc,admin']);
 // $routes->get('form/delete/(:num)', 'Form::delete/$1');
 $routes->get('/form/(:any)', 'Form::edit/$1', ['filter' => 'role:noc,admin']);
