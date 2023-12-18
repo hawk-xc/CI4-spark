@@ -71,6 +71,12 @@
 </div>
 
 
+
+<!-- Modal toggle -->
+<!-- Main modal -->
+
+
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#search').keyup(function() {
