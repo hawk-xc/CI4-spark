@@ -11,7 +11,7 @@
 <?= $this->section('content'); ?>
 
 <body class="">
-    <section name="ticket" class="max-sm:textt-sm">
+    <section name="ticket" class="max-sm:textt-sm max-sm:mt-2">
         <div class="flex flex-row box-border justify-between px-3 py-4 bg-white rounded-lg shadow-sm align-middle items-center">
             <!-- this is filter toolbar -->
             <!-- search box -->
@@ -35,8 +35,11 @@
                 </a>
             </div>
         </div>
+        <div class="bg-white p-2 rounded-md shadow-sm mt-3 md:hidden lg:hidden max-sm:flex text-slate-700">
+            <i class="ri-filter-line"></i> filter
+        </div>
         <div name="sideback" id="sideback" class="flex max-sm:flex-col md:flex-row lg:flex-row max-w-full box-border gap-3 mt-3 md:h-96 lg:h-96 max-sm:h-[47rem]">
-            <div class="w-full flex flex-col overflow-y-scroll gap-3 md:h-[29rem] max-sm:order-2 max-sm:h-[47rem] max-sm:text-xs relative">
+            <div class="w-full flex flex-col overflow-y-scroll gap-3 md:h-[29rem] max-sm:h-[47rem] max-sm:text-xs relative">
                 <!-- ticket section -->
                 <!-- cek apakah ada flash data -->
 
@@ -72,8 +75,8 @@
                     <span>list ticket kosong...</span>
                 </div>
             </div>
-            <div class="w-1/3 max-sm:order-1 max-sm:flex max-sm:flex-row max-sm:items-center">
-                <div class="flex flex-row justify-between max-sm:hidden">
+            <div class="w-1/3 max-sm:flex max-sm:flex-row max-sm:items-center max-sm:w-full">
+                <div class="flex flex-row gap-2 justify-between max-sm:hidden">
                     <div class="bg-white p-3 shadow-sm rounded-lg flex flex-row gap-2 box-border items-center">
                         <span><i class="ri-coupon-2-fill text-4xl text-yellow-500"></i></span>
                         <span class="flex flex-col -space-y-2 text-slate-600">
@@ -89,9 +92,10 @@
                         </span>
                     </div>
                 </div>
-                <div class="h-full bg-white shadow-sm mt-3 rounded-lg p-3 box-border relative flex flex-col gap-3">
+                <!-- filter -->
+                <div class="h-full bg-white shadow-sm mt-3 rounded-lg p-3 box-border relative flex flex-col gap-3 max-sm:hidden">
                     <span class="text-slate-600 uppercase">filter</span>
-                    <form action="" method="get" class="flex flex-col gap-3">
+                    <form action="" method="get" class="flex md:flex-col max-sm:flex-row gap-3 max-sm:max-w-full max-sm:w-full">
                         <select name="count" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
                             <option value="5" <?= (old('count') === '5') ? 'selected' : '' ?>>5 showlist</option>
                             <option value="10" <?= (old('count') === '10') ? 'selected' : '' ?>>10 showlist</option>
