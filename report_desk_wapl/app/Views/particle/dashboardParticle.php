@@ -100,6 +100,9 @@
                 $('#listData').slideUp(200).removeClass('flex').addClass('hidden');
             }
         })
+        menu.on("click", function(event) {
+                    event.stopPropagation();
+                });
     })
 </script>
 
