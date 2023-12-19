@@ -27,7 +27,7 @@
                 </div>
 
                 <span class="flex justify-end">
-                    <a class="text-xs text-blue-500 hover:underline" href="#">Tambah kontak baru</a>
+                    <a class="text-xs text-blue-500 hover:underline" href="<?= base_url('form'); ?>">Tambah kontak baru</a>
                 </span>
                 <label for="subject">Subjek *</label>
                 <input type="text" placeholder="Subject" id="subject" class="inputForm" name="subject" value="<?= old('subject'); ?>">
