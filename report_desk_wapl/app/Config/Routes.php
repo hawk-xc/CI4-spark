@@ -53,6 +53,7 @@ $routes->get('/form/(:any)', 'Form::edit/$1', ['filter' => 'role:noc,admin']);
 
 
 // admin
-$routes->get('/manageuser', 'Home::manageUser', ['filter' => 'role:user,noc,admin']);
+$routes->get('/manageuser', 'Home::manageUser', ['filter' => 'role:admin']);
+$routes->get('/edituser/(:num)', 'Home::editUser/$1', ['filter' => 'role:admin']);
 // routes untuk contact => denny
 // $routes->get('/contact', 'Contact::index');

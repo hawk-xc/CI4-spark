@@ -131,6 +131,22 @@ class Home extends BaseController
         return view('user/manageUser', $data);
     }
 
+    public function editUser($userId)
+    {
+        $data = [
+            'name' => 'manajemen akun',
+            'title' => 'menu manajemen akun',
+            'homeNavButton' => false,
+            'ticketNavButton' => false,
+            'contactNavButton' => false,
+            'formNavButton' => false,
+            'manageUserNavButton' => true,
+            'users' => $this->users->where('id', $userId)->findAll(),
+        ];
+
+        return view('user/editUser', $data);
+    }
+
     public function testing()
     {
         $query = $this->request->getGet('search');

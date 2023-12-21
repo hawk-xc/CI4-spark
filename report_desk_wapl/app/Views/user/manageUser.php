@@ -64,7 +64,7 @@
                             <?php } ?>
                         </td>
                         <td class="px-6 py-4 max-sm:px-2">
-                            <a href="#" class="flex flex-row justify-center items-center align-middle font-medium text-white hover:underline px-3 py-2 max-sm:px-2 max-sm:py-1 bg-blue-400 rounded-lg"><i class="ri-edit-2-line"></i> Edit</a>
+                            <a href="<?= base_url('edituser/') . $user->userid ?>" class="flex flex-row justify-center items-center align-middle font-medium text-white hover:underline px-3 py-2 max-sm:px-2 max-sm:py-1 bg-blue-400 rounded-lg"><i class="ri-edit-2-line"></i> Edit</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
