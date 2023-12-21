@@ -42,7 +42,6 @@ class App extends BaseConfig
      * something else. If you are using mod_rewrite to remove the page set this
      * variable so that it is blank.
      */
-
     //  untuk mengubah default route file, ta ganti ke zero === ''
     public string $indexPage = '';
     // public string $indexPage = 'index.php';
