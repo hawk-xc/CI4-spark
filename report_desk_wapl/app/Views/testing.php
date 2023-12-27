@@ -1,36 +1,20 @@
 <?= $this->extend('./particle/dashboardParticle.php'); ?>
 <?= $this->section('content'); ?>
 
-<div>
-    <form action="" method="get">
-        <input type="text" name="search" id="search" class="p-2 border border-sky-100 rounded-md placeholder:text-teal-600 my-2" placeholder="search here...">
-        <button type="submit" class="px-3 py-2 bg-sky-200 font-semibold text-slate-500 rounded-md">
-            cari
-        </button>
-    </form>
+<div id="modalBox" class="hidden duration-200 transition-all ease-in absolute inset-0 flex items-center justify-center backdrop-blur-sm z-50 backdrop-brightness-75">
+    <div class="bg-white rounded-md w-auto p-5 flex justify-center align-middle items-center flex-col">
+        <h2 class="font-bold text-slate-800 text-xl">cek identitas</h2>
+        <!-- msgBox -->
+        <div class="p-2 border-l-4 border-red-400 bg-slate-100 rounded-sm my-3 w-64 flex flex-col">
+            <span id="spanUser"></span>
+            <span id="spanMail"></span>
+            <span id="spanNumber"></span>
+            <span id="spanAddress"></span>
+        </div>
+    </div>
 </div>
 
-<form class="container flex flex-row gap-3" method="get" action="">
-    <select name="count" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
-        <option value="2" <?= (old('status') === '2') ? 'selected' : '' ?>>1 showlist</option>
-        <option value="3" <?= (old('status') === '3') ? 'selected' : '' ?>>2 showlist</option>
-        <option value="4" <?= (old('status') === '4') ? 'selected' : '' ?>>3 showlist</option>
-        <option value="100" <?= (old('status') === '100') ? 'selected' : '' ?>>100 showlist</option>
-    </select>
-    <select name="type" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
-        <option value="mt" <?= (old('status') === 'mt') ? 'selected' : '' ?>>Perbaikan</option>
-        <option value="new" <?= (old('type') === 'new') ? 'selected' : '' ?>>Installasi baru</option>
-    </select>
-    <select name="order_by" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
-        <option value="name" <?= (old('status') === 'name') ? 'selected' : '' ?>>urutkan berdasarkan abjad nama</option>
-        <option value="subject" <?= (old('status') === 'subject') ? 'selected' : '' ?>>urutkan berdasarkan abjad subject</option>
-        <option value="ticket.created_at" <?= (old('status') === 'created_at') ? 'selected' : '' ?>>urutkan berdasarkan tanggal</option>
-    </select>
-    <button type="submit" class="px-2 py-2 bg-sky-300 font-semibold rounded-md shadow-sm text-white">aplikasikan</button>
-</form>
-
-
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg my-3" id="dataListing" name="dataListing">
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -38,64 +22,55 @@
                     id
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    subject
+                    nama
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    contact
+                    surel
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    type
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    status
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    action
+                    <span class="sr-only">aksi</span>
                 </th>
             </tr>
         </thead>
         <tbody>
-            <?php $i = 1 ?>
-            <?php foreach ($query as $r) : ?>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <?= $i++ ?>
+            <?php foreach ($contact as $data) : ?>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <?= $data['contact_id'] ?>
                     </th>
-                    <td class="px-6 py-4">
-                        <?= $r['subject'] ?>
+                    <td class="px-6 py-2">
+                        <?= $data['name'] ?>
                     </td>
-                    <td class="px-6 py-4">
-                        <?= $r['name'] ?>
+                    <td class="px-6 py-2">
+                        <?= $data['email'] ?>
                     </td>
-                    <td class="px-6 py-4">
-                        <?= $r['type'] ?>
-                    </td>
-                    <td class="px-6 py-4">
-                        <?= $r['status'] ?>
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <td class="px-6 py-2 text-right text-xl cursor-pointer">
+                        <i id="<?= $data['contact_id'] ?>" name="infoTab" class="ri-search-eye-line"></i>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
-        <?= $pager->links('ticket', 'default_new') ?>
     </table>
 </div>
 
-
-
-<!-- Modal toggle -->
-<!-- Main modal -->
-
-
-
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#search').keyup(function() {
-            $('#dataListing').load("http://localhost:8080/ticket/" + $('#search').val());
-        });
+        $('i[name=infoTab').on('click', function() {
+            let $id = $(this).attr('id');
+
+            $.ajax({
+                url: 'getuser?id=' + $id,
+                method: 'get',
+                success: function(data) {
+                    $('#modalBox').removeClass('hidden')
+                    const jsonData = JSON.parse(data);
+                    $('#spanUser').html("<i class='ri-user-line mr-2'></i> " + jsonData.name);
+                    $('#spanMail').html("<i class='ri-mail-line mr-2'></i> " + jsonData.email);
+                    $('#spanNumber').html("<i class='ri-phone-line mr-2'></i> " + jsonData.phone);
+                    $('#spanAddress').html("<i class='ri-map-pin-line mr-2'></i> " + jsonData.address);
+                }
+            })
+        })
     })
 </script>
 

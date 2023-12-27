@@ -44,6 +44,7 @@ class TicketModel extends Model
         // Implement your search logic, for example:
 
         if (!isset($count)) {
+            return $this->join('contact', 'contact_id')->orderBy('ticket.ticket_id', 'desc')->paginate('6', 'ticket');
             if (isset($type)) {
                 if (isset($order_by)) {
                     if (isset($status)) {

@@ -71,7 +71,7 @@
         <div class="absolute right-[20px] top-[15px] max-sm:right-[60px] z-50">
             <span id="button" class="flex flex-row items-center align-middle gap-2 cursor-pointer">
                 <span class="max-sm:hidden">Hi <?= user()->username; ?></span>
-                <img src="media/wahyu.jpg" alt="" class="w-7 rounded-full hover:border-2 hover:border-sky-200 box-border duration-150">
+                <img src="<?= base_url(user()->media_profile) ?>" alt="" class="w-7 rounded-full hover:border-2 hover:border-sky-200 box-border duration-150">
             </span>
             <ul id="listData" class="bg-white w-40 p-2 flex-col absolute mt-1 md:-translate-x-14 max-sm:-translate-x-20 z-50 rounded-md hidden shadow-md">
                 <li class="bg-white max-h-full px-5 py-1 rounded-md my-2 hover:bg-slate-100">profilku</li>
@@ -91,23 +91,23 @@
 <script src="<?= base_url('js/dashboardPanel.js') ?>"></script>
 <script src="<?= base_url('js/messageBox.js') ?>"></script>
 <script type="text/javascript">
-     $(document).ready(()=>{
-        $('#button').on('click', (event)=>{
+    $(document).ready(() => {
+        $('#button').on('click', (event) => {
             event.stopPropagation();
             if ($('#listData').hasClass('hidden')) {
                 $('#listData').fadeIn(200).removeClass('hidden').addClass('flex');
 
-            }else{
+            } else {
                 $('#listData').slideUp(200).removeClass('flex').addClass('hidden');
             }
         });
         // tak tambahi event diluar id button
-        $(document).on('click', (event)=>{
-           if (!$(event.target).closest('#button, #listData').length) {
-               $('#listData').slideUp(200).removeClass('flex').addClass('hidden');
-           }
+        $(document).on('click', (event) => {
+            if (!$(event.target).closest('#button, #listData').length) {
+                $('#listData').slideUp(200).removeClass('flex').addClass('hidden');
+            }
         });
-     });
+    });
 </script>
 
 </html>

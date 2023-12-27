@@ -141,31 +141,31 @@ class Home extends BaseController
             'contactNavButton' => false,
             'formNavButton' => false,
             'manageUserNavButton' => true,
-            'users' => $this->users->where('id', $userId)->findAll(),
+            'users' => $this->users->where('id', $userId)->first(),
         ];
 
         return view('user/editUser', $data);
     }
 
+    public function getUser()
+    {
+        $id = $_GET['id'];
+        $data = $this->contact->where('contact_id', $id)->first();
+        header('Content-Type: application/json');
+        return json_encode($data); // Return the data as JSON
+    }
+
     public function testing()
     {
-        $query = $this->request->getGet('search');
-        $count = $this->request->getGet('count');
-        $type = $this->request->getGet('type');
-        $order_by = $this->request->getGet('order_by');
-        $status = $this->request->getGet('status');
-
         $data = [
             'name' => 'testing',
             'title' => 'halaman testing',
-            'query' => $this->ticket->searchData($query, $count, $type, $order_by, $status),
-            'pager' => $this->ticket->pager,
             'homeNavButton' => false,
             'ticketNavButton' => false,
             'contactNavButton' => false,
             'formNavButton' => false,
             'manageUserNavButton' => false,
-            'contact'   => $this->contact->paginate(5, 'contact'),
+            'contact'   => $this->contact->findAll()
         ];
 
         session()->setFlashdata('message', 'kamu baru saja kembali dari testing!');

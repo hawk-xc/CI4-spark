@@ -35,9 +35,46 @@
                 </a>
             </div>
         </div>
-        <div class="bg-white p-2 rounded-md shadow-sm mt-3 md:hidden lg:hidden max-sm:flex text-slate-700">
-            <i class="ri-filter-line"></i> filter
+
+        <!-- filter -->
+        <div class="md:hidden lg:hidden bg-white flex flex-col p-2 rounded-md shadow-sm mt-3  max-sm:flex text-slate-700 ">
+            <a id="filterButton" class="flex flex-row justify-between">
+                <span>
+                    <i class="ri-filter-line"></i> filter
+                </span>
+                <span>
+                    <i class="ri-skip-down-line"></i>
+                </span>
+            </a>
+            <div id="filterBox" class="hidden flex flex-row justify-between px-2 py-2 bg-slate-100 rounded-md mt-2">
+                <form action="" method="get" class="flex md:flex-col max-sm:flex-row gap-3 max-sm:max-w-full max-sm:w-full">
+                    <span>
+                        <select name="count" class="block w-60 px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
+                            <option value="5" <?= (old('count') === '5') ? 'selected' : '' ?>>5 showlist</option>
+                            <option value="10" <?= (old('count') === '10') ? 'selected' : '' ?>>10 showlist</option>
+                            <option value="25" <?= (old('count') === '25') ? 'selected' : '' ?>>25 showlist</option>
+                            <option value="50" <?= (old('count') === '50') ? 'selected' : '' ?>>50 showlist</option>
+                            <option value="100" <?= (old('count') === '100') ? 'selected' : '' ?>>100 showlist</option>
+                        </select>
+                        <select name="type" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
+                            <option value="mt" <?= (old('type') === 'mt') ? 'selected' : '' ?>>Perbaikan</option>
+                            <option value="new" <?= (old('type') === 'new') ? 'selected' : '' ?>>Installasi baru</option>
+                        </select>
+                        <select name="order_by" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
+                            <option value="name" <?= (old('order_by') === 'name') ? 'selected' : '' ?>>berdasarkan nama</option>
+                            <option value="subject" <?= (old('order_by') === 'subject') ? 'selected' : '' ?>>berdasarkan subject</option>
+                            <option value="ticket.created_at" <?= (old('order_by') === 'created_at') ? 'selected' : '' ?>>berdasarkan tanggal</option>
+                        </select>
+                        <select name="status" class="block w-full px-4 py-2 border rounded-md bg-white text-gray-800 focus:outline-none focus:border-blue-500">
+                            <option value="open" <?= (old('status') === 'open') ? 'selected' : '' ?>>open</option>
+                            <option value="close" <?= (old('status') === 'close') ? 'selected' : '' ?>>close</option>
+                        </select>
+                    </span>
+                    <button type="submit" class="px-2 py-2 w-32 bg-sky-300 font-semibold rounded-md shadow-sm text-white">aplikasikan</button>
+                </form>
+            </div>
         </div>
+
         <div name="sideback" id="sideback" class="flex max-sm:flex-col md:flex-row lg:flex-row max-w-full box-border gap-3 mt-3 md:h-96 lg:h-96 max-sm:h-[47rem]">
             <div class="w-full flex flex-col overflow-y-scroll gap-3 md:h-[29rem] max-sm:h-[47rem] max-sm:text-xs relative">
                 <!-- ticket section -->
@@ -53,7 +90,7 @@
                 <?php $n = 0; ?>
                 <?php foreach ($request as $req) { ?>
                     <!-- ticket -->
-                    <a href="<?= base_url('ticket/') . base64_encode($request[$n]['ticket_id']) . "/" . base64_encode($request[$n]['contact_id']) ?>">
+                    <a href="<?= base_url('ticket/') . $request[$n]['ticket_id'] . "/" . $request[$n]['contact_id'] ?>">
                         <div class="container max-w-full flex justify-center align-middle items-center flex-col gap-2">
                             <div class="hover:shadow-sm duration-150 transition-all cursor-pointer px-2 py-3 bg-white border border-sky-300 flex flex-row rounded-md max-w-full w-full justify-between items-center">
                                 <div class="flex flex-row items-center gap-3 px-3">
@@ -123,6 +160,15 @@
         </div>
     </section>
 </body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#filterButton').on('click', (e) => {
+            e.stopPropagation();
+            $('#filterBox').slideToggle();
+            console.log('hello')
+        })
+    })
+</script>
 <?= $this->endSection(); ?>
 
 </html>

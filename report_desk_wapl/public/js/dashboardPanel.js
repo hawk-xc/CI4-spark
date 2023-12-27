@@ -1,25 +1,16 @@
-const hamburgerMenu = document.getElementById("hamburgerMenu");
-const navPanel = document.getElementById("right_panel");
-const hamburderIcon = document.querySelector("i[name=hamburgerIcon]");
-const toolPanel = document.getElementById("toolPanel");
-const searchBox = document.getElementById("searchBox");
-const userBox = document.getElementById("userBox");
-const dropdown = document.getElementById("dropdown");
+const navPanel = $("#right_panel");
+const hamburgerIcon = $("#hamburgerIcon");
 
-window.addEventListener("scroll", function () {
-  if (window.scrollY > 100) {
-    toolPanel.classList.replace("md:py-4", "md:py-1");
-    toolPanel.classList.add("bg-opacity-30", "backdrop-blur-sm");
-    searchBox.classList.replace("md:scale-100", "md:scale-[70%]");
-    userBox.classList.replace("md:scale-100", "md:scale-[70%]");
+hamburgerIcon.on("click", (e) => {
+  e.stopPropagation();
+  if (navPanel.hasClass("max-sm:-translate-x-52")) {
+    navPanel.removeClass("max-sm:-translate-x-52");
   } else {
-    toolPanel.classList.replace("md:py-1", "md:py-4");
-    toolPanel.classList.remove("bg-opacity-30", "backdrop-blur-sm");
-    searchBox.classList.replace("md:scale-[70%]", "md:scale-100");
-    userBox.classList.replace("md:scale-[70%]", "md:scale-100");
+    navPanel.addClass("max-sm:-translate-x-52");
   }
+  // console.log("hello");
 });
 
-hamburgerMenu.addEventListener("click", function () {
-  navPanel.classList.toggle("max-sm:-translate-x-52");
+$(document).on("click", (e) => {
+  navPanel.addClass("max-sm:-translate-x-52");
 });

@@ -23,29 +23,39 @@ function defineMonth($num)
 }
 ?>
 
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="<?= base_url('node_modules/jquery/dist/jquery.min.js') ?>"></script>
 
-<div id="confirmBox" class="scale-0 duration-200 transition-all ease-out shadow-md absolute mx-auto w-72 backdrop-blur-md top-[45%] left-[45%] py-6 flex flex-col items-center rounded-md border border-slate-400">
-    <div class="text-2xl text-slate-600"><i class="ri-information-line"></i> Info...</div>
-    <div class="text-md text-slate-500 mt-2">apakah anda yakin?</div>
-    <div class="flex flex-row mt-4 gap-4">
-        <button id="dropConfirmBox" href="" class="hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 w-16 flex justify-center rounded-md text-white px-2 py-1 bg-violet-500 border border-slate-400 cursor-pointer">tidak</button>
-
-        <a href="<?= base_url('delete/') . $ticket['ticket_id'] ?>">
-            <button class="hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 w-16 flex justify-center rounded-md text-white px-2 py-1 bg-violet-500 border border-slate-400 cursor-pointer">iya</button>
-        </a>
+<div id="modalBox" class="hidden duration-200 transition-all ease-in absolute inset-0 flex items-center justify-center backdrop-blur-sm z-50 backdrop-brightness-75">
+    <div class="bg-white rounded-md w-96 p-5 flex justify-center align-middle items-center flex-col">
+        <h2 class="font-bold text-slate-800 text-xl">hapus ticket?</h2>
+        <span>hapus ticket <span class="font-bold text-sky-500"><?= $ticket['name'] ?></span>#<?= $ticket['ticket_id'] ?>?</span>
+        <!-- msgBox -->
+        <div class="p-2 border-l-4 border-red-400 bg-red-100 my-3 w-64 flex flex-col">
+            <span class="font-bold bg-red-200 rounded-md p-1"><i class="ri-alert-line"></i> Peringatan</span>
+            <span class="text-sm">
+                hapus bersifat permanen dan tidak bisa dibackup kembali, apakah anda yakin?
+            </span>
+        </div>
+        <div id="confirmationButton" class="flex justify-between w-64 px-5 mt-3 gap-2">
+            <button id="modalBoxCancel" class="py-2 px-5 w-1/2 bg-sky-100 active:bg-sky-200 rounded-md border border-sky-300">
+                tidak
+            </button>
+            <a href="<?= base_url('delete/') . $ticket['ticket_id'] ?>" id="modalBoxDelete" class="flex items-center align-middle justify-center py-2 px-5 w-1/2 bg-red-100 active:bg-red-200 rounded-md border border-red-300 cursor-pointer">
+                hapus
+            </a>
+        </div>
     </div>
 </div>
 
 <div class="p-1">
     <div class="bg-white p-3 rounded-md flex flex-row gap-4 box-border justify-between">
         <span class="rounded-md flex flex-row gap-4 box-border max-sm:text-[10px]">
-            <a href="<?= base_url('ticket') ?>" class="bg-blue-200 px-2 py-1 rounded-md border border-slate-500 cursor-pointer hover:brightness-105 duration-150 flex justify-center align-middle items-center gap-1 max-sm:font-semibold text-slate-600"><i class="ri-arrow-go-back-fill"></i> goback</a>
-            <a href="<?= $ticket['status'] == 'close' ? base_url('ticket/open/') . $ticket['ticket_id'] : base_url('ticket/close/') . $ticket['ticket_id'] ?>" class="<?= $ticket['status'] == 'close' ? 'bg-blue-200' : 'bg-green-300' ?> px-2 py-1 rounded-md border border-slate-500 cursor-pointer hover:brightness-105 duration-150 flex justify-center align-middle items-center gap-1 max-sm:font-semibold text-slate-600">
+            <a href="<?= base_url('ticket') ?>" class="bg-blue-200 px-2 py-1 rounded-md border border-slate-500 cursor-pointer hover:brightness-105 duration-150 flex justify-center align-middle items-center gap-1 max-sm:font-semibold text-white"><i class="ri-arrow-go-back-fill"></i> goback</a>
+            <a href="<?= $ticket['status'] == 'close' ? base_url('ticket/open/') . $ticket['ticket_id'] . "/" . $ticket['contact_id'] : base_url('ticket/close/') . $ticket['ticket_id'] . "/" . $ticket['contact_id'] ?>" class="<?= $ticket['status'] == 'close' ? 'bg-blue-200' : 'bg-green-300' ?> px-2 py-1 rounded-md border border-slate-500 cursor-pointer hover:brightness-105 duration-150 flex justify-center align-middle items-center gap-1 max-sm:font-semibold text-white">
                 <i class="ri-checkbox-circle-line"></i> <?= $ticket['status'] == 'close' ? 'Open' : 'Close' ?>
             </a>
         </span>
-        <button id="upConfirmBox" class="bg-red-300 px-2 py-1 focus:bg-red-400 focus:ring focus:ring-red-500 rounded-md border border-slate-500 cursor-pointer hover:brightness-105 duration-150 max-sm:text-[10px] flex justify-center align-middle items-center gap-1 max-sm:font-semibold text-slate-600"><i class="ri-delete-bin-5-line"></i> Delete</button>
+        <button id="deleteButton" class="bg-green-500 hover:bg-green-400 px-2 py-1 focus:bg-red-400 focus:ring focus:ring-red-500 rounded-md border border-slate-500 cursor-pointer hover:brightness-105 duration-150 max-sm:text-[10px] flex justify-center align-middle items-center gap-1 max-sm:font-semibold text-white"><i class="ri-delete-bin-5-line"></i></button>
     </div>
     <?php if (session()->getFlashdata('message')) { ?>
         <div id="messageBox" class="duration-500 transition-all ease-out my-2 p-2 bg-blue-300 ring-1 ring-blue-100 rounded-md flex justify-between">
@@ -163,7 +173,7 @@ function defineMonth($num)
             <ol class="relative border-s border-gray-400 dark:border-gray-700 ml-1 mt-2">
                 <?php foreach ($timeLine as $ticketTimeLine) : ?>
                     <li class="mb-10 ms-4">
-                        <a href="<?= base_url('ticket/') .  base64_encode($ticketTimeLine['ticket_id']) . "/" . base64_encode($ticketTimeLine['contact_id']) ?>">
+                        <a href="<?= base_url('ticket/') .  $ticketTimeLine['ticket_id'] . "/" . $ticketTimeLine['contact_id'] ?>">
                             <div class="absolute w-3 h-3 bg-gray-300 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
                             <time class="mb-1 md:text-sm max-sm:text-[10px] font-normal leading-none text-gray-400 dark:text-gray-500 flex gap-2 flex-row align-middle items-center">
                                 <?= date('d', strtotime($ticketTimeLine['created_at'])) . " " . defineMonth(date('m', strtotime($ticketTimeLine['created_at']))) . " " . date('Y', strtotime($ticketTimeLine['created_at'])) ?> <span class="p-1 flex justify-center align-middle items-center text-white rounded-md <?= $ticketTimeLine['status'] == 'close' ? 'bg-green-200' : 'bg-sky-200' ?>"><?= $ticketTimeLine['status'] ?></span>
@@ -179,44 +189,9 @@ function defineMonth($num)
 </div>
 
 <script type="text/javascript">
-    // const confirmBox = document.getElementById("confirmBox");
-    // const dropConfirmBox = document.getElementById("dropConfirmBox");
-    const upConfirmBox = document.getElementById("upConfirmBox");
-    // const hamburgerMenu = document.getElementById("hamburgerMenu");
-    // const navPanel = document.getElementById("right_panel");
-    // const hamburderIcon = document.querySelector("i[name=hamburgerIcon]");
-    // const toolPanel = document.getElementById("toolPanel");
-    // const searchBox = document.getElementById("searchBox");
-    // const userBox = document.getElementById("userBox");
-    // const dropdown = document.getElementById("dropdown");
-
-    function confirmBoxAction() {
-        confirmBox.classList.contains('scale-0') ? confirmBox.classList.replace('scale-0', 'scale-100') : confirmBox.classList.replace('scale-100', 'scale-0');
-    }
-
-    // dropConfirmBox.addEventListener("click", confirmBoxAction);
-    upConfirmBox.addEventListener("click", confirmBoxAction);
-
-    // flash data function
-    // const messageBox = document.getElementById("messageBox");
-    // const closeButton = document.getElementById("closeButton");
-
-    // closeButton.addEventListener("click", function() {
-    //     messageBox.classList.add("hidden");
-    // });
-    // setTimeout(function() {
-    //     messageBox.classList.add("opacity-0");
-    //     setTimeout(function() {
-    //         messageBox.classList.add("hidden");
-    //     }, 500);
-    // }, 3000);
-
-    // hamburgerMenu.addEventListener("click", function() {
-    //     navPanel.classList.toggle("max-sm:-translate-x-52");
-    // });
-
     $(document).ready(function() {
-        $('#atractiveButton').on('click', function() {
+        $('#atractiveButton').on('click', (e) => {
+            e.stopPropagation();
             $('#dialogBox').slideToggle()
             $('#dropDownIcon').toggleClass('rotate-180', 1000)
             console.log('on')

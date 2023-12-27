@@ -175,9 +175,6 @@ class Ticket extends BaseController
 
     public function showTicket($ticketId, $contactId = null)
     {
-        $ticketId_en = base64_decode($ticketId);
-        $contactId_en = base64_decode($contactId);
-
         $data = [
             'name'                => 'ticketing',
             'title'               => 'Ticketing',
@@ -186,12 +183,12 @@ class Ticket extends BaseController
             'contactNavButton'    => false,
             'formNavButton'       => false,
             'manageUserNavButton' => false,
-            'ticket'              => $this->ticketModel->where('ticket_id', $ticketId_en)->join('contact', 'contact_id')->first(),
-            'description'         => $this->ticketModel->select('description')->where('ticket_id', $ticketId_en)->findAll(),
-            'ticket_date'         => $this->ticketModel->select('created_at')->where('ticket_id', $ticketId_en)->find(),
-            'getdatetime'         => $this->gettimestamp($this->ticketModel->select('created_at')->where('ticket_id', $ticketId_en)->find()[0]['created_at']),
-            'ticketData'          => $this->ticketDataModel->where('ticket_id', $ticketId_en)->findAll(),
-            'timeLine'            => $this->ticketModel->where('contact_id', $contactId_en)->orderBy('created_at', 'asc')->findAll(),
+            'ticket'              => $this->ticketModel->where('ticket_id', $ticketId)->join('contact', 'contact_id')->first(),
+            'description'         => $this->ticketModel->select('description')->where('ticket_id', $ticketId)->findAll(),
+            'ticket_date'         => $this->ticketModel->select('created_at')->where('ticket_id', $ticketId)->find(),
+            'getdatetime'         => $this->gettimestamp($this->ticketModel->select('created_at')->where('ticket_id', $ticketId)->find()[0]['created_at']),
+            'ticketData'          => $this->ticketDataModel->where('ticket_id', $ticketId)->findAll(),
+            'timeLine'            => $this->ticketModel->where('contact_id', $contactId)->orderBy('created_at', 'asc')->findAll(),
         ];
 
         return view('ticketing/showTicket', $data);
@@ -199,14 +196,17 @@ class Ticket extends BaseController
 
     public function delete($ticket_id, $contact_id = null)
     {
-        $ticket_id_en = base64_decode($ticket_id);
-        $image = 'media/' . $this->ticketModel->select('media')->where('ticket_id', $ticket_id)->first()['media'];
+        $db = \Config\Database::connect();
+        $query = $db->table('ticket')->select('media')->where('ticket_id', $ticket_id)->get();
+
+        $image = 'media/' . $query->getRow()->media;
 
         if (file_exists($image)) {
             unlink($image);
         }
 
-        // dd('media/' . $this->ticketModel->select('media')->where('ticket_id', $ticket_id)->first()['media']);
+        // dd($image);
+
 
         # bug, during solved
         // $i = 0;
@@ -222,10 +222,10 @@ class Ticket extends BaseController
         $this->ticketDataModel->where('ticket_id', $ticket_id)->delete();
         $this->session->setFlashdata('message', 'ticket telah terhapus dari daftar!');
 
-        return redirect()->to(base_url('ticket'));
+        return redirect()->to('ticket');
     }
 
-    public function open($ticket_id)
+    public function open($ticket_id, $contact_id)
     {
         $data = [
             'status'    => 'open'
@@ -233,7 +233,18 @@ class Ticket extends BaseController
 
         $this->ticketModel->update($ticket_id, $data);
         $this->session->setFlashdata('message', 'ticket sudah diubah menjadi open!');
-        return redirect()->to(base_url('ticket/') . $ticket_id);
+        return redirect()->to(base_url('ticket/') . $ticket_id . "/" . $contact_id);
+    }
+
+    public function close($ticket_id, $contact_id)
+    {
+        $data = [
+            'status'    => 'close'
+        ];
+
+        $this->ticketModel->update($ticket_id, $data);
+        $this->session->setFlashdata('message', 'ticket sudah diubah menjadi close!');
+        return redirect()->to(base_url('ticket/') . $ticket_id . "/" . $contact_id);
     }
 
     public function edit($ticket_id)

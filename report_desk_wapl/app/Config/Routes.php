@@ -22,11 +22,11 @@ $routes->post('/ticket/edit/(:num)', 'Ticket::edit/$1', ['filter' => 'role:noc,a
 $routes->get('/ticket/remove/(:num)', 'Ticket::removeComment/$1', ['filter' => 'role:noc,admin']);
 
 // route ke tampilkan detail ticket
-$routes->get('/ticket/(:any)/(:any)', 'Ticket::showTicket/$1/$2');
+$routes->get('/ticket/(:num)/(:num)', 'Ticket::showTicket/$1/$2');
 // $routes->get('/ticket/delete/(:num)', 'TicketManage::delete/$1', ['filter' => 'role:noc,admin']);
-$routes->get('/delete/(:num)', 'TicketManage::delete/$1');
-$routes->get('/ticket/close/(:num)', 'TicketManage::close/$1');
-$routes->get('/ticket/open/(:num)', 'TicketManage::open/$1');
+$routes->get('/delete/(:num)', 'Ticket::delete/$1');
+$routes->get('/ticket/close/(:num)/(:num)', 'Ticket::close/$1/$2');
+$routes->get('/ticket/open/(:num)/(:num)', 'Ticket::open/$1/$2');
 
 // routes untuk contact => denny
 // $routes->get('/contact', 'Contact::index');
@@ -55,5 +55,6 @@ $routes->get('/form/(:any)', 'Form::edit/$1', ['filter' => 'role:noc,admin']);
 // admin
 $routes->get('/manageuser', 'Home::manageUser', ['filter' => 'role:admin']);
 $routes->get('/edituser/(:num)', 'Home::editUser/$1', ['filter' => 'role:admin']);
+$routes->get('/getuser', 'Home::getUser', ['filter' => 'role:admin']);
 // routes untuk contact => denny
 // $routes->get('/contact', 'Contact::index');
