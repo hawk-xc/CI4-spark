@@ -40,6 +40,11 @@ class Ticket extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 255
             ],
+            'media'          => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+                'null'       => true
+            ],
             'created_at'     => [
                 'type'       => 'datetime',
                 'null'       => false

@@ -1,25 +1,35 @@
+const modalBox = $("#modalBox");
+const cancelBoxButton = $("#modalBoxCancel");
+const deleteboxButton = $("#modalBoxDelete");
+const deleteButton = $("#deleteButton");
+
+deleteButton.on("click", (e) => {
+  e.stopPropagation();
+  if (modalBox.hasClass("hidden")) {
+    modalBox.removeClass("hidden");
+  } else {
+    modalBox.addClass("hidden");
+  }
+});
+
+cancelBoxButton.on("click", (e) => {
+  modalBox.addClass("hidden");
+});
+
+$(document).on("click", (e) => {
+  modalBox.addClass("hidden");
+});
+
 // flash data function
-const messageBox = document.getElementById("messageBox");
-const closeButton = document.getElementById("closeButton");
+// const messageBox = document.getElementById("messageBox");
+// const closeButton = document.getElementById("closeButton");
 
-setTimeout(function () {
-  closeButton.addEventListener("click", function () {
-    messageBox.classList.add("hidden");
-  });
-  messageBox.classList.add("opacity-0");
-  setTimeout(function () {
-    messageBox.classList.add("hidden");
-  }, 500);
-}, 5000);
-
-// confirmBox function
-const confirmBox = document.getElementById("confirmBox");
-const dropConfirmBox = document.getElementById("dropConfirmBox");
-const upConfirmBox = document.getElementById("upConfirmBox");
-
-function confirmBoxAction() {
-  confirmBox.classList.toggle("hidden");
-}
-
-dropConfirmBox.addEventListener("click", confirmBoxAction);
-upConfirmBox.addEventListener("click", confirmBoxAction);
+// closeButton.addEventListener("click", function () {
+//   messageBox.classList.add("hidden");
+// });
+// setTimeout(function () {
+//   messageBox.classList.add("opacity-0");
+//   setTimeout(function () {
+//     messageBox.classList.add("hidden");
+//   }, 500);
+// }, 5000);

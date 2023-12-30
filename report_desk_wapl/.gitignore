@@ -83,7 +83,7 @@ phpunit
 #-------------------------
 # Composer
 #-------------------------
-vendor/
+# vendor/
 
 #-------------------------
 # IDE / Development Files
@@ -99,31 +99,31 @@ _modules/*
 .idea/
 *.iml
 
-# Netbeans
-nbproject/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-.nb-gradle/
+# # Netbeans
+# nbproject/
+# build/
+# nbbuild/
+# dist/
+# nbdist/
+# nbactions.xml
+# nb-configuration.xml
+# .nb-gradle/
 
-# Sublime Text
-*.tmlanguage.cache
-*.tmPreferences.cache
-*.stTheme.cache
-*.sublime-workspace
-*.sublime-project
-.phpintel
-/api/
+# # Sublime Text
+# *.tmlanguage.cache
+# *.tmPreferences.cache
+# *.stTheme.cache
+# *.sublime-workspace
+# *.sublime-project
+# .phpintel
+# /api/
 
-# Visual Studio Code
-.vscode/
+# # Visual Studio Code
+# .vscode/
 
-/results/
-/phpunit*.xml
-/.phpunit.*.cache
+# /results/
+# /phpunit*.xml
+# /.phpunit.*.cache
 
 # contact ignore
 # contact harus dimasukkan ke database untuk dilakukan sirkonisasi

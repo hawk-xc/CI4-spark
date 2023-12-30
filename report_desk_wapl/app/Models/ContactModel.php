@@ -13,7 +13,7 @@ class ContactModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name', 'email', 'phone', 'address', 'description'];
+    protected $allowedFields    = ['name', 'email', 'phone', 'address', 'description', 'created_at', 'updated_at'];
 
     // Dates
     protected $useTimestamps = true;
@@ -38,4 +38,31 @@ class ContactModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function searchData($query)
+    {
+        // Implement your search logic, for example:
+        if (isset($query)) {
+            return $this->like('name', $query)->findAll();
+        } else {
+            return $this->paginate(5, 'contact');
+        }
+    }
+       public function search($query)
+    {
+        if ($query) {
+        return $this->like('name', $query)
+                    // ->orLike('email', $query)
+                    // ->orLike('phone', $query)
+                    ->paginate(20, 'contact');
+    } else {
+        return $this->paginate(20, 'contact');
+    }
+    }
+     public function getContact($contact_id)
+    {
+
+        return $this->where('contact_id', $contact_id)->first();
+    }
+
 }

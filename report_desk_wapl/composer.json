@@ -12,7 +12,8 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "codeigniter4/framework": "^4.4",
-        "fzaninotto/faker": "^1.5"
+        "fzaninotto/faker": "^1.5",
+        "myth/auth": "^1.2"
     },
     "require-dev": {
         "mikey179/vfsstream": "^1.6",

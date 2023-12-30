@@ -1,18 +1,9 @@
 <?= $this->extend('particle/dashboardParticle'); ?>
 <?= $this->section('content'); ?>
 
-<?php
-// if ((session()->getFlashdata('error'))) {
-//     echo "<ul>";
-//     foreach (session()->getFlashdata('error') as $val) {
-//         echo "<li>$val</li>";
-//     };
-//     echo "</ul>";
-// }
-if ((session()->getFlashdata("success"))) {
-    echo "<h1>" . session()->getFlashdata('success') . "</h1>";
-}
-?>
+
+
+
 
 <!-- <header class="bg-slate-800 text-white py-4">
     <div class="container mx-auto text-center">
@@ -21,11 +12,14 @@ if ((session()->getFlashdata("success"))) {
     </div>
 </header> -->
 
+
+
 <section name="newTicket" class="p-5 bg-white shadow-sm rounded-lg">
     <div class="w-full flex flex-col overflow-y-scroll gap-3 md:h-[29rem] max-sm:order-2 max-sm:h-[47rem] max-sm:text-md custom-scrollbar-hidden">
         <div class="max-w-full w-full mx-auto bg-white p-6 rounded-lg shadow-md">
             <h2 class="text-2xl font-semibold mb-4">Formulir Kontak</h2>
-            <form action="" method="post">
+            <form action="<?= base_url('form'); ?>" method="post">
+                <?= csrf_field(); ?>
                 <div class="mb-4">
                     <label for="name" class="block text-gray-600 text-xl">Nama Lengkap <span class="text-red-600">*</span></label>
                     <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500" value="<?= old('name'); ?>">
@@ -49,6 +43,14 @@ if ((session()->getFlashdata("success"))) {
                     <input type="text" id="nomor" name="nomor" class="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500" value="<?= old('nomor'); ?>">
                     <?php if (session()->getFlashdata('error') && array_key_exists('nomor', session()->getFlashdata('error'))) : ?>
                         <p class="text-sm text-red-700 italic"><?= '<i class="ri-error-warning-line m-3"></i>' . session()->getFlashdata('error')['nomor'] ?></p>
+                    <?php endif; ?>
+                </div>
+
+                <div class="mb-4">
+                    <label for="address" class="block text-gray-600 text-xl">Alamat <span class="text-red-600">*</label>
+                    <input type="text" id="address" name="address" class="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500" value="<?= old('address'); ?>">
+                    <?php if (session()->getFlashdata('error') && array_key_exists('address', session()->getFlashdata('error'))) : ?>
+                        <p class="text-sm text-red-700 italic"><?= '<i class="ri-error-warning-line m-3"></i>' . session()->getFlashdata('error')['address'] ?></p>
                     <?php endif; ?>
                 </div>
 
